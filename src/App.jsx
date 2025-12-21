@@ -39,7 +39,7 @@ export default function App(){
         </Routes>
       </main>
       <AppFooter />
-      <FloatingWhatsApp phone="+917897061003" message="Hello%20Madhuban%20Traders!%20I%20need%20help%20with%20a%20bulk%20order." />
+      <FloatingWhatsApp phone="+917897061003" message="Hello%20Madhuban%20Traders!" />
     </div>
   )
 }

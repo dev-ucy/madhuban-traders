@@ -3,12 +3,14 @@
     "id": 1,
     "name": "Mustard Oil",
     "price": 450,
-    "image": "https://pollinations.ai/p/realistic-mustard-oil-glass-bottle-seeds-flowers-rustic-wood-4k?width=800&height=600&seed=1",
+    "image": "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
     "images": [
-      "https://pollinations.ai/p/realistic-mustard-oil-glass-bottle-seeds-flowers-rustic-wood-4k?width=800&height=600&seed=1",
-      "https://pollinations.ai/p/mustard-oil-pouring-into-bowl-golden-liquid-macro?width=800&height=600&seed=11"
+      "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
+      "https://via.placeholder.com/800x600?text=Mustard+Oil+Bottle",
+      "https://via.placeholder.com/800x600?text=Mustard+Seeds"
     ],
     "category": "Oils",
+    
     "variants": [
       {"id":"v1a","label":"1 L","price":120},
       {"id":"v1b","label":"3 L","price":350},
@@ -27,12 +29,14 @@
     "id": 2,
     "name": "Groundnut Oil",
     "price": 220,
-    "image": "https://pollinations.ai/p/pure-cold-pressed-groundnut-oil-bottle-peanuts-bright-kitchen?width=800&height=600&seed=2",
+    "image": "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
     "images": [
-      "https://pollinations.ai/p/pure-cold-pressed-groundnut-oil-bottle-peanuts-bright-kitchen?width=800&height=600&seed=2",
-      "https://pollinations.ai/p/handful-of-fresh-peanuts-next-to-oil-bottle?width=800&height=600&seed=22"
+      "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
+      "https://via.placeholder.com/800x600?text=Groundnut+Oil+Bottle",
+      "https://via.placeholder.com/800x600?text=Groundnuts"
     ],
     "category": "Oils",
+    
     "variants": [
       {"id":"v2a","label":"250 ml","price":70},
       {"id":"v2b","label":"500 ml","price":140},
@@ -51,12 +55,14 @@
     "id": 3,
     "name": "Turmeric (Haldi) Powder",
     "price": 320,
-    "image": "https://pollinations.ai/p/vibrant-turmeric-powder-wooden-bowl-fresh-roots-macro?width=800&height=600&seed=3",
+    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
     "images": [
-      "https://pollinations.ai/p/vibrant-turmeric-powder-wooden-bowl-fresh-roots-macro?width=800&height=600&seed=3",
-      "https://pollinations.ai/p/fresh-turmeric-rhizomes-on-white-background-clean?width=800&height=600&seed=33"
+      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+      "https://via.placeholder.com/800x600?text=Turmeric+Powder",
+      "https://via.placeholder.com/800x600?text=Turmeric+Roots"
     ],
     "category": "Spices",
+    
     "variants": [
       {"id":"v3a","label":"100 g","price":80},
       {"id":"v3b","label":"250 g","price":180},
@@ -75,12 +81,14 @@
     "id": 4,
     "name": "Cardamom (Elaichi)",
     "price": 480,
-    "image": "https://pollinations.ai/p/green-cardamom-pods-ceramic-dish-detailed-texture-soft-light?width=800&height=600&seed=4",
+    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
     "images": [
-      "https://pollinations.ai/p/green-cardamom-pods-ceramic-dish-detailed-texture-soft-light?width=800&height=600&seed=4",
-      "https://pollinations.ai/p/cardamom-seeds-spilled-from-pod-macro-shot?width=800&height=600&seed=44"
+      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+      "https://via.placeholder.com/800x600?text=Cardamom+Pods",
+      "https://via.placeholder.com/800x600?text=Cardamom+Seeds"
     ],
     "category": "Spices",
+    
     "variants": [
       {"id":"v4a","label":"25 g","price":140},
       {"id":"v4b","label":"50 g","price":260},
@@ -99,12 +107,14 @@
     "id": 5,
     "name": "Cumin Seeds",
     "price": 180,
-    "image": "https://pollinations.ai/p/whole-cumin-seeds-wooden-spoon-earthy-tones-macro?width=800&height=600&seed=5",
+    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
     "images": [
-      "https://pollinations.ai/p/whole-cumin-seeds-wooden-spoon-earthy-tones-macro?width=800&height=600&seed=5",
-      "https://pollinations.ai/p/scattered-cumin-seeds-on-rustic-background-top-view?width=800&height=600&seed=55"
+      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+      "https://via.placeholder.com/800x600?text=Cumin+Seeds",
+      "https://via.placeholder.com/800x600?text=Cumin+Spoon"
     ],
     "category": "Spices",
+    
     "variants": [
       {"id":"v5a","label":"100 g","price":50},
       {"id":"v5b","label":"250 g","price":100},
@@ -123,12 +133,14 @@
     "id": 6,
     "name": "Cinnamon Sticks",
     "price": 260,
-    "image": "https://pollinations.ai/p/cinnamon-bark-sticks-tied-with-twine-warm-lighting-rustic?width=800&height=600&seed=6",
+    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
     "images": [
-      "https://pollinations.ai/p/cinnamon-bark-sticks-tied-with-twine-warm-lighting-rustic?width=800&height=600&seed=6",
-      "https://pollinations.ai/p/cinnamon-powder-next-to-sticks-on-wooden-surface?width=800&height=600&seed=66"
+      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+      "https://via.placeholder.com/800x600?text=Cinnamon+Sticks",
+      "https://via.placeholder.com/800x600?text=Cinnamon+Powder"
     ],
     "category": "Spices",
+   
     "variants": [
       {"id":"v6a","label":"50 g","price":140},
       {"id":"v6b","label":"100 g","price":260},
@@ -147,12 +159,14 @@
     "id": 7,
     "name": "Black Pepper (Whole)",
     "price": 220,
-    "image": "https://pollinations.ai/p/whole-black-peppercorns-stone-bowl-high-contrast-sharp-focus?width=800&height=600&seed=7",
+    "image": "https://via.placeholder.com/1200x800?text=Black+Pepper",
     "images": [
-      "https://pollinations.ai/p/whole-black-peppercorns-stone-bowl-high-contrast-sharp-focus?width=800&height=600&seed=7",
-      "https://pollinations.ai/p/black-pepper-mill-grinding-fresh-peppercorns-action-shot?width=800&height=600&seed=77"
+      "https://via.placeholder.com/1200x800?text=Black+Pepper",
+      "https://via.placeholder.com/1200x800?text=Pepper+Closeup",
+      "https://via.placeholder.com/1200x800?text=Pepper+Mill"
     ],
     "category": "Spices",
+    
     "variants": [
       {"id":"v7a","label":"100 g","price":120},
       {"id":"v7b","label":"200 g","price":220},
@@ -171,10 +185,11 @@
     "id": 8,
     "name": "Coriander Seeds (Dhaniya)",
     "price": 140,
-    "image": "https://pollinations.ai/p/whole-coriander-seeds-citrusy-aroma-wooden-background?width=800&height=600&seed=8",
+    "image": "https://via.placeholder.com/1200x800?text=Coriander+Seeds",
     "images": [
-      "https://pollinations.ai/p/whole-coriander-seeds-citrusy-aroma-wooden-background?width=800&height=600&seed=8",
-      "https://pollinations.ai/p/ground-coriander-powder-in-small-clay-pot?width=800&height=600&seed=88"
+      "https://via.placeholder.com/1200x800?text=Coriander+Seeds",
+      "https://via.placeholder.com/1200x800?text=Coriander+Closeup",
+      "https://via.placeholder.com/1200x800?text=Coriander+Powder"
     ],
     "category": "Spices",
     "variants": [
@@ -195,10 +210,11 @@
     "id": 9,
     "name": "Fenugreek Seeds (Methi)",
     "price": 110,
-    "image": "https://pollinations.ai/p/fenugreek-methi-seeds-bitter-nutty-texture-close-up?width=800&height=600&seed=9",
+    "image": "https://via.placeholder.com/1200x800?text=Fenugreek+Seeds",
     "images": [
-      "https://pollinations.ai/p/fenugreek-methi-seeds-bitter-nutty-texture-close-up?width=800&height=600&seed=9",
-      "https://pollinations.ai/p/fenugreek-sprouts-growing-in-small-jar?width=800&height=600&seed=99"
+      "https://via.placeholder.com/1200x800?text=Fenugreek+Seeds",
+      "https://via.placeholder.com/1200x800?text=Fenugreek+Sprouts",
+      "https://via.placeholder.com/1200x800?text=Fenugreek+Usage"
     ],
     "category": "Spices",
     "variants": [
@@ -219,10 +235,11 @@
     "id": 10,
     "name": "Cloves (Laung)",
     "price": 300,
-    "image": "https://pollinations.ai/p/whole-cloves-aromatic-spice-dark-background-macro-photography?width=800&height=600&seed=10",
+    "image": "https://via.placeholder.com/1200x800?text=Cloves",
     "images": [
-      "https://pollinations.ai/p/whole-cloves-aromatic-spice-dark-background-macro-photography?width=800&height=600&seed=10",
-      "https://pollinations.ai/p/cloves-used-in-spiced-tea-biryani-context-shot?width=800&height=600&seed=1010"
+      "https://via.placeholder.com/1200x800?text=Cloves",
+      "https://via.placeholder.com/1200x800?text=Cloves+Closeup",
+      "https://via.placeholder.com/1200x800?text=Cloves+Usage"
     ],
     "category": "Spices",
     "variants": [
@@ -243,10 +260,11 @@
     "id": 11,
     "name": "Bay Leaves (Tej Patta)",
     "price": 90,
-    "image": "https://pollinations.ai/p/dried-bay-leaves-tej-patta-aromatic-herb-natural-lighting?width=800&height=600&seed=11",
+    "image": "https://via.placeholder.com/1200x800?text=Bay+Leaves",
     "images": [
-      "https://pollinations.ai/p/dried-bay-leaves-tej-patta-aromatic-herb-natural-lighting?width=800&height=600&seed=11",
-      "https://pollinations.ai/p/bay-leaves-floating-in-simmering-stew-pot-close-up?width=800&height=600&seed=1111"
+      "https://via.placeholder.com/1200x800?text=Bay+Leaves",
+      "https://via.placeholder.com/1200x800?text=Bay+Closeup",
+      "https://via.placeholder.com/1200x800?text=Bay+Usage"
     ],
     "category": "Spices",
     "variants": [
@@ -267,10 +285,11 @@
     "id": 12,
     "name": "Fennel Seeds (Saunf)",
     "price": 130,
-    "image": "https://pollinations.ai/p/sweet-fennel-seeds-saunf-digestive-aid-green-texture?width=800&height=600&seed=12",
+    "image": "https://via.placeholder.com/1200x800?text=Fennel+Seeds",
     "images": [
-      "https://pollinations.ai/p/sweet-fennel-seeds-saunf-digestive-aid-green-texture?width=800&height=600&seed=12",
-      "https://pollinations.ai/p/fennel-seeds-in-small-bowl-with-sugar-crystals-mouth-freshener?width=800&height=600&seed=1212"
+      "https://via.placeholder.com/1200x800?text=Fennel+Seeds",
+      "https://via.placeholder.com/1200x800?text=Fennel+Closeup",
+      "https://via.placeholder.com/1200x800?text=Fennel+Usage"
     ],
     "category": "Spices",
     "variants": [
@@ -291,10 +310,11 @@
     "id": 13,
     "name": "Saffron (Kesar)",
     "price": 950,
-    "image": "https://pollinations.ai/p/premium-kashmiri-saffron-threads-tiny-glass-jar-luxurious?width=800&height=600&seed=13",
+    "image": "https://via.placeholder.com/1200x800?text=Saffron",
     "images": [
-      "https://pollinations.ai/p/premium-kashmiri-saffron-threads-tiny-glass-jar-luxurious?width=800&height=600&seed=13",
-      "https://pollinations.ai/p/saffron-threads-soaking-in-milk-golden-hue-macro?width=800&height=600&seed=1313"
+      "https://via.placeholder.com/1200x800?text=Saffron",
+      "https://via.placeholder.com/1200x800?text=Saffron+Closeup",
+      "https://via.placeholder.com/1200x800?text=Saffron+Threads"
     ],
     "category": "Spices",
     "variants": [
@@ -315,10 +335,11 @@
     "id": 14,
     "name": "Red Chilli Powder",
     "price": 150,
-    "image": "https://pollinations.ai/p/hot-red-chilli-powder-terracotta-bowl-dried-chillies?width=800&height=600&seed=14",
+    "image": "https://via.placeholder.com/1200x800?text=Red+Chilli+Powder",
     "images": [
-      "https://pollinations.ai/p/hot-red-chilli-powder-terracotta-bowl-dried-chillies?width=800&height=600&seed=14",
-      "https://pollinations.ai/p/red-chilli-powder-swirl-texture-close-up-vibrant?width=800&height=600&seed=1414"
+      "https://via.placeholder.com/1200x800?text=Red+Chilli+Powder",
+      "https://via.placeholder.com/1200x800?text=Chilli+Closeup",
+      "https://via.placeholder.com/1200x800?text=Chilli+Powder+Spoon"
     ],
     "category": "Spices",
     "variants": [
