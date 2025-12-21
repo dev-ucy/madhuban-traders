@@ -2,7 +2,9 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { usePageGradient } from './hooks/usePageGradient'
 import AppHeader from './components/AppHeader'
+import ScrollToTop from './components/ScrollToTop'
 import FloatingWhatsApp from './components/FloatingWhatsApp'
+import FloatingCall from './components/FloatingCall'
 import AppFooter from './components/AppFooter'
 import Home from './pages/Home'
 import Catalog from './pages/Catalog'
@@ -20,6 +22,9 @@ export default function App(){
   return (
     <div className="app-wrapper">
       <AppHeader />
+      <ScrollToTop />
+      <FloatingWhatsApp phone="+917897061003" message="Hello%20Madhuban%20Traders!" />
+      <FloatingCall phone="+917897061003" />
       <main className="app-main">
         <Routes>
           <Route path="/" element={<Home/>} />

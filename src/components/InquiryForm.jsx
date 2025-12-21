@@ -12,28 +12,37 @@ export default function InquiryForm({ inquiryType = 'general' }){
     setType(inquiryType)
   }, [inquiryType])
 
-  async function handleSubmit(e){
+  function buildWhatsAppMessage(){
+    const lines = [
+      `*New Inquiry from Madhuban Traders*`,
+      `Type: ${type}`,
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${phone || '—'}`,
+      `Message: ${message}`,
+      `Page: ${window.location.href}`
+    ]
+    return encodeURIComponent(lines.join('\n'))
+  }
+
+  function handleSubmit(e){
     e.preventDefault()
     if (!name || !email || !message) {
       setStatus('Please fill in all required fields.')
       return
     }
-    
-    setStatus('Sending...')
-    try{
-      // Replace endpoint with real API
-      const payload = { name, email, phone, message, type }
-      const response = await fetch('/api/inquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-      if (!response.ok) throw new Error('Failed to send')
-      setStatus('Sent! Thank you. We will respond within 24 hours.')
-      setName(''); setEmail(''); setPhone(''); setMessage('')
-    }catch(err){
-      setStatus('⚠ Failed to send (demo mode - no backend). Please contact us directly.')
-    }
+
+    const waPhone = '+917897061003' // business number
+    const msg = buildWhatsAppMessage()
+    const href = `https://wa.me/${waPhone.replace(/\D/g,'')}?text=${msg}`
+
+    setStatus('Opening WhatsApp...')
+    // Open in new tab/window
+    window.open(href, '_blank')
+    setStatus('Opened WhatsApp. Your message is ready to send.')
+
+    // Optionally clear inputs after a short delay
+    setTimeout(() => { setName(''); setEmail(''); setPhone(''); setMessage('') }, 600)
   }
 
   return (

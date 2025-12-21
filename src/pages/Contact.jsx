@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import InquiryForm from '../components/InquiryForm'
 import LocationCard from '../components/LocationCard'
@@ -7,7 +7,29 @@ import { useTranslation } from '../hooks/useTranslation'
 export default function Contact() {
     const [searchParams] = useSearchParams()
     const [inquiryType, setInquiryType] = useState(searchParams.get('type') || 'general')
+    const inquiryRef = useRef(null)
     const { t } = useTranslation()
+
+    // When a query param 'type' is present (e.g. /contact?type=wholesale),
+    // scroll to the inquiry section so the user lands on the correct block.
+    useEffect(() => {
+      const type = searchParams.get('type')
+      if (type) {
+        setInquiryType(type)
+        setTimeout(() => {
+          if (inquiryRef.current) {
+            const header = document.querySelector('.app-header')
+            const offset = (header && header.offsetHeight) ? header.offsetHeight + 12 : 80
+            const top = inquiryRef.current.getBoundingClientRect().top + window.pageYOffset - offset
+            window.scrollTo({ top, behavior: 'smooth' })
+
+            // Focus a form control for accessibility
+            const focusEl = inquiryRef.current.querySelector('input, textarea, button, select')
+            if (focusEl) focusEl.focus()
+          }
+        }, 60)
+      }
+    }, [searchParams])
 
     const plantMapUrl = "https://www.google.com/maps?q=Madhuban%20Traders%20Plant%20Sindhora%20Varanasi%20221208&output=embed"
     const storeMapUrl = "https://www.google.com/maps?q=Madhuban%20Traders%20Store%20Sindhora%20Varanasi%20221208&output=embed"
@@ -75,7 +97,7 @@ export default function Contact() {
                 </section>
 
                 {/* Inquiry Section */}
-                <section className="card inquiry-section">
+                <section id="inquiry" ref={inquiryRef} className="card inquiry-section">
                     <div className="inquiry-grid">
                         <div className="inquiry-info">
                             <h3 style={{ marginTop: 0 }}>{t('contact.send_inquiry')}</h3>

@@ -94,6 +94,9 @@ html, body, #root {
   margin: 0 auto;
 }
 
+/* Ensure in-page anchors account for sticky header height so sections land correctly */
+section, .card { scroll-margin-top: 92px; }
+
 .logo-section { display:flex; align-items:center }
 
 .hamburger {
@@ -150,6 +153,35 @@ html, body, #root {
   overflow: hidden;
   border-radius: 12px;
   background: #000;
+}
+
+/* Floating buttons */
+.floating-whatsapp, .floating-call {
+  position: fixed;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 120;
+  padding: 12px 14px;
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.16);
+  transform-origin: center;
+}
+
+.floating-whatsapp { bottom: 18px; background: linear-gradient(45deg,#25d366,#128c7e); }
+.floating-whatsapp .wa-text { font-weight:700; font-size:13px; }
+
+.floating-call { bottom: 80px; background: linear-gradient(45deg,#0066cc,#004a99); }
+.floating-call .call-text { font-weight:700; font-size:13px; }
+
+.floating-whatsapp svg, .floating-call svg { width:20px; height:20px }
+
+@media (max-width:640px){
+  .floating-whatsapp, .floating-call { right: 12px; padding: 10px 12px }
+  .floating-call { bottom: 78px }
 }
 
 .youtube-iframe {

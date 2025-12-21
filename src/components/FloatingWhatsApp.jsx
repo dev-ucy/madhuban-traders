@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function FloatingWhatsApp({ phone = '+919000000000', message = 'Hello%20Madhuban%20Traders%20team!' }){
+export default function FloatingWhatsApp({ phone = '+917897061003', message = 'Hello%20Madhuban%20Traders%20team!' }){
   const href = `https://wa.me/${phone.replace(/\D/g, '')}?text=${message}`
   return (
     <a className="floating-whatsapp" href={href} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
@@ -10,5 +10,5 @@ export default function FloatingWhatsApp({ phone = '+919000000000', message = 'H
       </svg>
       <span className="wa-text">WhatsApp</span>
     </a>
-  )
+  ) 
 }
