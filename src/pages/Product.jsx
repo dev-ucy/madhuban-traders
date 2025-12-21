@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useCatalog } from '../context/CatalogContext'
+import { useTranslation } from '../hooks/useTranslation'
 
 export default function Product(){
   const { id } = useParams()
@@ -24,18 +25,20 @@ export default function Product(){
   }, [product])
 
   // If products are still loading (empty array), show a loading state so the page doesn't look broken on refresh
+  const { t } = useTranslation()
+
   if (!product && products.length === 0) return (
     <div>
-      <h2>Loading product…</h2>
-      <p className="muted">Fetching product information, please wait.</p>
+      <h2>{t('product.loading') /* Loading product… */}</h2>
+      <p className="muted">{t('product.fetching') /* Fetching product information, please wait. */}</p>
     </div>
   )
 
   if (!product) return (
     <div>
-      <h2>Product not found</h2>
-      <p className="muted">The product you are looking for doesn't exist.</p>
-      <Link to="/catalog" className="btn">Back to Catalog</Link>
+      <h2>{t('product.not_found') /* Product not found */}</h2>
+      <p className="muted">{t('product.not_found_desc') /* The product you are looking for doesn't exist. */}</p>
+      <Link to="/catalog" className="btn">{t('product.back_to_catalog') /* Back to Catalog */}</Link>
     </div>
   )
 

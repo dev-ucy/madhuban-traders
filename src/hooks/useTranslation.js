@@ -6,20 +6,33 @@ const translations = { en, hi }
 
 export function useTranslation(){
   const { language } = useLanguage()
-  
-  function t(key){
-    const keys = key.split('.')
-    let value = translations[language]
-    
+
+  function lookup(lang, keys){
+    let value = translations[lang]
     for (const k of keys) {
       if (value && typeof value === 'object') {
         value = value[k]
       } else {
-        return key // Return key if translation not found
+        return undefined
       }
     }
-    
-    return value || key
+    return value
+  }
+  
+  function t(key){
+    const keys = key.split('.')
+
+    // Preferred language
+    let value = lookup(language, keys)
+    if (value !== undefined && value !== null) return value
+
+
+    // Fall back to English
+    const enVal = lookup('en', keys)
+    if (enVal !== undefined && enVal !== null) return enVal
+
+    // Finally return the key itself if nothing is found
+    return key
   }
   
   return { t, language }

@@ -40,6 +40,17 @@
     "title": "Featured Products",
     "add": "Add to Cart"
   },
+  "product": {
+    "loading": "Loading product…",
+    "fetching": "Fetching product information, please wait.",
+    "not_found": "Product not found",
+    "not_found_desc": "The product you are looking for doesn't exist.",
+    "back_to_catalog": "Back to Catalog"
+  },
+  "ui": {
+    "whatsapp": "WhatsApp",
+    "call": "Call"
+  },
   "inquiry": {
     "title": "Need Bulk Quantities or Wholesale Pricing?",
     "description": "Get custom quotes for large orders of 15L, Kg units, or specialized requirements.",
@@ -92,8 +103,19 @@
     "title": "Contact Us",
     "subtitle": "We are here to help! Send us an inquiry and we will respond within 24 hours.",
     "info_title": "Contact Information",
-    "location": "Madhuban Traders, Sindhora Bazar, Varanasi, India 221208",
-    "phone_num": "+91 [Phone Number]",
+    "send_inquiry": "Send us an Inquiry",
+    "select_type": "Select the inquiry type below:",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "submit": "Send Inquiry",
+    "validation_missing": "Please fill in all required fields.",
+    "opening_whatsapp": "Opening WhatsApp...",
+    "opened_whatsapp": "Opened WhatsApp. Your message is ready to send.",
+    "send_failed": "⚠ Failed to send. Please contact us directly.",
+    "location": "Madhuban Traders, Sindhora Bazar, Varanasi, Uttar Pradesh 221208, India",
+    "phone_num": "+91 7897061003",
     "email_addr": "info@madhubantraders.in",
     "hours": "Hours",
     "quick_info": "Quick Info",
@@ -138,23 +160,60 @@
     "subtitle": "Your trust is our priority. We're committed to protecting your personal data.",
     "intro_title": "Introduction",
     "intro_text": "At Madhuban Traders, we are committed to protecting your privacy and ensuring you have a positive experience on our website and when purchasing our products.",
+    "intro_paragraph": "Please read this Privacy Policy carefully. If you do not agree with our policies and practices, please do not use our website.",
     "collect_title": "Information We Collect",
     "collect_personal": "Personal Information You Provide",
+    "collect_personal_items": {
+      "name_email": "Name, email address, phone number, mailing address",
+      "account_label": "Account Information",
+      "account_items": "Username, password, account preferences",
+      "order_history": "Order history, payment details, shipping address"
+    },
     "collect_automatic": "Information Collected Automatically",
+    "device_info_label": "Device Information",
+    "device_info_items": "Browser type, IP address, operating system, device type",
+    "usage_data_label": "Usage Data",
+    "usage_data_items": "Pages visited, time spent, clicks, navigation patterns",
     "use_title": "How We Use Your Information",
+    "use": {
+      "process_orders": "Process and fulfill your orders",
+      "send_updates": "Send order confirmations and shipping updates",
+      "personalize": "Personalize your shopping experience"
+    },
     "share_title": "How We Share Your Information",
+    "share_intro": "We may share your information with:",
+    "share": {
+      "service_providers": "Service Providers",
+      "service_providers_items": "Payment processors, shipping partners, email service providers",
+      "legal_requirements": "Legal Requirements",
+      "legal_requirements_desc": "When required by law",
+      "no_sell": "We do NOT sell or rent your personal information to third parties."
+    },
     "security_title": "Data Security",
+    "security_paragraph": "We implement appropriate technical, administrative, and physical security measures to protect your personal information.",
+    "security_items": {
+      "ssl": "SSL encryption",
+      "pci": "PCI DSS compliance",
+      "audits": "Regular security audits"
+    },
     "rights_title": "Your Privacy Rights",
+    "rights_paragraph": "Depending on your location, you may have the following rights:",
+    "rights": {
+      "access": "Right to access personal information",
+      "correction": "Right to correct inaccurate information",
+      "deletion": "Right to request deletion of data"
+    },
     "cookies_title": "Cookies & Tracking Technologies",
+    "cookies_paragraph": "We use cookies and similar tracking technologies to enhance your browsing experience.",
     "children_title": "Children's Privacy",
-    "links_title": "Third-Party Links",
-    "retention_title": "Data Retention",
-    "transfer_title": "International Data Transfers",
+    "children_paragraph": "Our website is not intended for children under 13 years of age. We do not knowingly collect personal information from children.",
     "contact_title": "Contact Us",
-    "changes_title": "Changes to This Privacy Policy",
+    "contact_paragraph": "If you have questions about this Privacy Policy, please contact us:",
     "email": "privacy@madhubantraders.in",
     "phone": "+91 7897061003",
-    "address": "Madhuban Traders, Sindhora Bazar, Varanasi 221208, India"
+    "address": "Madhuban Traders, Sindhora Bazar, Varanasi 221208, India",
+    "changes_title": "Changes to This Privacy Policy",
+    "changes_paragraph": "We may update this Privacy Policy periodically. We will notify you of significant changes by email or through prominent notice on our website."
   },
   "shipping": {
     "title": "Shipping & Returns",

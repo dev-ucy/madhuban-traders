@@ -127,12 +127,12 @@ export default function AppHeader(){
             🛒
             <span className="cart-count">{cartCount}</span>
           </Link>
-          <button className="bulk-inquiry-btn" onClick={() => {
+          {/* <button className="bulk-inquiry-btn" onClick={() => {
             navigate('/contact?type=wholesale')
             setMenuOpen(false) // Close menu on navigation
           }}>
             {t('header.bulk_inquiry')}
-          </button>
+          </button> */}
         </div>
       </div>
     </header>

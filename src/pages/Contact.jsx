@@ -37,22 +37,22 @@ export default function Contact() {
     return (
         <div className="contact-page">
             <div className="contact-container">
-                <h1 style={{ textAlign: 'center', fontSize: '42px', fontWeight: '800', color: 'var(--primary)', marginBottom: '12px' }}>{t('contact.title')}</h1>
-                <p className="muted" style={{ marginBottom: 32, textAlign: 'center', fontSize: '16px' }}>{t('contact.subtitle')}</p>
+                <h1 className="contact-title">{t('contact.title')}</h1>
+                <p className="contact-subtitle muted">{t('contact.subtitle')}</p>
 
                 {/* Quick Contact Info Section */}
                 <section className="card" style={{marginBottom: 32}}>
                     {/* <h2 style={{textAlign: 'center', color: 'var(--primary)', marginTop: 0}}>{t('contact.info_title')}</h2> */}
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, alignItems: 'start' }}>
-                        <section style={{ padding: 16 }}>
+                    <div className="contact-grid">
+                        <section className="contact-info">
                             <p><strong>{t('footer.address') || 'Address'}:</strong><br />Madhuban Traders, Sindhora Bazar, Varanasi 221208, India</p>
                             <p><strong>{t('footer.phone') || 'Phone'}:</strong><br />+91 7897061003</p>
                             <p><strong>{t('footer.email') || 'Email'}:</strong><br />info@madhubantraders.in</p>
                             <p><strong>{t('contact.hours') || 'Hours'}:</strong><br />Monday - Saturday: 9:00 AM - 6:00 PM<br />Sunday: Closed</p>
                         </section>
 
-                        <section style={{ padding: 0 }}>
-                            <div style={{ borderRadius: 8, overflow: 'hidden', height: '260px' }}>
+                        <section className="contact-map">
+                            <div style={{ borderRadius: 8, overflow: 'hidden', height: '100%' }}>
                                 <iframe
                                     title="Madhuban Traders - Main Location"
                                     width="100%"
