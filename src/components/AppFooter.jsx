@@ -1,4 +1,7 @@
 import React from 'react'
+import facebookIcon from '../assets/facebook_icon.svg.png'
+import youtubeIcon from '../assets/YouTube_Logo_2017.svg.png'
+import instagramIcon from '../assets/Instagram_logo_2016.svg.png'
 
 export default function AppFooter(){
   return (
@@ -34,13 +37,13 @@ export default function AppFooter(){
           <h4>Follow Us</h4>
           <div className="social-links">
             <a href="https://www.facebook.com/profile.php?id=61576880997873" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <img src="src/assets/facebook_icon.svg.png" className="social-icon" alt="Facebook" />
+              <img src={facebookIcon} className="social-icon" alt="Facebook" loading="lazy" />
             </a>
             <a href="https://www.youtube.com/@MadhubanOilCompany" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-              <img src="src/assets/YouTube_Logo_2017.svg.png" className="social-icon" alt="YouTube" />
+              <img src={youtubeIcon} className="social-icon" alt="YouTube" loading="lazy" />
             </a>
             <a href="https://www.instagram.com/madhubanoil10?igsh=NnIycTE1NWd4Y3h2" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <img src="src/assets/Instagram_logo_2016.svg.png" className="social-icon" alt="Instagram" />
+              <img src={instagramIcon} className="social-icon" alt="Instagram" loading="lazy" />
             </a>
           </div>
         </div>
