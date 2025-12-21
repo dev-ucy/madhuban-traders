@@ -197,10 +197,13 @@ section, .card { scroll-margin-top: 92px; }
 
 .hero-video {
   position: relative;
-  height: 300px;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
 }
 
 .card-video-wrapper {
@@ -829,7 +832,7 @@ section, .card { scroll-margin-top: 92px; }
   .hero-headline { font-size: 36px }
   .hero-subheadline { font-size: 18px }
   .hero-image-bg { height: 260px }
-  .hero-video { height: 220px }
+  /* hero-video height removed to allow responsive YouTube embed to control its own aspect ratio */
   .highlights-grid { grid-template-columns: 1fr; }
 }
 
@@ -1191,7 +1194,7 @@ section, .card { scroll-margin-top: 92px; }
   }
 
   .hero-video {
-    height: 300px;
+    /* height: 300px; */
   }
 
   .hero-headline {
