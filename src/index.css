@@ -467,12 +467,13 @@ section, .card { scroll-margin-top: 92px; }
   display: grid;
   /* Increased main image column by ~10% for larger product images */
   grid-template-columns: 440px 1fr;
-  gap: 36px;
+  gap: 3px;
   align-items: start;
 }
 
 .product-left .image-wrap {
   height:100%;
+  width: 90%;
   border-radius: 10px;
   overflow: hidden;
   background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.01));
@@ -481,7 +482,8 @@ section, .card { scroll-margin-top: 92px; }
 
 
 .product-left .image-wrap img{
-  height: 250px;;
+  height: 250px;
+  width: 100%;
 }
 .product-left img {
   width: 100%;
@@ -499,7 +501,7 @@ section, .card { scroll-margin-top: 92px; }
 .badge { background: linear-gradient(90deg, rgba(246,115,7,0.12), rgba(230,157,60,0.06)); color:var(--deep-spice-red); padding:8px 12px; border-radius:999px; font-weight:800; font-size:13px; border:1px solid rgba(151,79,0,0.06) }
 .badge:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(151,79,0,0.06) }
 
-.product-head { display:flex; justify-content:space-between; align-items:flex-start; gap:18px }
+.product-head { display:flex; justify-content:space-between; align-items:flex-start; gap:10px }
 .product-title { margin:0 0 8px 0; font-size:32px; font-weight:800; color:var(--text) }
 .lead { margin-top:14px; color:var(--text); font-size:18px; line-height:1.9; max-width:70ch; }
 .action-row { margin-top:16px; display:flex; gap:12px }
@@ -534,7 +536,7 @@ section, .card { scroll-margin-top: 92px; }
 
 @media (max-width:900px){
   .product-grid { grid-template-columns: 1fr; }
-  .price-box { align-items:flex-start; text-align:left }
+  .price-box { align-items:flex-start; text-align:left; }
   .gallery-grid { grid-template-columns: repeat(3, 1fr) }
   /* Slightly larger thumbnails on mobile as well (approx 10% increase) */
   .thumb img { height:53px }
@@ -631,8 +633,8 @@ section, .card { scroll-margin-top: 92px; }
 
 .badge {
   background: white;
-  padding: 32px 24px;
-  border-radius: 12px;
+  padding: 10px 10px;
+  border-radius: 5px;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
@@ -866,10 +868,10 @@ section, .card { scroll-margin-top: 92px; }
   .language-toggle { padding: 8px 10px }
 
   /* Product details stack */
-  .product-grid { grid-template-columns: 1fr; gap: 20px }
+  .product-grid { grid-template-columns: 1fr; gap: 10px }
   .product-left .image-wrap { height: 320px }
   .product-left .image-wrap img { height: 100%; object-fit: cover }
-  .gallery-grid { grid-template-columns: repeat(5, 1fr); gap: 8px }
+  .gallery-grid { grid-template-columns: repeat(5, 1fr); gap: 2px }
   .thumb img { height: 56px }
 
   /* Buttons and touch targets */
@@ -888,10 +890,11 @@ section, .card { scroll-margin-top: 92px; }
 @media (max-width: 420px) {
   .hero-headline { font-size: 28px }
   .hero-subheadline { font-size: 16px }
-  .product-left .image-wrap { height: 240px }
-  .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 8px }
+  .product-left .image-wrap { height: 200px;  }
+  .product-left .image-wrap img { height: 100%; object-fit: cover }
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 2px }
   .thumb img { height: 48px }
-  .header-actions { gap: 8px }
+  .header-actions { gap: 2px }
   .lang-badge { font-size: 11px }
 }
 
@@ -912,7 +915,7 @@ section, .card { scroll-margin-top: 92px; }
 /* Filter Controls */
 .filter-controls {
   display: flex;
-  gap: 12px;
+  gap: 2px;
   align-items: center;
 }
 
@@ -1020,7 +1023,7 @@ section, .card { scroll-margin-top: 92px; }
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 10px;
   align-items: start;
 }
 
@@ -1084,7 +1087,7 @@ section, .card { scroll-margin-top: 92px; }
 
 .inquiry-grid {
   display: flex;
-  gap: 24px;
+  gap: 10px;
   align-items: flex-start;
   flex-wrap: wrap;
 }
@@ -1212,11 +1215,7 @@ section, .card { scroll-margin-top: 92px; }
     gap: 32px;
     padding: 60px 16px;
   }
-
-  .hero-video {
-    /* height: 300px; */
-  }
-
+  
   .hero-headline {
     font-size: 32px;
   }
@@ -1235,12 +1234,12 @@ section, .card { scroll-margin-top: 92px; }
   }
 
   .badges-grid {
-    gap: 20px;
+    gap: 10px;
   }
 
   .featured-grid {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 16px;
+    gap: 10px;
   }
 
   .bulk-inquiry-bar {
