@@ -92,9 +92,9 @@
     "title": "Contact Us",
     "subtitle": "We are here to help! Send us an inquiry and we will respond within 24 hours.",
     "info_title": "Contact Information",
-    "location": "Madhuban Traders, [City], India",
+    "location": "Madhuban Traders, Sindhora Bazar, Varanasi, India 221208",
     "phone_num": "+91 [Phone Number]",
-    "email_addr": "info@madhubantraders.com",
+    "email_addr": "info@madhubantraders.in",
     "hours": "Hours",
     "quick_info": "Quick Info",
     "bulk_welcome": "Bulk orders welcome",
@@ -126,7 +126,7 @@
     "store_address": "Sindhora, Varanasi 221208, Uttar Pradesh, India",
     "store_hours": "Monday - Saturday: 10:00 AM - 7:00 PM IST",
     "store_closed": "Sunday: Closed",
-    "store_contact": "Phone: +91 9876543210, Email: info@madhubantraders.com",
+    "store_contact": "Phone: +91 7897061003, Email: info@madhubantraders.in",
     "operations_label": "Operations",
     "hours_label": "Operating Hours",
     "contact_label": "Contact Info",
@@ -152,8 +152,8 @@
     "transfer_title": "International Data Transfers",
     "contact_title": "Contact Us",
     "changes_title": "Changes to This Privacy Policy",
-    "email": "privacy@madhubantraders.com",
-    "phone": "+91 9876543210",
+    "email": "privacy@madhubantraders.in",
+    "phone": "+91 7897061003",
     "address": "Madhuban Traders, Sindhora Bazar, Varanasi 221208, India"
   },
   "shipping": {
@@ -177,8 +177,8 @@
     "bulk_title": "Bulk Orders & Wholesale",
     "damaged_title": "Damaged or Defective Items",
     "support_hours": "Monday - Saturday: 9 AM - 6 PM IST",
-    "returns_email": "returns@madhubantraders.com",
-    "bulk_email": "bulk@madhubantraders.com"
+    "returns_email": "returns@madhubantraders.in",
+    "bulk_email": "bulk@madhubantraders.in"
   },
   "terms": {
     "title": "Terms & Conditions",
@@ -203,8 +203,8 @@
     "entire_title": "Entire Agreement",
     "contact_title": "Contact Us",
     "changes_title": "Changes to Terms",
-    "legal_email": "legal@madhubantraders.com",
-    "support_email": "support@madhubantraders.com",
+    "legal_email": "legal@madhubantraders.in",
+    "support_email": "support@madhubantraders.in",
     "jurisdiction": "Varanasi, Uttar Pradesh, India"
   }
 

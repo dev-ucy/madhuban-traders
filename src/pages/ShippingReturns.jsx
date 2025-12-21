@@ -155,7 +155,7 @@ export default function ShippingReturns() {
                             </div>
                             <div className="contact-item">
                                 <strong>📞 {t('footer.phone')}</strong>
-                                <p>+91 9876543210</p>
+                                <p>+91 7897061003</p>
                             </div>
                             <div className="contact-item">
                                 <strong>⏰ {isHindi ? 'घंटे' : 'Hours'}</strong>

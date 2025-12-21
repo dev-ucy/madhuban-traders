@@ -12,7 +12,7 @@ export default function Navigation(){
         <NavLink to="/" style={{marginLeft:10}}>Home</NavLink>
         <NavLink to="/catalog">Catalog</NavLink>
         <NavLink to="/about">About Us</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/contact">Contact Us</NavLink>
       </div>
       <div style={{marginLeft:'auto'}}>
         <span className="muted">Cart: {cartCount}</span>

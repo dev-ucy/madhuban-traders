@@ -11,6 +11,8 @@ import Contact from './pages/Contact'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import ShippingReturns from './pages/ShippingReturns'
 import TermsConditions from './pages/TermsConditions'
+import Product from './pages/Product'
+import Cart from './pages/Cart'
 
 export default function App(){
   usePageGradient()
@@ -22,6 +24,8 @@ export default function App(){
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/catalog" element={<Catalog/>} />
+          <Route path="/product/:id" element={<Product/>} />
+          <Route path="/cart" element={<Cart/>} />
           <Route path="/about" element={<About/>} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/privacy" element={<PrivacyPolicy/>} />
@@ -30,7 +34,7 @@ export default function App(){
         </Routes>
       </main>
       <AppFooter />
-      <FloatingWhatsApp phone="+919876543210" message="Hello%20Madhuban%20Traders!%20I%20need%20help%20with%20a%20bulk%20order." />
+      <FloatingWhatsApp phone="+917897061003" message="Hello%20Madhuban%20Traders!%20I%20need%20help%20with%20a%20bulk%20order." />
     </div>
   )
 }

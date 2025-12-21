@@ -1,8 +1,359 @@
 [
-  {"id":1,"name":"Mustard Oil 5L","price":450,"image":"https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg","category":"Oils","description":"Premium cold-pressed mustard oil - rich in omega-3 and omega-6 fatty acids"},
-  {"id":2,"name":"Groundnut Oil 1L","price":220,"image":"https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg","category":"Oils","description":"Pure cold-pressed groundnut oil - perfect for cooking and salads"},
-  {"id":3,"name":"Turmeric (Haldi) 500g","price":320,"image":"https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png","category":"Spices","description":"Premium whole turmeric roots - high curcumin content"},
-  {"id":4,"name":"Cardamom (Elaichi) 100g","price":480,"image":"https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png","category":"Spices","description":"Premium green cardamom pods - aromatic and flavorful"},
-  {"id":5,"name":"Cumin Seeds 500g","price":180,"image":"https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png","category":"Spices","description":"Fresh whole cumin seeds - earthy flavor and aroma"},
-  {"id":6,"name":"Cinnamon Sticks 100g","price":260,"image":"https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png","category":"Spices","description":"Premium cinnamon bark sticks - sweet and warming spice"}
+  {
+    "id": 1,
+    "name": "Mustard Oil",
+    "price": 450,
+    "image": "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
+    "images": [
+      "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
+      "https://via.placeholder.com/800x600?text=Mustard+Oil+Bottle",
+      "https://via.placeholder.com/800x600?text=Mustard+Seeds"
+    ],
+    "category": "Oils",
+    
+    "variants": [
+      {"id":"v1a","label":"1 L","price":120},
+      {"id":"v1b","label":"3 L","price":350},
+      {"id":"v1c","label":"5 L","price":450}
+    ],
+    "description": "Premium cold-pressed mustard oil - rich in omega-3 and omega-6 fatty acids.",
+    "manufacturer": "Madhuban Oils Co.",
+    "origin": "Rajasthan, India",
+    "ingredients": ["Cold-pressed mustard oil"],
+    "healthBenefits": ["Rich in omega-3 and omega-6 fatty acids","Supports heart health","Good for skin and hair when used topically"],
+    "usage": "Cooking, frying, and external massage for skin and hair",
+    "storage": "Store in a cool, dry place away from direct sunlight.",
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 2,
+    "name": "Groundnut Oil",
+    "price": 220,
+    "image": "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
+    "images": [
+      "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
+      "https://via.placeholder.com/800x600?text=Groundnut+Oil+Bottle",
+      "https://via.placeholder.com/800x600?text=Groundnuts"
+    ],
+    "category": "Oils",
+    
+    "variants": [
+      {"id":"v2a","label":"250 ml","price":70},
+      {"id":"v2b","label":"500 ml","price":140},
+      {"id":"v2c","label":"1 L","price":220}
+    ],
+    "description": "Pure cold-pressed groundnut oil - perfect for cooking and salads.",
+    "manufacturer": "Madhuban Oils Co.",
+    "origin": "Gujarat, India",
+    "ingredients": ["Cold-pressed groundnut oil"],
+    "healthBenefits": ["High smoke point for frying","Good source of vitamin E","May support cardiovascular health when consumed in moderation"],
+    "usage": "Cooking, deep frying, and dressing salads",
+    "storage": "Keep refrigerated after opening for longer shelf life.",
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 3,
+    "name": "Turmeric (Haldi) Powder",
+    "price": 320,
+    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+    "images": [
+      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+      "https://via.placeholder.com/800x600?text=Turmeric+Powder",
+      "https://via.placeholder.com/800x600?text=Turmeric+Roots"
+    ],
+    "category": "Spices",
+    
+    "variants": [
+      {"id":"v3a","label":"100 g","price":80},
+      {"id":"v3b","label":"250 g","price":180},
+      {"id":"v3c","label":"500 g","price":320}
+    ],
+    "description": "Premium turmeric powder - high curcumin content.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Kerala, India",
+    "ingredients": ["100% ground turmeric root"],
+    "healthBenefits": ["Anti-inflammatory properties","Contains antioxidants","Supports digestion"],
+    "usage": "Culinary spice, golden milk, seasoning for curries",
+    "storage": "Store in an airtight container to maintain freshness.",
+    "certifications": ["Organic"]
+  },
+  {
+    "id": 4,
+    "name": "Cardamom (Elaichi)",
+    "price": 480,
+    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+    "images": [
+      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+      "https://via.placeholder.com/800x600?text=Cardamom+Pods",
+      "https://via.placeholder.com/800x600?text=Cardamom+Seeds"
+    ],
+    "category": "Spices",
+    
+    "variants": [
+      {"id":"v4a","label":"25 g","price":140},
+      {"id":"v4b","label":"50 g","price":260},
+      {"id":"v4c","label":"100 g","price":480}
+    ],
+    "description": "Premium green cardamom pods - aromatic and flavorful.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Kerala, India",
+    "ingredients": ["Whole green cardamom pods"],
+    "healthBenefits": ["Aids digestion","Freshens breath","Contains essential oils beneficial for wellbeing"],
+    "usage": "Flavoring for sweets, teas, and savory dishes",
+    "storage": "Keep in a cool, dry place in an airtight container.",
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 5,
+    "name": "Cumin Seeds",
+    "price": 180,
+    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+    "images": [
+      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+      "https://via.placeholder.com/800x600?text=Cumin+Seeds",
+      "https://via.placeholder.com/800x600?text=Cumin+Spoon"
+    ],
+    "category": "Spices",
+    
+    "variants": [
+      {"id":"v5a","label":"100 g","price":50},
+      {"id":"v5b","label":"250 g","price":100},
+      {"id":"v5c","label":"500 g","price":180}
+    ],
+    "description": "Fresh whole cumin seeds - earthy flavor and aroma.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Rajasthan, India",
+    "ingredients": ["Whole cumin seeds"],
+    "healthBenefits": ["Supports digestion","Rich in iron and antioxidants"],
+    "usage": "Tempering, spice blends, and seasoning",
+    "storage": "Store in airtight container away from light.",
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 6,
+    "name": "Cinnamon Sticks",
+    "price": 260,
+    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+    "images": [
+      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+      "https://via.placeholder.com/800x600?text=Cinnamon+Sticks",
+      "https://via.placeholder.com/800x600?text=Cinnamon+Powder"
+    ],
+    "category": "Spices",
+   
+    "variants": [
+      {"id":"v6a","label":"50 g","price":140},
+      {"id":"v6b","label":"100 g","price":260},
+      {"id":"v6c","label":"250 g","price":600}
+    ],
+    "description": "Premium cinnamon bark sticks - sweet and warming spice.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Sri Lanka",
+    "ingredients": ["Cinnamon bark"],
+    "healthBenefits": ["May help regulate blood sugar","Anti-inflammatory effects"],
+    "usage": "Baking, stews, teas, and spice blends",
+    "storage": "Keep in airtight container for best aroma retention.",
+    "certifications": ["Fair-Trade"]
+  },
+  {
+    "id": 7,
+    "name": "Black Pepper (Whole)",
+    "price": 220,
+    "image": "https://via.placeholder.com/1200x800?text=Black+Pepper",
+    "images": [
+      "https://via.placeholder.com/1200x800?text=Black+Pepper",
+      "https://via.placeholder.com/1200x800?text=Pepper+Closeup",
+      "https://via.placeholder.com/1200x800?text=Pepper+Mill"
+    ],
+    "category": "Spices",
+    
+    "variants": [
+      {"id":"v7a","label":"100 g","price":120},
+      {"id":"v7b","label":"200 g","price":220},
+      {"id":"v7c","label":"500 g","price":500}
+    ],
+    "description": "Whole black peppercorns — aromatic and pungent, ideal for grinding fresh.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Malabar, India",
+    "ingredients": ["100% black peppercorns"],
+    "healthBenefits": ["May aid digestion","Rich in antioxidants"],
+    "usage": "Grinding for seasoning, marinades, and cooking",
+    "storage": "Keep in airtight container away from moisture.",
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 8,
+    "name": "Coriander Seeds (Dhaniya)",
+    "price": 140,
+    "image": "https://via.placeholder.com/1200x800?text=Coriander+Seeds",
+    "images": [
+      "https://via.placeholder.com/1200x800?text=Coriander+Seeds",
+      "https://via.placeholder.com/1200x800?text=Coriander+Closeup",
+      "https://via.placeholder.com/1200x800?text=Coriander+Powder"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id":"v8a","label":"100 g","price":50},
+      {"id":"v8b","label":"250 g","price":100},
+      {"id":"v8c","label":"500 g","price":140}
+    ],
+    "description": "Fresh whole coriander seeds — warm citrusy aroma used in many spice blends.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Madhya Pradesh, India",
+    "ingredients": ["100% coriander seeds"],
+    "healthBenefits": ["Supports digestion","Contains vitamins and minerals"],
+    "usage": "Grinding, spice blends, and tempering",
+    "storage": "Store in airtight container in a cool place.",
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 9,
+    "name": "Fenugreek Seeds (Methi)",
+    "price": 110,
+    "image": "https://via.placeholder.com/1200x800?text=Fenugreek+Seeds",
+    "images": [
+      "https://via.placeholder.com/1200x800?text=Fenugreek+Seeds",
+      "https://via.placeholder.com/1200x800?text=Fenugreek+Sprouts",
+      "https://via.placeholder.com/1200x800?text=Fenugreek+Usage"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id":"v9a","label":"50 g","price":40},
+      {"id":"v9b","label":"100 g","price":75},
+      {"id":"v9c","label":"250 g","price":110}
+    ],
+    "description": "Fenugreek seeds — slightly bitter and nutty, commonly used in pickles and curries.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Rajasthan, India",
+    "ingredients": ["100% fenugreek seeds"],
+    "healthBenefits": ["May support digestion","Traditionally used for metabolic health"],
+    "usage": "Pickles, curries, spice blends",
+    "storage": "Keep sealed in a cool dry place.",
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 10,
+    "name": "Cloves (Laung)",
+    "price": 300,
+    "image": "https://via.placeholder.com/1200x800?text=Cloves",
+    "images": [
+      "https://via.placeholder.com/1200x800?text=Cloves",
+      "https://via.placeholder.com/1200x800?text=Cloves+Closeup",
+      "https://via.placeholder.com/1200x800?text=Cloves+Usage"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id":"v10a","label":"25 g","price":120},
+      {"id":"v10b","label":"50 g","price":190},
+      {"id":"v10c","label":"100 g","price":300}
+    ],
+    "description": "Whole cloves — intensely aromatic, used in biryanis, masalas, and baking.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Kerala, India",
+    "ingredients": ["100% whole cloves"],
+    "healthBenefits": ["Natural antiseptic properties","May support digestion"],
+    "usage": "Baking, biryanis, masalas",
+    "storage": "Store in airtight container away from direct sunlight.",
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 11,
+    "name": "Bay Leaves (Tej Patta)",
+    "price": 90,
+    "image": "https://via.placeholder.com/1200x800?text=Bay+Leaves",
+    "images": [
+      "https://via.placeholder.com/1200x800?text=Bay+Leaves",
+      "https://via.placeholder.com/1200x800?text=Bay+Closeup",
+      "https://via.placeholder.com/1200x800?text=Bay+Usage"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id":"v11a","label":"10 g","price":40},
+      {"id":"v11b","label":"25 g","price":80},
+      {"id":"v11c","label":"50 g","price":90}
+    ],
+    "description": "Aromatic bay leaves used to flavor curries, stews, and rice dishes.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "India",
+    "ingredients": ["100% bay leaves"],
+    "healthBenefits": ["May support digestion","Adds aromatic flavour"],
+    "usage": "Curries, stews, biryanis",
+    "storage": "Keep in airtight container for freshness.",
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 12,
+    "name": "Fennel Seeds (Saunf)",
+    "price": 130,
+    "image": "https://via.placeholder.com/1200x800?text=Fennel+Seeds",
+    "images": [
+      "https://via.placeholder.com/1200x800?text=Fennel+Seeds",
+      "https://via.placeholder.com/1200x800?text=Fennel+Closeup",
+      "https://via.placeholder.com/1200x800?text=Fennel+Usage"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id":"v12a","label":"50 g","price":40},
+      {"id":"v12b","label":"100 g","price":80},
+      {"id":"v12c","label":"250 g","price":130}
+    ],
+    "description": "Sweet fennel seeds — commonly used as a digestive aid and in baking.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Punjab, India",
+    "ingredients": ["100% fennel seeds"],
+    "healthBenefits": ["Supports digestion","May soothe stomach discomfort"],
+    "usage": "Breath freshener, baking, spice blends",
+    "storage": "Store in airtight container away from moisture.",
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 13,
+    "name": "Saffron (Kesar)",
+    "price": 950,
+    "image": "https://via.placeholder.com/1200x800?text=Saffron",
+    "images": [
+      "https://via.placeholder.com/1200x800?text=Saffron",
+      "https://via.placeholder.com/1200x800?text=Saffron+Closeup",
+      "https://via.placeholder.com/1200x800?text=Saffron+Threads"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id":"v13a","label":"0.25 g","price":250},
+      {"id":"v13b","label":"0.5 g","price":500},
+      {"id":"v13c","label":"1 g","price":950}
+    ],
+    "description": "Premium Kashmiri saffron — rich aroma and colour for desserts and beverages.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Kashmir, India",
+    "ingredients": ["100% saffron threads"],
+    "healthBenefits": ["Contains antioxidants","Used traditionally for mood and wellbeing"],
+    "usage": "Desserts, beverages, premium dishes",
+    "storage": "Store in a cool dry place in airtight container.",
+    "certifications": ["Organic"]
+  },
+  {
+    "id": 14,
+    "name": "Red Chilli Powder",
+    "price": 150,
+    "image": "https://via.placeholder.com/1200x800?text=Red+Chilli+Powder",
+    "images": [
+      "https://via.placeholder.com/1200x800?text=Red+Chilli+Powder",
+      "https://via.placeholder.com/1200x800?text=Chilli+Closeup",
+      "https://via.placeholder.com/1200x800?text=Chilli+Powder+Spoon"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id":"v14a","label":"100 g","price":85},
+      {"id":"v14b","label":"200 g","price":150},
+      {"id":"v14c","label":"500 g","price":350}
+    ],
+    "description": "Hot red chilli powder — bright colour and balanced heat for curries and marinades.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Andhra Pradesh, India",
+    "ingredients": ["100% red chilli powder"],
+    "healthBenefits": ["Rich in vitamin C","May boost metabolism"],
+    "usage": "Seasoning, curries, marinades",
+    "storage": "Keep in airtight container away from light.",
+    "certifications": ["FSSAI"]
+  }
 ]

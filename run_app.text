@@ -1,0 +1,9 @@
+ docker compose up --build web
+
+
+
+
+ docker compose build --no-cache --progress=plain web
+docker run --rm -it -v "${PWD}:/app" -w /app node:20-alpine sh -lc "npm ci --loglevel=verbose"
+(Get-Content Dockerfile) -replace 'npm ci --silent','npm ci --loglevel=verbose' | Set-Content Dockerfile
+docker compose up --build --no-cache --progress=plain web

@@ -168,7 +168,7 @@ export default function TermsConditions() {
                             </div>
                             <div className="contact-item">
                                 <strong>📞 {t('footer.phone')}</strong>
-                                <p>+91 9876543210</p>
+                                <p>+91 7897061003</p>
                             </div>
                             <div className="contact-item">
                                 <strong>📍 {t('footer.address')}</strong>
@@ -534,11 +534,11 @@ export default function TermsConditions() {
     //                     <div className="contact-details">
     //                         <div className="contact-item">
     //                             <strong>📧 Email</strong>
-    //                             <p>legal@madhubantraders.com</p>
+    //                             <p>legal@madhubantraders.in</p>
     //                         </div>
     //                         <div className="contact-item">
     //                             <strong>📞 Phone</strong>
-    //                             <p>+91 9876543210</p>
+    //                             <p>+91 7897061003</p>
     //                         </div>
     //                         <div className="contact-item">
     //                             <strong>📍 Address</strong>
@@ -546,7 +546,7 @@ export default function TermsConditions() {
     //                         </div>
     //                         <div className="contact-item">
     //                             <strong>📧 General Support</strong>
-    //                             <p>support@madhubantraders.com</p>
+    //                             <p>support@madhubantraders.in</p>
     //                         </div>
     //                     </div>
     //                 </section>

@@ -56,6 +56,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext'
 import { useTranslation } from '../hooks/useTranslation'
+import { useCatalog } from '../context/CatalogContext'
 // ⚠️ You'll need to make sure this path is correct for your project structure
 import logoImage from '../assets/logo.jpg' 
 
@@ -63,6 +64,7 @@ export default function AppHeader(){
   const navigate = useNavigate()
   const { language, toggleLanguage } = useLanguage()
   const { t } = useTranslation()
+  const { cartCount } = useCatalog()
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -121,6 +123,10 @@ export default function AppHeader(){
           <button className="language-toggle" onClick={toggleLanguage} title={`Switch to ${language === 'en' ? 'Hindi' : 'English'}`}>
             <span className="lang-badge">{language === 'en' ? '🇬🇧 EN' : '🇮🇳 हिंदी'}</span>
           </button>
+          <Link to="/cart" className="nav-link cart-link" onClick={() => setMenuOpen(false)} style={{position:'relative'}}>
+            🛒
+            <span className="cart-count">{cartCount}</span>
+          </Link>
           <button className="bulk-inquiry-btn" onClick={() => {
             navigate('/contact?type=wholesale')
             setMenuOpen(false) // Close menu on navigation

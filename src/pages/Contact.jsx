@@ -24,8 +24,8 @@ export default function Contact() {
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, alignItems: 'start' }}>
                         <section style={{ padding: 16 }}>
                             <p><strong>{t('footer.address') || 'Address'}:</strong><br />Madhuban Traders, Sindhora Bazar, Varanasi 221208, India</p>
-                            <p><strong>{t('footer.phone') || 'Phone'}:</strong><br />+91 9876543210</p>
-                            <p><strong>{t('footer.email') || 'Email'}:</strong><br />info@madhubantraders.com</p>
+                            <p><strong>{t('footer.phone') || 'Phone'}:</strong><br />+91 7897061003</p>
+                            <p><strong>{t('footer.email') || 'Email'}:</strong><br />info@madhubantraders.in</p>
                             <p><strong>{t('contact.hours') || 'Hours'}:</strong><br />Monday - Saturday: 9:00 AM - 6:00 PM<br />Sunday: Closed</p>
                         </section>
 
@@ -103,13 +103,13 @@ export default function Contact() {
                             </div>
 
                             <div className="contact-quick">
-                                <p style={{ margin: '12px 0 6px' }}><strong>📞</strong> +91 9876543210</p>
-                                <p style={{ margin: '0 0 12px' }}><strong>✉️</strong> info@madhubantraders.com</p>
+                                <p style={{ margin: '12px 0 6px' }}><strong>📞</strong> +91 7897061003</p>
+                                <p style={{ margin: '0 0 12px' }}><strong>✉️</strong> info@madhubantraders.in</p>
                                 <p style={{ color: 'var(--text-muted)', margin: 0 }}>{t('header.logo').includes('मधुबन') ? 'सम्पर्क करने के लिए ऊपर दिए गए नंबर पर कॉल करें या नीचे फॉर्म भरें।' : 'Call us using the number above or fill the form to send an inquiry.'}</p>
                             </div>
 
                             <div className="contact-cta">
-                                <button className="btn hero-cta-btn" onClick={() => window.open('tel:+919876543210')}>{t('header.bulk_inquiry')}</button>
+                                <button className="btn hero-cta-btn" onClick={() => window.open('tel:+917897061003')}>{t('header.bulk_inquiry')}</button>
                             </div>
                         </div>
 

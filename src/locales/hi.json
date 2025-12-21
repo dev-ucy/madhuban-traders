@@ -94,7 +94,7 @@
     "info_title": "संपर्क जानकारी",
     "location": "मधुबन व्यापारी, [शहर], भारत",
     "phone_num": "+91 [फोन नंबर]",
-    "email_addr": "info@madhubantraders.com",
+    "email_addr": "info@madhubantraders.in",
     "hours": "समय",
     "quick_info": "त्वरित जानकारी",
     "bulk_welcome": "बल्क ऑर्डर स्वागत है",
@@ -126,7 +126,7 @@
     "store_address": "सिंधोरा, वाराणसी 221208, उत्तर प्रदेश, भारत",
     "store_hours": "सोमवार से शनिवार: सुबह 10:00 बजे से शाम 7:00 बजे तक (भारतीय समय)",
     "store_closed": "रविवार: बंद",
-    "store_contact": "फ़ोन: +91 9876543210, ईमेल: info@madhubantraders.com",
+    "store_contact": "फ़ोन: +91 7897061003, ईमेल: info@madhubantraders.in",
     "operations_label": "संचालन",
     "hours_label": "कार्य समय",
     "contact_label": "संपर्क जानकारी",
@@ -152,8 +152,8 @@
     "transfer_title": "अंतर्राष्ट्रीय डेटा स्थानांतरण",
     "contact_title": "संपर्क करें",
     "changes_title": "इस गोपनीयता नीति में परिवर्तन",
-    "email": "privacy@madhubantraders.com",
-    "phone": "+91 9876543210",
+    "email": "privacy@madhubantraders.in",
+    "phone": "+91 7897061003",
     "address": "मधुबन व्यापारी, सिंधोरा बाज़ार, वाराणसी 221208, भारत"
   },
   "shipping": {
@@ -177,8 +177,8 @@
     "bulk_title": "बल्क ऑर्डर और थोक",
     "damaged_title": "क्षतिग्रस्त या खराब वस्तुएँ",
     "support_hours": "सोमवार से शनिवार: सुबह 9 बजे से शाम 6 बजे तक (भारतीय समय)",
-    "returns_email": "returns@madhubantraders.com",
-    "bulk_email": "bulk@madhubantraders.com"
+    "returns_email": "returns@madhubantraders.in",
+    "bulk_email": "bulk@madhubantraders.in"
   },
   "terms": {
     "title": "शर्तें और शर्तें",
@@ -203,8 +203,8 @@
     "entire_title": "संपूर्ण समझौता",
     "contact_title": "संपर्क करें",
     "changes_title": "शर्तों में परिवर्तन",
-    "legal_email": "legal@madhubantraders.com",
-    "support_email": "support@madhubantraders.com",
+    "legal_email": "legal@madhubantraders.in",
+    "support_email": "support@madhubantraders.in",
     "jurisdiction": "वाराणसी, उत्तर प्रदेश, भारत"
   }
 

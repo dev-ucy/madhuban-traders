@@ -12,16 +12,42 @@ export function CatalogProvider({ children }){
     setProducts(sampleProducts)
   },[])
 
-  function addToCart(product){
+  function addToCart(product, variant = null, qty = 1){
     setCart((c)=>{
-      const existing = c.find(p=>p.id===product.id)
-      if(existing) return c.map(p=>p.id===product.id?{...p,qty:p.qty+1}:p)
-      return [...c,{...product,qty:1}]
+      // normalize item key by product id + variant id
+      const key = variant ? `${product.id}__${variant.id}` : `${product.id}__default`
+      const existing = c.find(item=>item.key === key)
+      if(existing) return c.map(item=>item.key===key?{...item,qty: item.qty + qty}:item)
+
+      const item = {
+        key,
+        productId: product.id,
+        name: product.name,
+        variant: variant ? { id: variant.id, label: variant.label, price: variant.price } : null,
+        price: variant ? variant.price : (product.price || 0),
+        qty,
+        image: product.images?.[0] || product.image
+      }
+      return [...c, item]
     })
   }
 
+  function removeFromCart(key){
+    setCart((c)=> c.filter(i => i.key !== key))
+  }
+
+  function updateQty(key, qty){
+    setCart(c => c.map(i => i.key === key ? {...i, qty: Math.max(0, qty)} : i))
+  }
+
+  function clearCart(){
+    setCart([])
+  }
+
+  const cartCount = cart.reduce((s,i)=>s + (i.qty||0), 0)
+
   return (
-    <CatalogContext.Provider value={{products, addToCart, cart}}>
+    <CatalogContext.Provider value={{products, addToCart, cart, removeFromCart, updateQty, clearCart, cartCount}}>
       {children}
     </CatalogContext.Provider>
   )
