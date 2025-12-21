@@ -842,7 +842,7 @@ section, .card { scroll-margin-top: 92px; }
   .header-nav { display: none }
   .header-nav.open { display:flex }
   .header-container { padding: 10px 14px }
-  .logo-image { max-height: 56px }
+  .logo-image { height: 45px }
   .language-toggle { padding: 8px 10px }
 
   /* Product details stack */

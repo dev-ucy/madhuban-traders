@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCatalog } from '../context/CatalogContext'
+import { useTranslation } from '../hooks/useTranslation'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Cart(){
-  const { cart, removeFromCart, updateQty, clearCart } = useCatalog()
+  const { cart, products, removeFromCart, updateQty, clearCart } = useCatalog()
   const [showCheckout, setShowCheckout] = useState(false)
   const [customer, setCustomer] = useState({ name:'', phone:'', email:'', address:'', city:'', pincode:'', notes:'' })
   const [error, setError] = useState('')
@@ -11,11 +13,14 @@ export default function Cart(){
 
   const subtotal = cart.reduce((s,i) => s + (i.price * i.qty), 0)
 
+  const { t } = useTranslation()
+  const { language } = useLanguage()
+
   if (cart.length === 0) return (
     <div>
-      <h2>Your Cart is empty</h2>
-      <p className="muted">Add items from the catalog to see them here.</p>
-      <Link to="/catalog" className="btn">Browse Products</Link>
+      <h2>{t('cart.empty_title')}</h2>
+      <p className="muted">{t('cart.empty_desc')}</p>
+      <Link to="/catalog" className="btn">{t('cart.browse')}</Link>
     </div>
   )
 
@@ -26,7 +31,7 @@ export default function Cart(){
 
   const validateCustomer = () => {
     if(!customer.name || !customer.phone || !customer.address) {
-      setError('Please fill name, phone and delivery address.')
+      setError(t('cart.error_fill'))
       return false
     }
     return true
@@ -34,19 +39,21 @@ export default function Cart(){
 
   const buildWhatsappMessage = () => {
     const lines = []
-    lines.push(`Hello Madhuban Traders Sindhora Bazar Varanasi\n I would like to place an order with the following details:\n`)
-    lines.push(`Name: ${customer.name}`)
-    lines.push(`Phone: ${customer.phone}`)
-    if(customer.email) lines.push(`Email: ${customer.email}`)
-    lines.push(`Address: ${customer.address}, ${customer.city || ''} ${customer.pincode || ''}`)
+    lines.push(t('cart.whatsapp_intro'))
+    lines.push(`${t('cart.label_name')}: ${customer.name}`)
+    lines.push(`${t('cart.label_phone')}: ${customer.phone}`)
+    if(customer.email) lines.push(`${t('cart.label_email')}: ${customer.email}`)
+    lines.push(`${t('cart.label_address')}: ${customer.address}, ${customer.city || ''} ${customer.pincode || ''}`)
     lines.push('')
-    lines.push('Items:')
+    lines.push(t('cart.items_label'))
     cart.forEach(i => {
-      lines.push(`- ${i.name} ${i.variant ? `(${i.variant.label})` : ''} x ${i.qty} = ₹${i.price * i.qty}`)
+      const product = products.find(p => p.id === i.productId)
+      const displayName = language === 'hi' ? (product?.name_hi || i.name) : i.name
+      lines.push(`- ${displayName} ${i.variant ? `(${i.variant.label})` : ''} x ${i.qty} = ₹${i.price * i.qty}`)
     })
     lines.push('')
-    lines.push(`Subtotal: ₹${subtotal}`)
-    if(customer.notes) lines.push(`Notes: ${customer.notes}`)
+    lines.push(`${t('cart.label_subtotal')}: ₹${subtotal}`)
+    if(customer.notes) lines.push(`${t('cart.label_notes')}: ${customer.notes}`)
     return lines.join('\n')
   }
 
@@ -64,64 +71,68 @@ export default function Cart(){
 
   return (
     <div>
-      <h2>Shopping Cart</h2>
+      <h2>{t('cart.title')}</h2>
       <div style={{marginTop:16}}>
         {cart.map(item => (
           <div key={item.key} className="cart-item">
             <img src={item.image} alt={item.name} className="cart-thumb" />
             <div className="cart-body">
-              <div className="cart-title">{item.name}</div>
+              <div className="cart-title">{(language === 'hi' ? (products.find(p => p.id === item.productId)?.name_hi || item.name) : item.name)}</div>
               {item.variant && <div className="muted small">{item.variant.label}</div>}
-              <div className="muted">₹{item.price} each</div>
+              <div className="muted">{t('cart.each').replace('{{price}}', `₹${item.price}`)}</div>
             </div>
             <div className="cart-controls">
               <input className="form-control" type="number" value={item.qty} min={0} onChange={(e)=>updateQty(item.key, parseInt(e.target.value||0))} />
-              <div className="cart-line-total">₹{item.price * item.qty}</div>
-              <button className="btn btn-ghost" onClick={() => removeFromCart(item.key)}>Remove</button>
+              <div className="cart-line-total">{t('cart.line_total').replace('{{total}}', `₹${item.price * item.qty}`)}</div>
+              <button className="btn btn-ghost" onClick={() => removeFromCart(item.key)}>{t('cart.remove')}</button>
             </div>
           </div>
         ))}
 
         <div className="card" style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:16,marginTop:12}}>
           <div>
-            <div className="muted">Subtotal</div>
+            <div className="muted">{t('cart.subtotal')}</div>
             <div style={{fontSize:22,fontWeight:800}}>₹{subtotal}</div>
           </div>
           <div>
-            <button className="btn" onClick={handleProceed}>Proceed to Checkout</button>
+            <button className="btn" onClick={handleProceed}>{t('cart.proceed')}</button>
           </div>
         </div>
 
         {showCheckout && (
           <div className="checkout card">
-            <h3>Checkout — Delivery Details</h3>
+            <h3>{t('cart.checkout_title')}</h3>
             {error && <div className="error-msg">{error}</div>}
-            {sent && <div className="success-msg">Order opened in WhatsApp. Clear cart and return to catalog.</div>}
+            {sent && <div className="success-msg">{t('cart.sent_msg')}</div>}
             <div className="checkout-grid">
-              <label>Name *</label>
+              <label>{t('cart.label_name')} *</label>
               <input className="form-control" value={customer.name} onChange={(e)=>setCustomer({...customer,name:e.target.value})} />
-              <label>Phone *</label>
-              <input className="form-control" value={customer.phone} onChange={(e)=>setCustomer({...customer,phone:e.target.value})} placeholder="e.g., +91 98765 43210" />
-              <label>Email</label>
+              <label>{t('cart.label_phone')} *</label>
+              <input className="form-control" value={customer.phone} onChange={(e)=>setCustomer({...customer,phone:e.target.value})} placeholder={t('cart.phone_placeholder')} />
+              <label>{t('cart.label_email')}</label>
               <input className="form-control" value={customer.email} onChange={(e)=>setCustomer({...customer,email:e.target.value})} />
-              <label>Address *</label>
+              <label>{t('cart.label_address')} *</label>
               <textarea className="form-control" value={customer.address} onChange={(e)=>setCustomer({...customer,address:e.target.value})} rows={3} />
-              <label>City</label>
+              <label>{t('cart.label_city')}</label>
               <input className="form-control" value={customer.city} onChange={(e)=>setCustomer({...customer,city:e.target.value})} />
-              <label>Pincode</label>
+              <label>{t('cart.label_pincode')}</label>
               <input className="form-control" value={customer.pincode} onChange={(e)=>setCustomer({...customer,pincode:e.target.value})} />
-              <label>Notes</label>
+              <label>{t('cart.label_notes')}</label>
               <input className="form-control" value={customer.notes} onChange={(e)=>setCustomer({...customer,notes:e.target.value})} />
             </div>
             <div style={{marginTop:12,display:'flex',gap:12}}>
-              <button className="btn" onClick={handleSendWhatsapp}>Send Order via WhatsApp</button>
-              <button className="btn btn-outline" onClick={()=>setShowCheckout(false)}>Cancel</button>
+              <button className="btn" onClick={handleSendWhatsapp}>{t('cart.send_whatsapp')}</button>
+              <button className="btn btn-outline" onClick={()=>setShowCheckout(false)}>{t('cart.cancel')}</button>
             </div>
             <div style={{marginTop:12}}>
-              <h4>Order Summary</h4>
-              <div className="muted">{cart.length} items — Subtotal ₹{subtotal}</div>
+              <h4>{t('cart.order_summary')}</h4>
+              <div className="muted">{cart.length} {t('cart.items')} — {t('cart.subtotal_short', {subtotal: `₹${subtotal}`})}</div>
               <ul>
-                {cart.map(i => <li key={i.key}>{i.name} {i.variant?`(${i.variant.label})`:''} x {i.qty} = ₹{i.qty*i.price}</li>)}
+                {cart.map(i => {
+                  const product = products.find(p => p.id === i.productId)
+                  const displayName = language === 'hi' ? (product?.name_hi || i.name) : i.name
+                  return <li key={i.key}>{displayName} {i.variant?`(${i.variant.label})`:''} x {i.qty} = ₹{i.qty*i.price}</li>
+                })}
               </ul>
             </div>
           </div>

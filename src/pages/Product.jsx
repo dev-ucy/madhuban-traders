@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useCatalog } from '../context/CatalogContext'
 import { useTranslation } from '../hooks/useTranslation'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Product(){
   const { id } = useParams()
@@ -71,6 +72,10 @@ export default function Product(){
     }, 300)
   }
 
+  const { language } = useLanguage()
+  const title = language === 'hi' ? (product.name_hi || product.name) : product.name
+  const desc = language === 'hi' ? (product.description_hi || product.description) : product.description
+
   return (
     <div className="product-detail card">
       <div className="product-grid">
@@ -78,7 +83,7 @@ export default function Product(){
           <div className="image-wrap">
             <img
               src={main || product?.image}
-              alt={product.name}
+              alt={title}
               onError={(e) => {
                 // If image fails to load, try the product.image fallback
                 if (product?.image && e.target.src !== product.image) e.target.src = product.image
@@ -89,7 +94,7 @@ export default function Product(){
           <div className="gallery-grid">
             {images.slice(0,3).map((src, i) => (
               <button key={i} className={`thumb ${src===main? 'active':''}`} onClick={()=>setMain(src)} aria-label={`View image ${i+1}`}>
-                <img src={src} alt={`${product.name} ${i+1}`} />
+                <img src={src} alt={`${title} ${i+1}`} />
               </button>
             ))}
           </div>
@@ -104,7 +109,7 @@ export default function Product(){
         <div className="product-right">
           <div className="product-head">
             <div>
-              <h1 className="product-title">{product.name}</h1>
+              <h1 className="product-title">{title}</h1>
               <div className="muted small">{product.category} • {product.origin || '—'}</div>
               {/* {sizes.length > 0 && (
                 <div className="sizes-badges" aria-hidden>
@@ -115,14 +120,14 @@ export default function Product(){
             <div className="price-box">
               <div className="price">₹{price}</div>
               <div className="controls">
-                <label className="qty-label">Qty</label>
+                <label className="qty-label">{t('product.qty_label') || 'Qty'}</label>
                 <input className="qty-input" type="number" min="1" value={qty} onChange={(e)=>setQty(parseInt(e.target.value||1))} />
-                <Link to="/catalog" className="btn btn-light">Back</Link>
+                <Link to="/catalog" className="btn btn-light">{t('product.back') || 'Back'}</Link>
               </div>
             </div>
           </div>
 
-          <p className="lead">{product.description}</p>
+          <p className="lead">{desc}</p>
 
         
 
@@ -140,50 +145,49 @@ export default function Product(){
 
           <div style={{marginTop:16,display:'flex',gap:12,flexWrap:'wrap',alignItems:'center'}}>
             <button className={`btn add-to-cart ${added ? 'added' : ''}`} onClick={handleAddToCart} disabled={adding}>
-              {adding ? 'Adding…' : (added ? 'Added ✓' : 'Add to Cart 🛒')}
+              {adding ? t('product.adding') : (added ? t('product.added') : t('product.add_to_cart'))}
             </button>
             {cartCount > 0 && (
-              <Link to="/cart" className="btn go-cart">Go to Cart ({cartCount})</Link>
+              <Link to="/cart" className="btn go-cart">{t('product.go_to_cart').replace('{{count}}', cartCount)}</Link>
             )}
 
-            <button className="btn btn-ghost" onClick={share}>Share</button>
-            <Link className="btn btn-outline" to={`/contact?product=${encodeURIComponent(product.name)}`}>Ask a question</Link>
-
+            <button className="btn btn-ghost" onClick={share}>{t('product.share')}</button>
+            <Link className="btn btn-outline" to={`/contact?product=${encodeURIComponent(title)}`}>{t('product.ask_question')}</Link>
           </div>
 
           <div className="detail-sections">
 
             {product.healthBenefits && (
               <div className="detail-card">
-                <h4>Health Benefits</h4>
+                <h4>{t('product.sections.health_benefits')}</h4>
                 <ul>
-                  {product.healthBenefits.map((hb, idx) => <li key={idx}>{hb}</li>)}
+                  {(language === 'hi' ? (product.healthBenefits_hi || product.healthBenefits) : product.healthBenefits).map((hb, idx) => <li key={idx}>{hb}</li>)}
                 </ul>
               </div>
             )}
 
             {product.usage && (
               <div className="detail-card">
-                <h4>Usage</h4>
-                <p className="muted">{product.usage}</p>
+                <h4>{t('product.sections.usage')}</h4>
+                <p className="muted">{language === 'hi' ? (product.usage_hi || product.usage) : product.usage}</p>
               </div>
             )}
 
             {product.storage && (
               <div className="detail-card">
-                <h4>Storage</h4>
-                <p className="muted">{product.storage}</p>
+                <h4>{t('product.sections.storage')}</h4>
+                <p className="muted">{language === 'hi' ? (product.storage_hi || product.storage) : product.storage}</p>
               </div>
             )}
 
             {(product.manufacturer || product.netWeight || (product.variants && product.variants.length)) && (
               <div className="detail-card">
-                <h4>Manufacturing & Specs</h4>
-                <p className="muted"><strong>Manufacturer:</strong> {product.manufacturer || '—'}</p>
+                <h4>{t('product.sections.manufacturing_specs')}</h4>
+                <p className="muted"><strong>{t('product.labels.manufacturer')}:</strong> {product.manufacturer || '—'}</p>
                 {product.variants && product.variants.length ? (
-                  <p className="muted"><strong>Available sizes:</strong> {product.variants.map(v => v.label).join(', ')}</p>
+                  <p className="muted"><strong>{t('product.labels.available_sizes')}:</strong> {product.variants.map(v => v.label).join(', ')}</p>
                 ) : (
-                  <p className="muted"><strong>Net weight:</strong> {product.netWeight || '—'}</p>
+                  <p className="muted"><strong>{t('product.labels.net_weight')}:</strong> {product.netWeight || '—'}</p>
                 )}
               </div>
             )}
