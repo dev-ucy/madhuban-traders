@@ -73,21 +73,25 @@ export default function Cart(){
     <div>
       <h2>{t('cart.title')}</h2>
       <div style={{marginTop:16}}>
-        {cart.map(item => (
-          <div key={item.key} className="cart-item">
-            <img src={item.image} alt={item.name} className="cart-thumb" />
-            <div className="cart-body">
-              <div className="cart-title">{(language === 'hi' ? (products.find(p => p.id === item.productId)?.name_hi || item.name) : item.name)}</div>
-              {item.variant && <div className="muted small">{item.variant.label}</div>}
-              <div className="muted">{t('cart.each').replace('{{price}}', `₹${item.price}`)}</div>
+        {cart.map(item => {
+          const product = products.find(p => p.id === item.productId)
+          const displayName = language === 'hi' ? (product?.name_hi || item.name) : item.name
+          return (
+            <div key={item.key} className="cart-item">
+              <img src={item.image} alt={displayName} className="cart-thumb" />
+              <div className="cart-body">
+                <div className="cart-title">{displayName}</div>
+                {item.variant && <div className="muted small">{item.variant.label}</div>}
+                <div className="muted">{t('cart.each').replace('{{price}}', `₹${item.price}`)}</div>
+              </div>
+              <div className="cart-controls">
+                <input className="form-control" type="number" value={item.qty} min={0} onChange={(e)=>updateQty(item.key, parseInt(e.target.value||0))} />
+                <div className="cart-line-total">{t('cart.line_total').replace('{{total}}', `₹${item.price * item.qty}`)}</div>
+                <button className="btn btn-ghost" onClick={() => removeFromCart(item.key)}>{t('cart.remove')}</button>
+              </div>
             </div>
-            <div className="cart-controls">
-              <input className="form-control" type="number" value={item.qty} min={0} onChange={(e)=>updateQty(item.key, parseInt(e.target.value||0))} />
-              <div className="cart-line-total">{t('cart.line_total').replace('{{total}}', `₹${item.price * item.qty}`)}</div>
-              <button className="btn btn-ghost" onClick={() => removeFromCart(item.key)}>{t('cart.remove')}</button>
-            </div>
-          </div>
-        ))}
+          )
+        })} 
 
         <div className="card" style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:16,marginTop:12}}>
           <div>

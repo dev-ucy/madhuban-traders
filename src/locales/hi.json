@@ -84,6 +84,8 @@
     "label_phone": "फोन",
     "label_email": "ईमेल",
     "label_address": "पता",
+    "label_pincode": "पिनकोड",
+    "label_city": "शहर",
     "label_subtotal": "कुल",
     "label_notes": "नोट्स",
     "items_label": "आइटम:",

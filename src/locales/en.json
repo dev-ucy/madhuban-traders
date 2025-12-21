@@ -84,6 +84,8 @@
     "label_phone": "Phone",
     "label_email": "Email",
     "label_address": "Address",
+    "label_pincode": "Pincode",
+    "label_city": "City", 
     "label_subtotal": "Subtotal",
     "label_notes": "Notes",
     "items_label": "Items:",

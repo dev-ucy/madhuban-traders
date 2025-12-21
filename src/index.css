@@ -159,7 +159,7 @@ section, .card { scroll-margin-top: 92px; }
 /* Floating buttons */
 .floating-whatsapp, .floating-call {
   position: fixed;
-  right: 18px;
+  right: calc(18px + env(safe-area-inset-right));
   display: flex;
   align-items: center;
   gap: 8px;
@@ -170,19 +170,39 @@ section, .card { scroll-margin-top: 92px; }
   text-decoration: none;
   box-shadow: 0 8px 20px rgba(0,0,0,0.16);
   transform-origin: center;
+  box-sizing: border-box;
+  min-height: 44px;
 }
 
-.floating-whatsapp { bottom: 18px; background: linear-gradient(45deg,#25d366,#128c7e); }
-.floating-whatsapp .wa-text { font-weight:700; font-size:13px; }
+.floating-whatsapp { bottom: calc(18px + env(safe-area-inset-bottom)); background: linear-gradient(45deg,#25d366,#128c7e); }
+.floating-whatsapp .wa-text { font-weight:700; font-size:13px; margin-right:4px }
 
-.floating-call { bottom: 80px; background: linear-gradient(45deg,#0066cc,#004a99); }
+.floating-call { bottom: calc(80px + env(safe-area-inset-bottom)); background: linear-gradient(45deg,#0066cc,#004a99); }
 .floating-call .call-text { font-weight:700; font-size:13px; }
 
-.floating-whatsapp svg, .floating-call svg { width:20px; height:20px }
+.floating-whatsapp svg, .floating-call svg { width:22px; height:22px; display:block }
 
-@media (max-width:640px){
-  .floating-whatsapp, .floating-call { right: 12px; padding: 10px 12px }
-  .floating-call { bottom: 78px }
+/* Ensure icon doesn't get clipped on small screens and hide text only when necessary */
+@media (max-width:480px){
+  .floating-whatsapp, .floating-call { right: calc(10px + env(safe-area-inset-right)); padding: 10px; }
+  .floating-whatsapp .wa-text { display: none }
+}
+
+/* Cart responsiveness tweaks */
+@media (max-width:720px){
+  .cart-item { flex-direction: column; align-items: stretch; padding:12px }
+  .cart-thumb { width:100%; height:180px; margin-bottom:8px }
+  .cart-tumb { width:100%; height:180px; object-fit:cover; margin-bottom:8px; border-radius:10px; background:#fff; padding:6px; box-shadow: 0 6px 18px rgba(15,23,42,0.06); border:1px solid rgba(151,79,0,0.04); }
+  .cart-controls { flex-direction:row; justify-content:space-between; align-items:center; gap:12px }
+  .cart-line-total { font-size:16px }
+  .checkout { padding:12px }
+}
+
+/* Ensure on very small screens controls stack */
+@media (max-width:480px){
+  .cart-controls { flex-direction: column; align-items: stretch; gap:8px }
+  .cart-controls .btn { width:100% }
+  .cart-controls .form-control { width:100% }
 }
 
 .youtube-iframe {
