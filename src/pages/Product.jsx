@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useCatalog } from '../context/CatalogContext'
 
@@ -13,6 +13,23 @@ export default function Product(){
   const [adding, setAdding] = useState(false)
   const [added, setAdded] = useState(false)
   const sizes = product?.variants?.map(v => v.label) || []
+
+  // Ensure the main image and selected variant are set/re-set when the product data becomes available
+  useEffect(() => {
+    if (!product) return
+    const imgs = (product.images && product.images.length) ? product.images : (product.image ? [product.image] : [])
+    // If main image not set or points to an old value, set it from product data
+    setMain(imgs[0] || product.image)
+    setSelectedVariant(product.variants?.[0] ?? null)
+  }, [product])
+
+  // If products are still loading (empty array), show a loading state so the page doesn't look broken on refresh
+  if (!product && products.length === 0) return (
+    <div>
+      <h2>Loading product…</h2>
+      <p className="muted">Fetching product information, please wait.</p>
+    </div>
+  )
 
   if (!product) return (
     <div>
@@ -56,7 +73,14 @@ export default function Product(){
       <div className="product-grid">
         <div className="product-left">
           <div className="image-wrap">
-            <img src={main} alt={product.name} />
+            <img
+              src={main || product?.image}
+              alt={product.name}
+              onError={(e) => {
+                // If image fails to load, try the product.image fallback
+                if (product?.image && e.target.src !== product.image) e.target.src = product.image
+              }}
+            />
           </div>
 
           <div className="gallery-grid">
