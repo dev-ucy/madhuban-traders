@@ -11,13 +11,7 @@ export default function AppFooter(){
   return (
     <footer className="app-footer">
       <div className="footer-container">
-        <div className="footer-section">
-          <h4>{t('footer.contact')}</h4>
-          <p>📍 {t('contact.location')}</p>
-          <p>📱 {t('contact.phone_num')}</p>
-          <p>✉️ {t('contact.email_addr')}</p>
-        </div>
-
+ 
         <div className="footer-section">
           <h4>{t('footer.quick_links')}</h4>
           <ul>
@@ -35,6 +29,13 @@ export default function AppFooter(){
             <li><a href="/shipping">{t('footer.shipping')}</a></li>
             <li><a href="/terms">{t('footer.terms')}</a></li>
           </ul>
+        </div>
+       
+       <div className="footer-section">
+          <h4>{t('footer.contact')}</h4>
+          <p>📍 {t('contact.location')}</p>
+          <p>📱 {t('contact.phone_num')}</p>
+          <p>✉️ {t('contact.email_addr')}</p>
         </div>
 
         <div className="footer-section">

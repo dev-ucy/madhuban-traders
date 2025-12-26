@@ -7,8 +7,12 @@ export default function FeaturedProducts(){
   const { t } = useTranslation()
   const { products } = useCatalog()
 
-  // Show the first 6 products as featured (fallback to empty array while loading)
-  const featured = products?.slice(0, 6) || []
+  // Show the first 8 products as featured (fallback to empty array while loading)
+  // const featured = products?.slice(0, 8) || []
+
+  // Shuffle and pick random products instead
+  const featured = products?.sort(() => Math.random() - 0.5).slice(0, 8) || []
+  // const featured = shuffled
 
   if (!featured.length) {
     return (

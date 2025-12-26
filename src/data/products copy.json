@@ -1,359 +1,719 @@
 [
   {
     "id": 1,
-    "name": "Mustard Oil",
-    "price": 450,
-    "image": "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
+    "name": "Mustard Oil (Kacchi Ghani)",
+    "name_hi": "सरसों का तेल (कच्ची घानी)",
+    "price": 120,
+    "image": "/src/assets/products/1_Mustard_Oil.png",
     "images": [
-      "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
-      "https://via.placeholder.com/800x600?text=Mustard+Oil+Bottle",
-      "https://via.placeholder.com/800x600?text=Mustard+Seeds"
+      "/src/assets/products/1_Mustard_Oil.png",
+      "/src/assets/products/1_Mustard_Oil_1.png"
     ],
     "category": "Oils",
-    
     "variants": [
-      {"id":"v1a","label":"1 L","price":120},
-      {"id":"v1b","label":"3 L","price":350},
-      {"id":"v1c","label":"5 L","price":450}
+      {"id": "v1a", "label": "1 L", "price": 120},
+      {"id": "v1b", "label": "3 L", "price": 350},
+      {"id": "v1c", "label": "5 L", "price": 450}
     ],
-    "description": "Premium cold-pressed mustard oil - rich in omega-3 and omega-6 fatty acids.",
+    "description": "Authentic Kacchi Ghani Mustard Oil, cold-pressed to retain its natural 'Jhaanjh' (pungency). Extracted from premium mustard seeds of Rajasthan, it is the soul of North Indian and Bengali kitchens.",
+    "description_hi": "असली कच्ची घानी सरसों का तेल, जो अपने प्राकृतिक तीखेपन (झांझ) को बरकरार रखता है। राजस्थान के प्रीमियम बीजों से निकाला गया, यह उत्तर भारतीय और बंगाली व्यंजनों की जान है।",
+    "usage": "Perfect for frying, making long-lasting pickles (Achaar), and traditional body massage.",
+    "usage_hi": "तलने, अचार बनाने और पारंपरिक मालिश के लिए उत्तम।",
+    "storage": "Store in a cool, dry place. Keep the lid tight to maintain its pungent aroma.",
     "manufacturer": "Madhuban Oils Co.",
     "origin": "Rajasthan, India",
-    "ingredients": ["Cold-pressed mustard oil"],
-    "healthBenefits": ["Rich in omega-3 and omega-6 fatty acids","Supports heart health","Good for skin and hair when used topically"],
-    "usage": "Cooking, frying, and external massage for skin and hair",
-    "storage": "Store in a cool, dry place away from direct sunlight.",
-    "certifications": ["FSSAI"]
+    "shelfLife": "12 Months",
+    "culinaryProfile": "Sharp, pungent, and warming.",
+    "ingredients": ["100% Cold-pressed Mustard Oil"],
+    "healthBenefits": [
+      "Rich in MUFA for heart health",
+      "Natural anti-bacterial agent for food preservation",
+      "Stimulates digestion and circulation",
+      "Traditional remedy for respiratory relief when used topically"
+    ],
+    "healthBenefits_hi": [
+      "हृदय स्वास्थ्य के लिए MUFA से भरपूर",
+      "भोजन संरक्षण के लिए प्राकृतिक एंटी-बैक्टीरियल गुण",
+      "पाचन और रक्त संचार को उत्तेजित करता है",
+      "श्वसन राहत के लिए पारंपरिक उपचार"
+    ],
+    "certifications": ["FSSAI", "Agmark"]
   },
   {
     "id": 2,
     "name": "Groundnut Oil",
-    "price": 220,
-    "image": "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
+    "name_hi": "मूंगफली का तेल",
+    "price": 70,
+    "image": "/src/assets/products/2_Groundnut_Oil.png",
     "images": [
-      "https://www.shutterstock.com/shutterstock/photos/2273122381/display_1500/stock-photo-mustard-oil-with-seeds-in-glass-bowl-and-flowers-outdoor-2273122381.jpg",
-      "https://via.placeholder.com/800x600?text=Groundnut+Oil+Bottle",
-      "https://via.placeholder.com/800x600?text=Groundnuts"
+      "/src/assets/products/2_Groundnut_Oil.png",
+      "/src/assets/products/2_Groundnut_Oil_1.png"
     ],
     "category": "Oils",
-    
     "variants": [
-      {"id":"v2a","label":"250 ml","price":70},
-      {"id":"v2b","label":"500 ml","price":140},
-      {"id":"v2c","label":"1 L","price":220}
+      {"id": "v2a", "label": "250 ml", "price": 70},
+      {"id": "v2b", "label": "500 ml", "price": 140},
+      {"id": "v2c", "label": "1 L", "price": 220}
     ],
-    "description": "Pure cold-pressed groundnut oil - perfect for cooking and salads.",
+    "description": "Pure cold-pressed groundnut oil sourced from Saurashtra. It has a high smoke point and a delicate nutty flavor that doesn't overpower the food.",
+    "description_hi": "सौराष्ट्र से प्राप्त शुद्ध कोल्ड-प्रेस्ड मूंगफली का तेल। इसका स्मोक पॉइंट उच्च है और स्वाद हल्का नटी है जो खाने के असली स्वाद को दबने नहीं देता।",
+    "usage": "Best for deep frying snacks like Pakoras and Puris, and making South Indian chutneys.",
+    "usage_hi": "पकोड़े और पूरियों को तलने और दक्षिण भारतीय चटनी बनाने के लिए सर्वश्रेष्ठ।",
+    "storage": "Store in a cool place away from sunlight.",
     "manufacturer": "Madhuban Oils Co.",
     "origin": "Gujarat, India",
-    "ingredients": ["Cold-pressed groundnut oil"],
-    "healthBenefits": ["High smoke point for frying","Good source of vitamin E","May support cardiovascular health when consumed in moderation"],
-    "usage": "Cooking, deep frying, and dressing salads",
-    "storage": "Keep refrigerated after opening for longer shelf life.",
+    "shelfLife": "9 Months",
+    "culinaryProfile": "Mild, nutty, and versatile.",
+    "ingredients": ["100% Cold-pressed Groundnut Oil"],
+    "healthBenefits": [
+      "Contains Phytosterols that help lower cholesterol",
+      "Rich in Vitamin E, a powerful antioxidant",
+      "Resistant to oxidation at high temperatures",
+      "Promotes skin health and anti-aging"
+    ],
+    "healthBenefits_hi": [
+      "कोलेस्ट्रॉल कम करने वाले फाइटोस्टेरॉल युक्त",
+      "विटामिन ई (एंटीऑक्सीडेंट) का समृद्ध स्रोत",
+      "उच्च तापमान पर सुरक्षित (ऑक्सीकरण प्रतिरोधी)",
+      "त्वचा के स्वास्थ्य और एंटी-एजिंग में सहायक"
+    ],
     "certifications": ["FSSAI"]
   },
   {
     "id": 3,
-    "name": "Turmeric (Haldi) Powder",
-    "price": 320,
-    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+    "name": "Coconut Oil (Virgin/Cold-Pressed)",
+    "name_hi": "नारियल का तेल",
+    "price": 150,
+    "image": "/src/assets/products/coconut_1.png",
     "images": [
-      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
-      "https://via.placeholder.com/800x600?text=Turmeric+Powder",
-      "https://via.placeholder.com/800x600?text=Turmeric+Roots"
+      "/src/assets/products/coconut_1.png",
+      "/src/assets/products/coconut_2.png"
     ],
-    "category": "Spices",
-    
+    "category": "Oils",
     "variants": [
-      {"id":"v3a","label":"100 g","price":80},
-      {"id":"v3b","label":"250 g","price":180},
-      {"id":"v3c","label":"500 g","price":320}
+      {"id": "v3a", "label": "250 ml", "price": 150},
+      {"id": "v3b", "label": "500 ml", "price": 280},
+      {"id": "v3c", "label": "1 L", "price": 520}
     ],
-    "description": "Premium turmeric powder - high curcumin content.",
-    "manufacturer": "Madhuban Spices",
+    "description": "Edible grade, 100% pure coconut oil from the coastal groves of Kerala. Extracted without heat to preserve its tropical aroma and vital nutrients.",
+    "description_hi": "केरल के तटीय इलाकों से प्राप्त खाद्य ग्रेड, 100% शुद्ध नारियल का तेल। इसके प्राकृतिक गुणों को बनाए रखने के लिए बिना गर्मी के निकाला गया।",
+    "usage": "Traditional Kerala cuisine, bullet coffee, and deep conditioning for hair.",
+    "usage_hi": "केरल के व्यंजनों, बुलेट कॉफी और बालों की गहरी कंडिशनिंग के लिए।",
+    "storage": "Store in a wide-mouthed jar as it solidifies in winters.",
+    "manufacturer": "Madhuban Oils Co.",
     "origin": "Kerala, India",
-    "ingredients": ["100% ground turmeric root"],
-    "healthBenefits": ["Anti-inflammatory properties","Contains antioxidants","Supports digestion"],
-    "usage": "Culinary spice, golden milk, seasoning for curries",
-    "storage": "Store in an airtight container to maintain freshness.",
-    "certifications": ["Organic"]
+    "shelfLife": "18 Months",
+    "culinaryProfile": "Sweet, tropical, and rich.",
+    "ingredients": ["100% Pure Virgin Coconut Oil"],
+    "healthBenefits": [
+      "Contains MCTs for instant energy boost",
+      "Lauric acid supports immune system health",
+      "Excellent for thyroid and metabolic health",
+      "Anti-fungal and anti-microbial properties"
+    ],
+    "healthBenefits_hi": [
+      "त्वरित ऊर्जा के लिए MCTs से भरपूर",
+      "लौरिक एसिड रोग प्रतिरोधक क्षमता बढ़ाता है",
+      "थायराइड और मेटाबॉलिज्म के लिए बेहतरीन",
+      "एंटी-फंगल और एंटी-माइक्रोबियल गुण"
+    ],
+    "certifications": ["FSSAI", "Organic"]
   },
   {
     "id": 4,
-    "name": "Cardamom (Elaichi)",
-    "price": 480,
-    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+    "name": "Sesame (Til) Oil",
+    "name_hi": "तिल का तेल",
+    "price": 200,
+    "image": "/src/assets/products/sesame_1.png",
     "images": [
-      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
-      "https://via.placeholder.com/800x600?text=Cardamom+Pods",
-      "https://via.placeholder.com/800x600?text=Cardamom+Seeds"
+      "/src/assets/products/sesame_1.png",
+      "/src/assets/products/sesame_2.png"
     ],
-    "category": "Spices",
-    
+    "category": "Oils",
     "variants": [
-      {"id":"v4a","label":"25 g","price":140},
-      {"id":"v4b","label":"50 g","price":260},
-      {"id":"v4c","label":"100 g","price":480}
+      {"id": "v4a", "label": "250 ml", "price": 200},
+      {"id": "v4b", "label": "500 ml", "price": 380},
+      {"id": "v4c", "label": "1 L", "price": 720}
     ],
-    "description": "Premium green cardamom pods - aromatic and flavorful.",
-    "manufacturer": "Madhuban Spices",
-    "origin": "Kerala, India",
-    "ingredients": ["Whole green cardamom pods"],
-    "healthBenefits": ["Aids digestion","Freshens breath","Contains essential oils beneficial for wellbeing"],
-    "usage": "Flavoring for sweets, teas, and savory dishes",
-    "storage": "Keep in a cool, dry place in an airtight container.",
+    "description": "Known as the 'Queen of Oils' in Ayurveda, our Sesame oil is cold-pressed from premium black and white til. Ideal for both culinary use and Abhyanga (massage).",
+    "description_hi": "आयुर्वेद में 'तेलों की रानी' के रूप में प्रसिद्ध, हमारा तिल का तेल काले और सफेद तिल से निकाला गया है। भोजन और अभ्यंग (मालिश) दोनों के लिए उपयुक्त।",
+    "usage": "Gingelly oil recipes, South Indian podi, and Ayurvedic massage.",
+    "usage_hi": "दक्षिण भारतीय पोड़ी और आयुर्वेदिक मालिश के लिए।",
+    "storage": "Store in an airtight dark glass bottle.",
+    "manufacturer": "Madhuban Oils Co.",
+    "origin": "Gujarat, India",
+    "shelfLife": "12 Months",
+    "culinaryProfile": "Deeply nutty and toasted aroma.",
+    "ingredients": ["100% Cold-pressed Sesame Oil"],
+    "healthBenefits": [
+      "Balances Vata dosha in the body",
+      "High in Zinc for bone density and skin elasticity",
+      "Tyrosine helps in serotonin production (mood booster)",
+      "Protects against DNA damage from radiation"
+    ],
+    "healthBenefits_hi": [
+      "शरीर में वात दोष को संतुलित करता है",
+      "हड्डियों की मजबूती के लिए जिंक से भरपूर",
+      "तनाव कम करने और मूड सुधारने में सहायक",
+      "विकिरण से डीएनए की रक्षा करता है"
+    ],
     "certifications": ["FSSAI"]
   },
   {
     "id": 5,
-    "name": "Cumin Seeds",
-    "price": 180,
-    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+    "name": "Sunflower Oil",
+    "name_hi": "सूरजमुखी का तेल",
+    "price": 95,
+    "image": "/src/assets/products/sunflower_1.png",
     "images": [
-      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
-      "https://via.placeholder.com/800x600?text=Cumin+Seeds",
-      "https://via.placeholder.com/800x600?text=Cumin+Spoon"
+      "/src/assets/products/sunflower_1.png",
+      "/src/assets/products/sunflower_2.png"
     ],
-    "category": "Spices",
-    
+    "category": "Oils",
     "variants": [
-      {"id":"v5a","label":"100 g","price":50},
-      {"id":"v5b","label":"250 g","price":100},
-      {"id":"v5c","label":"500 g","price":180}
+      {"id": "v5a", "label": "500 ml", "price": 95},
+      {"id": "v5b", "label": "1 L", "price": 180},
+      {"id": "v5c", "label": "5 L", "price": 700}
     ],
-    "description": "Fresh whole cumin seeds - earthy flavor and aroma.",
-    "manufacturer": "Madhuban Spices",
-    "origin": "Rajasthan, India",
-    "ingredients": ["Whole cumin seeds"],
-    "healthBenefits": ["Supports digestion","Rich in iron and antioxidants"],
-    "usage": "Tempering, spice blends, and seasoning",
-    "storage": "Store in airtight container away from light.",
+    "description": "A light and healthy cooking oil that is easy on the stomach. Our sunflower oil is refined to ensure a high smoke point, making it ideal for the diverse Indian kitchen.",
+    "description_hi": "एक हल्का और स्वस्थ खाना पकाने का तेल जो पाचन में आसान है। यह तेल भारतीय रसोई की विविध जरूरतों के लिए बनाया गया है।",
+    "usage": "Daily sautéing, deep frying, and baking.",
+    "usage_hi": "रोजाना खाना पकाने, तलने और बेकिंग के लिए।",
+    "storage": "Store in a cool place away from light.",
+    "manufacturer": "Madhuban Oils Co.",
+    "origin": "Madhya Pradesh, India",
+    "shelfLife": "12 Months",
+    "culinaryProfile": "Neutral taste, preserves original food flavor.",
+    "ingredients": ["Refined Sunflower Oil"],
+    "healthBenefits": [
+      "Extremely rich in Vitamin E for immunity",
+      "Low in saturated fats, good for weight management",
+      "Contains Lecithin which helps lower cholesterol",
+      "Promotes healthy hair and prevents thinning"
+    ],
+    "healthBenefits_hi": [
+      "इम्युनिटी के लिए विटामिन ई से भरपूर",
+      "वजन घटाने के लिए कम सैचुरेटेड फैट",
+      "कोलेस्ट्रॉल कम करने में सहायक लेसिथिन युक्त",
+      "बालों को झड़ने से रोकने में मददगार"
+    ],
     "certifications": ["FSSAI"]
   },
   {
     "id": 6,
-    "name": "Cinnamon Sticks",
-    "price": 260,
-    "image": "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
+    "name": "Flaxseed (Alsi) Oil",
+    "name_hi": "अलसी का तेल",
+    "price": 320,
+    "image": "/src/assets/products/Flaxseed_1.png",
     "images": [
-      "https://store.jainfarmfresh.com/cdn/shop/files/valley-spice-turmeric-powder-500g-pack-of-2-turmeric-powder-natural-standee-pack-617118.png",
-      "https://via.placeholder.com/800x600?text=Cinnamon+Sticks",
-      "https://via.placeholder.com/800x600?text=Cinnamon+Powder"
+      "/src/assets/products/Flaxseed_1.png",
+      "/src/assets/products/Flaxseed_2.png"
     ],
-    "category": "Spices",
-   
+    "category": "Oils",
     "variants": [
-      {"id":"v6a","label":"50 g","price":140},
-      {"id":"v6b","label":"100 g","price":260},
-      {"id":"v6c","label":"250 g","price":600}
+      {"id": "v6a", "label": "250 ml", "price": 320},
+      {"id": "v6b", "label": "500 ml", "price": 600},
+      {"id": "v6c", "label": "1 L", "price": 1100}
     ],
-    "description": "Premium cinnamon bark sticks - sweet and warming spice.",
-    "manufacturer": "Madhuban Spices",
-    "origin": "Sri Lanka",
-    "ingredients": ["Cinnamon bark"],
-    "healthBenefits": ["May help regulate blood sugar","Anti-inflammatory effects"],
-    "usage": "Baking, stews, teas, and spice blends",
-    "storage": "Keep in airtight container for best aroma retention.",
-    "certifications": ["Fair-Trade"]
-  },
-  {
-    "id": 7,
-    "name": "Black Pepper (Whole)",
-    "price": 220,
-    "image": "https://via.placeholder.com/1200x800?text=Black+Pepper",
-    "images": [
-      "https://via.placeholder.com/1200x800?text=Black+Pepper",
-      "https://via.placeholder.com/1200x800?text=Pepper+Closeup",
-      "https://via.placeholder.com/1200x800?text=Pepper+Mill"
+    "description": "A vegetarian powerhouse of Omega-3. This cold-pressed oil is made from high-quality Alsi seeds from Punjab, perfect for those seeking a plant-based health supplement.",
+    "description_hi": "ओमेगा-3 का शाकाहारी खजाना। पंजाब के उच्च गुणवत्ता वाले अलसी के बीजों से बना यह तेल स्वास्थ्य सप्लीमेंट के रूप में उत्तम है।",
+    "usage": "Drizzle over salads, mix in smoothies, or take a spoonful daily. Do not heat.",
+    "usage_hi": "सलाद पर डालें, स्मूदी में मिलाएं या रोजाना एक चम्मच लें। इसे गर्म न करें।",
+    "storage": "Always refrigerate to prevent bitterness (rancidity).",
+    "manufacturer": "Madhuban Oils Co.",
+    "origin": "Punjab, India",
+    "shelfLife": "6 Months",
+    "culinaryProfile": "Nutty, slightly bitter, and earthy.",
+    "ingredients": ["100% Cold-pressed Flaxseed Oil"],
+    "healthBenefits": [
+      "Highest plant source of Alpha-linolenic acid (Omega-3)",
+      "Reduces inflammation in joints and arteries",
+      "Improves skin smoothness and hydration",
+      "Supports hormonal balance in women"
     ],
-    "category": "Spices",
-    
-    "variants": [
-      {"id":"v7a","label":"100 g","price":120},
-      {"id":"v7b","label":"200 g","price":220},
-      {"id":"v7c","label":"500 g","price":500}
+    "healthBenefits_hi": [
+      "ओमेगा-3 (ALA) का उच्चतम शाकाहारी स्रोत",
+      "जोड़ों और धमनियों की सूजन को कम करता है",
+      "त्वचा की कोमलता और नमी को सुधारता है",
+      "महिलाओं में हार्मोनल संतुलन का समर्थन करता है"
     ],
-    "description": "Whole black peppercorns — aromatic and pungent, ideal for grinding fresh.",
-    "manufacturer": "Madhuban Spices",
-    "origin": "Malabar, India",
-    "ingredients": ["100% black peppercorns"],
-    "healthBenefits": ["May aid digestion","Rich in antioxidants"],
-    "usage": "Grinding for seasoning, marinades, and cooking",
-    "storage": "Keep in airtight container away from moisture.",
     "certifications": ["FSSAI"]
   },
   {
-    "id": 8,
-    "name": "Coriander Seeds (Dhaniya)",
-    "price": 140,
-    "image": "https://via.placeholder.com/1200x800?text=Coriander+Seeds",
+    "id": 7,
+    "name": "Turmeric (Haldi) Powder",
+    "name_hi": "हल्दी पाउडर",
+    "price": 80,
+    "image": "/src/assets/products/3_Turmeric_Powder.png",
     "images": [
-      "https://via.placeholder.com/1200x800?text=Coriander+Seeds",
-      "https://via.placeholder.com/1200x800?text=Coriander+Closeup",
-      "https://via.placeholder.com/1200x800?text=Coriander+Powder"
+      "/src/assets/products/3_Turmeric_Powder.png",
+      "/src/assets/products/3_Turmeric_Powder_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id":"v8a","label":"100 g","price":50},
-      {"id":"v8b","label":"250 g","price":100},
-      {"id":"v8c","label":"500 g","price":140}
+      {"id": "v7a", "label": "100 g", "price": 80},
+      {"id": "v7b", "label": "250 g", "price": 180},
+      {"id": "v7c", "label": "500 g", "price": 320}
     ],
-    "description": "Fresh whole coriander seeds — warm citrusy aroma used in many spice blends.",
+    "description": "High-Curcumin (min 3.5%) Turmeric powder sourced from Salem. Guaranteed free from lead chromate and artificial starch.",
+    "description_hi": "सेलम से प्राप्त उच्च करक्यूमिन युक्त हल्दी पाउडर। मिलावट रहित और शुद्ध औषधीय गुणों से भरपूर।",
+    "usage": "Basic curry spice, Golden Milk, and Ayurvedic face masks.",
+    "usage_hi": "मसाला करी, हल्दी दूध और फेस पैक के लिए।",
+    "storage": "Store in an airtight container in a dark place.",
     "manufacturer": "Madhuban Spices",
-    "origin": "Madhya Pradesh, India",
-    "ingredients": ["100% coriander seeds"],
-    "healthBenefits": ["Supports digestion","Contains vitamins and minerals"],
-    "usage": "Grinding, spice blends, and tempering",
-    "storage": "Store in airtight container in a cool place.",
+    "origin": "Tamil Nadu, India",
+    "shelfLife": "12 Months",
+    "culinaryProfile": "Earthy, warm, and peppery.",
+    "ingredients": ["100% Pure Ground Turmeric"],
+    "healthBenefits": [
+      "Powerful natural anti-inflammatory agent",
+      "Enhances immunity against seasonal infections",
+      "Supports liver detoxification",
+      "Promotes wound healing and healthy skin"
+    ],
+    "healthBenefits_hi": [
+      "शक्तिशाली प्राकृतिक सूजन-रोधी",
+      "मौसमी संक्रमणों के खिलाफ इम्युनिटी बढ़ाता है",
+      "लिवर की सफाई में सहायक",
+      "घाव भरने और त्वचा निखारने में मददगार"
+    ],
+    "certifications": ["Organic", "FSSAI"]
+  },
+  {
+    "id": 8,
+    "name": "Green Cardamom (Chhoti Elaichi)",
+    "name_hi": "हरी इलायची",
+    "price": 140,
+    "image": "/src/assets/products/4_Cardamom.png",
+    "images": [
+      "/src/assets/products/4_Cardamom.png",
+      "/src/assets/products/4_Cardamom_1.png"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id": "v8a", "label": "25 g", "price": 140},
+      {"id": "v8b", "label": "50 g", "price": 260},
+      {"id": "v100g", "label": "100 g", "price": 480}
+    ],
+    "description": "8mm bold, lush green cardamom pods from the Idukki hills of Kerala. Packed with essential oils for an unmatched aroma.",
+    "description_hi": "केरल की पहाड़ियों से प्राप्त 8mm बोल्ड हरी इलायची। लाजवाब खुशबू के लिए प्राकृतिक तेलों से भरपूर।",
+    "usage": "Masala Chai, sweets like Kheer, and biryanis.",
+    "usage_hi": "मसाला चाय, खीर जैसी मिठाइयों और बिरयानी में।",
+    "storage": "Keep in an airtight container to prevent loss of aroma.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Kerala, India",
+    "shelfLife": "12 Months",
+    "culinaryProfile": "Floral, sweet, and cooling.",
+    "ingredients": ["Whole Green Cardamom"],
+    "healthBenefits": [
+      "Excellent natural mouth freshener",
+      "Aids in digestion and reduces acidity",
+      "Helps in detoxifying the body through kidneys",
+      "Traditionally used for blood pressure management"
+    ],
+    "healthBenefits_hi": [
+      "बेहतरीन प्राकृतिक माउथ फ्रेशनर",
+      "पाचन में सुधार और एसिडिटी कम करता है",
+      "किडनी के माध्यम से शरीर को डिटॉक्स करता है",
+      "ब्लड प्रेशर नियंत्रित करने में सहायक"
+    ],
     "certifications": ["FSSAI"]
   },
   {
     "id": 9,
-    "name": "Fenugreek Seeds (Methi)",
-    "price": 110,
-    "image": "https://via.placeholder.com/1200x800?text=Fenugreek+Seeds",
+    "name": "Cumin Seeds (Jeera)",
+    "name_hi": "साबुत जीरा",
+    "price": 50,
+    "image": "/src/assets/products/5_Cumin_Seeds.png",
     "images": [
-      "https://via.placeholder.com/1200x800?text=Fenugreek+Seeds",
-      "https://via.placeholder.com/1200x800?text=Fenugreek+Sprouts",
-      "https://via.placeholder.com/1200x800?text=Fenugreek+Usage"
+      "/src/assets/products/5_Cumin_Seeds.png",
+      "/src/assets/products/5_Cumin_Seeds_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id":"v9a","label":"50 g","price":40},
-      {"id":"v9b","label":"100 g","price":75},
-      {"id":"v9c","label":"250 g","price":110}
+      {"id": "v9a", "label": "100 g", "price": 50},
+      {"id": "v9b", "label": "250 g", "price": 100},
+      {"id": "v9c", "label": "500 g", "price": 180}
     ],
-    "description": "Fenugreek seeds — slightly bitter and nutty, commonly used in pickles and curries.",
+    "description": "Selected premium quality Cumin seeds from Unjha, Gujarat. These seeds are machine-cleaned and hand-graded for the perfect 'Tadka'.",
+    "description_hi": "गुजरात के उंझा से प्राप्त प्रीमियम गुणवत्ता वाला जीरा। बेहतरीन तड़के के लिए मशीनी सफाई और हैंड-ग्रेडिंग की गई।",
+    "usage": "Essential for 'Dal Tadka', Jeera Rice, and roasted cumin powder (Bhuna Jeera).",
+    "usage_hi": "दाल तड़का, जीरा राइस और भुना जीरा पाउडर के लिए अनिवार्य।",
+    "storage": "Store in a cool, dry place in an airtight jar.",
     "manufacturer": "Madhuban Spices",
-    "origin": "Rajasthan, India",
-    "ingredients": ["100% fenugreek seeds"],
-    "healthBenefits": ["May support digestion","Traditionally used for metabolic health"],
-    "usage": "Pickles, curries, spice blends",
-    "storage": "Keep sealed in a cool dry place.",
+    "origin": "Gujarat, India",
+    "shelfLife": "12 Months",
+    "culinaryProfile": "Earthy, nutty, and intense.",
+    "ingredients": ["Whole Cumin Seeds"],
+    "healthBenefits": [
+      "Contains Thymol which stimulates digestive enzymes",
+      "Rich source of Iron for energy and immunity",
+      "Helpful in managing blood sugar levels",
+      "Aids weight loss by improving metabolism"
+    ],
+    "healthBenefits_hi": [
+      "थाइमोल युक्त जो पाचन एंजाइमों को उत्तेजित करता है",
+      "ऊर्जा और इम्युनिटी के लिए आयरन का समृद्ध स्रोत",
+      "ब्लड शुगर लेवल को नियंत्रित करने में सहायक",
+      "मेटाबॉलिज्म सुधारकर वजन घटाने में मदद करता है"
+    ],
     "certifications": ["FSSAI"]
   },
   {
     "id": 10,
-    "name": "Cloves (Laung)",
-    "price": 300,
-    "image": "https://via.placeholder.com/1200x800?text=Cloves",
+    "name": "Cinnamon Sticks (Dalchini)",
+    "name_hi": "दालचीनी",
+    "price": 140,
+    "image": "/src/assets/products/6_Cinnamon_Sticks.png",
     "images": [
-      "https://via.placeholder.com/1200x800?text=Cloves",
-      "https://via.placeholder.com/1200x800?text=Cloves+Closeup",
-      "https://via.placeholder.com/1200x800?text=Cloves+Usage"
+      "/src/assets/products/6_Cinnamon_Sticks.png",
+      "/src/assets/products/6_Cinnamon_Sticks_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id":"v10a","label":"25 g","price":120},
-      {"id":"v10b","label":"50 g","price":190},
-      {"id":"v10c","label":"100 g","price":300}
+      {"id": "v10a", "label": "50 g", "price": 140},
+      {"id": "v10b", "label": "100 g", "price": 260},
+      {"id": "v10c", "label": "250 g", "price": 600}
     ],
-    "description": "Whole cloves — intensely aromatic, used in biryanis, masalas, and baking.",
+    "description": "Premium sweet-scented Cinnamon sticks. Unlike common Cassia, our bark is chosen for its thin layers and delicate, non-bitter flavor.",
+    "description_hi": "प्रीमियम खुशबूदार दालचीनी की छड़ें। अपनी पतली परतों और मीठे स्वाद के लिए चुनी गई।",
+    "usage": "Flavoring Pulao, Kadha (herbal tea), and baking.",
+    "usage_hi": "पुलाव, काढ़ा और बेकिंग में स्वाद बढ़ाने के लिए।",
+    "storage": "Store in an airtight container to keep the aroma intact.",
     "manufacturer": "Madhuban Spices",
-    "origin": "Kerala, India",
-    "ingredients": ["100% whole cloves"],
-    "healthBenefits": ["Natural antiseptic properties","May support digestion"],
-    "usage": "Baking, biryanis, masalas",
-    "storage": "Store in airtight container away from direct sunlight.",
+    "origin": "Sri Lanka/South India",
+    "shelfLife": "18 Months",
+    "culinaryProfile": "Sweet, woody, and warm.",
+    "ingredients": ["Pure Cinnamon Bark"],
+    "healthBenefits": [
+      "Improves insulin sensitivity (great for diabetics)",
+      "Reduces bad cholesterol (LDL)",
+      "Natural breath freshener and oral health booster",
+      "Anti-viral properties help fight common colds"
+    ],
+    "healthBenefits_hi": [
+      "इंसुलिन संवेदनशीलता सुधारता है (मधुमेह रोगियों के लिए अच्छा)",
+      "खराब कोलेस्ट्रॉल (LDL) को कम करता है",
+      "प्राकृतिक माउथ फ्रेशनर और ओरल हेल्थ बूस्टर",
+      "सामान्य सर्दी से लड़ने में एंटी-वायरल गुण"
+    ],
     "certifications": ["FSSAI"]
   },
   {
     "id": 11,
-    "name": "Bay Leaves (Tej Patta)",
-    "price": 90,
-    "image": "https://via.placeholder.com/1200x800?text=Bay+Leaves",
+    "name": "Black Pepper (Whole Kali Mirch)",
+    "name_hi": "साबुत काली मिर्च",
+    "price": 120,
+    "image": "/src/assets/products/7_Black_Pepper.png",
     "images": [
-      "https://via.placeholder.com/1200x800?text=Bay+Leaves",
-      "https://via.placeholder.com/1200x800?text=Bay+Closeup",
-      "https://via.placeholder.com/1200x800?text=Bay+Usage"
+      "/src/assets/products/7_Black_Pepper.png",
+      "/src/assets/products/7_Black_Pepper_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id":"v11a","label":"10 g","price":40},
-      {"id":"v11b","label":"25 g","price":80},
-      {"id":"v11c","label":"50 g","price":90}
+      {"id": "v11a", "label": "100 g", "price": 120},
+      {"id": "v11b", "label": "200 g", "price": 220},
+      {"id": "v11c", "label": "500 g", "price": 500}
     ],
-    "description": "Aromatic bay leaves used to flavor curries, stews, and rice dishes.",
+    "description": "Grown in the Malabar coast, these peppercorns are sun-dried and graded for maximum Piperine content, which provides the real heat.",
+    "description_hi": "मालाबार तट से प्राप्त, ये काली मिर्च धूप में सुखाई गई हैं और असली तीखेपन (पाइपरिन) के लिए प्रसिद्ध हैं।",
+    "usage": "Crush fresh for omelets, pastas, and traditional Indian Kadha.",
+    "usage_hi": "आमलेट, पास्ता और पारंपरिक काढ़े के लिए ताजा पीसकर उपयोग करें।",
+    "storage": "Keep away from moisture.",
     "manufacturer": "Madhuban Spices",
-    "origin": "India",
-    "ingredients": ["100% bay leaves"],
-    "healthBenefits": ["May support digestion","Adds aromatic flavour"],
-    "usage": "Curries, stews, biryanis",
-    "storage": "Keep in airtight container for freshness.",
+    "origin": "Kerala, India",
+    "shelfLife": "18 Months",
+    "culinaryProfile": "Hot, spicy, and woody.",
+    "ingredients": ["Whole Black Peppercorns"],
+    "healthBenefits": [
+      "Enhances nutrient absorption (especially Curcumin)",
+      "Improves brain function and cognitive health",
+      "Stimulates hydrochloric acid in the stomach for digestion",
+      "Rich in Manganese and Vitamin K"
+    ],
+    "healthBenefits_hi": [
+      "पोषक तत्वों (विशेषकर हल्दी) के अवशोषण को बढ़ाता है",
+      "मस्तिष्क कार्यप्रणाली और मानसिक स्वास्थ्य में सुधार",
+      "पाचन के लिए पेट में एसिड को उत्तेजित करता है",
+      "मैंगनीज और विटामिन K का अच्छा स्रोत"
+    ],
     "certifications": ["FSSAI"]
   },
   {
     "id": 12,
-    "name": "Fennel Seeds (Saunf)",
-    "price": 130,
-    "image": "https://via.placeholder.com/1200x800?text=Fennel+Seeds",
+    "name": "Coriander Seeds (Sabut Dhaniya)",
+    "name_hi": "साबुत धनिया",
+    "price": 50,
+    "image": "/src/assets/products/8_Coriander_Seeds.png",
     "images": [
-      "https://via.placeholder.com/1200x800?text=Fennel+Seeds",
-      "https://via.placeholder.com/1200x800?text=Fennel+Closeup",
-      "https://via.placeholder.com/1200x800?text=Fennel+Usage"
+      "/src/assets/products/8_Coriander_Seeds.png",
+      "/src/assets/products/8_Coriander_Seeds_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id":"v12a","label":"50 g","price":40},
-      {"id":"v12b","label":"100 g","price":80},
-      {"id":"v12c","label":"250 g","price":130}
+      {"id": "v12a", "label": "100 g", "price": 50},
+      {"id": "v12b", "label": "250 g", "price": 100},
+      {"id": "v12c", "label": "500 g", "price": 140}
     ],
-    "description": "Sweet fennel seeds — commonly used as a digestive aid and in baking.",
+    "description": "Lush green coriander seeds with a distinct citrusy notes. Sourced from the fields of Madhya Pradesh, perfect for home-ground masalas.",
+    "description_hi": "मध्य प्रदेश के खेतों से प्राप्त, विशेष खट्टेपन वाली खुशबू वाले धनिया बीज। घर में बने मसालों के लिए उत्तम।",
+    "usage": "Dry roast and grind for Sambar powder, Garam Masala, or use in 'Kadhai' dishes.",
+    "usage_hi": "सांभर पाउडर, गरम मसाला या 'कढ़ाई' व्यंजनों के लिए भूनकर पीसें।",
+    "storage": "Store in a cool, dry place.",
     "manufacturer": "Madhuban Spices",
-    "origin": "Punjab, India",
-    "ingredients": ["100% fennel seeds"],
-    "healthBenefits": ["Supports digestion","May soothe stomach discomfort"],
-    "usage": "Breath freshener, baking, spice blends",
-    "storage": "Store in airtight container away from moisture.",
+    "origin": "Madhya Pradesh, India",
+    "shelfLife": "12 Months",
+    "culinaryProfile": "Citrusy, light, and sweet.",
+    "ingredients": ["100% Whole Coriander Seeds"],
+    "healthBenefits": [
+      "Natural diuretic that helps reduce water retention",
+      "Excellent for cooling the body in summers",
+      "Helps regulate menstrual flow and symptoms",
+      "Improves hair growth by strengthening roots"
+    ],
+    "healthBenefits_hi": [
+      "प्राकृतिक मूत्रवर्धक जो शरीर की सूजन कम करता है",
+      "गर्मियों में शरीर को ठंडा रखने के लिए बेहतरीन",
+      "मासिक धर्म चक्र को विनियमित करने में सहायक",
+      "जड़ों को मजबूत कर बालों के विकास में सुधार"
+    ],
     "certifications": ["FSSAI"]
   },
   {
     "id": 13,
-    "name": "Saffron (Kesar)",
-    "price": 950,
-    "image": "https://via.placeholder.com/1200x800?text=Saffron",
+    "name": "Fenugreek Seeds (Methi Dana)",
+    "name_hi": "मेथी दाना",
+    "price": 40,
+    "image": "/src/assets/products/9_Fenugreek_Seeds_1.png",
     "images": [
-      "https://via.placeholder.com/1200x800?text=Saffron",
-      "https://via.placeholder.com/1200x800?text=Saffron+Closeup",
-      "https://via.placeholder.com/1200x800?text=Saffron+Threads"
+      "/src/assets/products/9_Fenugreek_Seeds_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id":"v13a","label":"0.25 g","price":250},
-      {"id":"v13b","label":"0.5 g","price":500},
-      {"id":"v13c","label":"1 g","price":950}
+      {"id": "v13a", "label": "50 g", "price": 40},
+      {"id": "v13b", "label": "100 g", "price": 75},
+      {"id": "v13c", "label": "250 g", "price": 110}
     ],
-    "description": "Premium Kashmiri saffron — rich aroma and colour for desserts and beverages.",
+    "description": "High-quality bitter-sweet Methi seeds. Essential for the classic Indian tempering and pickling.",
+    "description_hi": "उच्च गुणवत्ता वाले खट्टे-मीठे मेथी के बीज। भारतीय तड़के और अचार बनाने के लिए अनिवार्य।",
+    "usage": "Tempering for Kadhi, pickles, and soaked 'Methi water' for health.",
+    "usage_hi": "कढ़ी, अचार के तड़के और स्वास्थ्य के लिए भिगोए हुए 'मेथी पानी' के रूप में।",
+    "storage": "Keep in a dry airtight container.",
     "manufacturer": "Madhuban Spices",
-    "origin": "Kashmir, India",
-    "ingredients": ["100% saffron threads"],
-    "healthBenefits": ["Contains antioxidants","Used traditionally for mood and wellbeing"],
-    "usage": "Desserts, beverages, premium dishes",
-    "storage": "Store in a cool dry place in airtight container.",
-    "certifications": ["Organic"]
+    "origin": "Rajasthan, India",
+    "shelfLife": "12 Months",
+    "culinaryProfile": "Bitter, nutty, and maple-like aroma when roasted.",
+    "ingredients": ["100% Whole Fenugreek Seeds"],
+    "healthBenefits": [
+      "Proven to help manage blood sugar (diabetes control)",
+      "Excellent for lactating mothers to boost milk production",
+      "Reduces heartburn and acid reflux",
+      "Traditional remedy for dandruff and hair loss"
+    ],
+    "healthBenefits_hi": [
+      "ब्लड शुगर (मधुमेह) को नियंत्रित करने में सिद्ध",
+      "स्तनपान कराने वाली माताओं में दूध उत्पादन बढ़ाने के लिए उत्तम",
+      "सीने की जलन और एसिड रिफ्लक्स को कम करता है",
+      "डैंड्रफ और बालों के झड़ने के लिए पारंपरिक उपचार"
+    ],
+    "certifications": ["FSSAI"]
   },
   {
     "id": 14,
-    "name": "Red Chilli Powder",
-    "price": 150,
-    "image": "https://via.placeholder.com/1200x800?text=Red+Chilli+Powder",
+    "name": "Cloves (Laung)",
+    "name_hi": "लौंग",
+    "price": 120,
+    "image": "/src/assets/products/10_Cloves_1.png",
     "images": [
-      "https://via.placeholder.com/1200x800?text=Red+Chilli+Powder",
-      "https://via.placeholder.com/1200x800?text=Chilli+Closeup",
-      "https://via.placeholder.com/1200x800?text=Chilli+Powder+Spoon"
+      "/src/assets/products/10_Cloves_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id":"v14a","label":"100 g","price":85},
-      {"id":"v14b","label":"200 g","price":150},
-      {"id":"v14c","label":"500 g","price":350}
+      {"id": "v14a", "label": "25 g", "price": 120},
+      {"id": "v14b", "label": "50 g", "price": 190},
+      {"id": "v14c", "label": "100 g", "price": 300}
     ],
-    "description": "Hot red chilli powder — bright colour and balanced heat for curries and marinades.",
+    "description": "Large, full-headed cloves with high volatile oil content. Hand-sorted to remove stems and dust.",
+    "description_hi": "उच्च तेल सामग्री वाली बड़ी और साबुत लौंग। डंठल और धूल हटाने के लिए हाथ से चुनी गई।",
+    "usage": "Whole in Biryani, crushed in tea, or for toothache relief.",
+    "usage_hi": "बिरयानी में साबुत, चाय में कुचलकर या दांत दर्द में राहत के लिए।",
+    "storage": "Store in a cool, dry place away from heat.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Kerala/Tamil Nadu, India",
+    "shelfLife": "18 Months",
+    "culinaryProfile": "Intense, medicinal, and sweet-warm.",
+    "ingredients": ["100% Whole Cloves"],
+    "healthBenefits": [
+      "Contains Eugenol, a natural anesthetic for dental pain",
+      "High concentration of antioxidants",
+      "Improves liver health and bone density",
+      "Helps clear congestion and sore throat"
+    ],
+    "healthBenefits_hi": [
+      "दांत दर्द के लिए प्राकृतिक एनेस्थेटिक (यूजेनॉल) युक्त",
+      "एंटीऑक्सीडेंट का उच्च सांद्रण",
+      "लिवर स्वास्थ्य और हड्डियों की मजबूती में सुधार",
+      "कफ और गले की खराश दूर करने में सहायक"
+    ],
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 15,
+    "name": "Bay Leaves (Tej Patta)",
+    "name_hi": "तेज पत्ता",
+    "price": 40,
+    "image": "/src/assets/products/11_Bay_Leaves_1.png",
+    "images": [
+      "/src/assets/products/11_Bay_Leaves_1.png",
+      "/src/assets/products/11_Bay_Leaves_2.png"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id": "v15a", "label": "10 g", "price": 40},
+      {"id": "v15b", "label": "25 g", "price": 80},
+      {"id": "v15c", "label": "50 g", "price": 90}
+    ],
+    "description": "Selected dried Bay leaves from the Himalayan foothills. Greenish-olive in color, these leaves offer a subtle fragrance that deepens over slow cooking.",
+    "description_hi": "हिमालय की तराई से प्राप्त सूखे तेज पत्ते। इनका हल्का सुगंधित स्वाद धीमी आंच पर पकने वाले व्यंजनों में निखरता है।",
+    "usage": "Essential for Biryanis, Pulao, and slow-cooked curries.",
+    "usage_hi": "बिरयानी, पुलाव और धीरे पकने वाली करी के लिए अनिवार्य।",
+    "storage": "Store in an airtight container to prevent brittle leaves.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Uttarakhand/North East India",
+    "shelfLife": "12 Months",
+    "culinaryProfile": "Herbal, balsamic, and floral.",
+    "ingredients": ["100% Dried Bay Leaves"],
+    "healthBenefits": [
+      "Helps lower blood sugar levels",
+      "Enzymes aid in the breakdown of proteins for digestion",
+      "Anti-fungal and anti-inflammatory properties",
+      "Traditional remedy for stress and anxiety"
+    ],
+    "healthBenefits_hi": [
+      "ब्लड शुगर लेवल कम करने में सहायक",
+      "पाचन के लिए प्रोटीन तोड़ने में मदद करने वाले एंजाइम युक्त",
+      "एंटी-फंगल और सूजन-रोधी गुण",
+      "तनाव और चिंता के लिए पारंपरिक उपचार"
+    ],
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 16,
+    "name": "Fennel Seeds (Lucknowi Saunf)",
+    "name_hi": "सौंफ (लखनवी)",
+    "price": 40,
+    "image": "/src/assets/products/12_Fennel_Seeds_1.png",
+    "images": [
+      "/src/assets/products/12_Fennel_Seeds_1.png"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id": "v16a", "label": "50 g", "price": 40},
+      {"id": "v16b", "label": "100 g", "price": 80},
+      {"id": "v16c", "label": "250 g", "price": 130}
+    ],
+    "description": "Sweet, thin, and intensely aromatic Lucknowi Saunf. Perfectly sun-dried to maintain its vibrant green color and digestive oils.",
+    "description_hi": "मीठी, पतली और अत्यधिक सुगंधित लखनवी सौंफ। इसके हरे रंग और पाचन तेलों को बनाए रखने के लिए धूप में सुखाई गई।",
+    "usage": "After-meal digestive, Mukhwas, and flavoring tea.",
+    "usage_hi": "भोजन के बाद पाचक के रूप में, मुखवास और चाय के लिए।",
+    "storage": "Keep in a cool dry place to maintain crunch.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Uttar Pradesh, India",
+    "shelfLife": "12 Months",
+    "culinaryProfile": "Sweet, menthol-like, and refreshing.",
+    "ingredients": ["100% Pure Fennel Seeds"],
+    "healthBenefits": [
+      "Relieves bloating, gas, and indigestion",
+      "Purifies blood and regulates blood pressure",
+      "Helps in improving eyesight (traditional belief)",
+      "Excellent for freshening breath and oral hygiene"
+    ],
+    "healthBenefits_hi": [
+      "पेट फूलना, गैस और अपच से राहत",
+      "रक्त को शुद्ध करता है और ब्लड प्रेशर नियंत्रित करता है",
+      "आंखों की रोशनी सुधारने में सहायक (पारंपरिक मान्यता)",
+      "सांसों की ताजगी और ओरल हाइजीन के लिए उत्तम"
+    ],
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 17,
+    "name": "Kashmiri Saffron (Mongra Kesar)",
+    "name_hi": "कश्मीरी केसर (मोंगरा)",
+    "price": 250,
+    "image": "/src/assets/products/13_Saffron_1.png",
+    "images": [
+      "/src/assets/products/13_Saffron_1.png",
+      "/src/assets/products/13_Saffron_2.png"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id": "v17a", "label": "0.25 g", "price": 250},
+      {"id": "v17b", "label": "0.5 g", "price": 500},
+      {"id": "v17c", "label": "1 g", "price": 950}
+    ],
+    "description": "World-class Grade A++ Mongra Saffron from Pampore, Kashmir. Deep red stigmas only, providing rich color, aroma, and therapeutic value.",
+    "description_hi": "कश्मीर के पंपोर से प्राप्त विश्व स्तरीय ग्रेड A++ मोंगरा केसर। बेहतरीन रंग और औषधीय गुणों के लिए केवल गहरे लाल धागे।",
+    "usage": "Garnish for Kheer, Biryani, or drink with warm milk at night.",
+    "usage_hi": "खीर, बिरयानी की सजावट या रात को गुनगुने दूध के साथ।",
+    "storage": "Store in a cool dark place; do not refrigerate.",
+    "manufacturer": "Madhuban Spices",
+    "origin": "Kashmir, India",
+    "shelfLife": "24 Months",
+    "culinaryProfile": "Floral, honeyed, and royal.",
+    "ingredients": ["100% Pure Saffron Stigmas"],
+    "healthBenefits": [
+      "Natural mood booster and antidepressant properties",
+      "Rich in Crocin which improves memory and brain health",
+      "Supports skin health and natural glow",
+      "Traditionally used during pregnancy for wellness"
+    ],
+    "healthBenefits_hi": [
+      "प्राकृतिक मूड बूस्टर और एंटी-डिप्रेसेंट",
+      "क्रॉसिन से भरपूर जो याददाश्त और दिमाग को तेज करता है",
+      "त्वचा के स्वास्थ्य और प्राकृतिक चमक में सहायक",
+      "गर्भावस्था के दौरान स्वास्थ्य के लिए पारंपरिक रूप से उपयोग"
+    ],
+    "certifications": ["Organic", "FSSAI"]
+  },
+  {
+    "id": 18,
+    "name": "Red Chilli Powder (Lal Mirch)",
+    "name_hi": "लाल मिर्च पाउडर",
+    "price": 85,
+    "image": "/src/assets/products/14_Red_Chilli_Powder_1.png",
+    "images": [
+      "/src/assets/products/14_Red_Chilli_Powder_1.png",
+      "/src/assets/products/14_Red_Chilli_Powder_2.png"
+    ],
+    "category": "Spices",
+    "variants": [
+      {"id": "v18a", "label": "100 g", "price": 85},
+      {"id": "v18b", "label": "200 g", "price": 150},
+      {"id": "v18c", "label": "500 g", "price": 350}
+    ],
+    "description": "Pure red chilli powder with a balance of heat and color. Sourced from Guntur, Andhra Pradesh. Free from added colors or oils.",
+    "description_hi": "तीखेपन और रंग का सही संतुलन। आंध्र प्रदेश के गुंटूर से प्राप्त। बिना किसी मिलावटी रंग या तेल के।",
+    "usage": "Daily cooking, marinades, and spicy chutneys.",
+    "usage_hi": "रोजाना खाना पकाने, मैरिनेशन और तीखी चटनी के लिए।",
+    "storage": "Store in a dry place. Wash hands after use.",
     "manufacturer": "Madhuban Spices",
     "origin": "Andhra Pradesh, India",
-    "ingredients": ["100% red chilli powder"],
-    "healthBenefits": ["Rich in vitamin C","May boost metabolism"],
-    "usage": "Seasoning, curries, marinades",
-    "storage": "Keep in airtight container away from light.",
+    "shelfLife": "12 Months",
+    "culinaryProfile": "Pungent, hot, and vibrant red.",
+    "ingredients": ["100% Ground Red Chillies"],
+    "healthBenefits": [
+      "Capsaicin helps boost metabolism and burn fat",
+      "Rich in Vitamin C for immunity",
+      "Helps clear congestion and sinus issues",
+      "Supports cardiovascular health by improving circulation"
+    ],
+    "healthBenefits_hi": [
+      "कैप्साइसिन मेटाबॉलिज्म और वजन घटाने में सहायक",
+      "इम्युनिटी के लिए विटामिन सी से भरपूर",
+      "साइनस और बंद नाक खोलने में मदद करता है",
+      "रक्त संचार सुधारकर हृदय स्वास्थ्य का समर्थन"
+    ],
     "certifications": ["FSSAI"]
   }
 ]

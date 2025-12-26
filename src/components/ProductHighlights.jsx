@@ -15,7 +15,7 @@ export default function ProductHighlights() {
           </div> */}
 
                     <div className="card-image-wrapper">
-                        <img src="https://www.shutterstock.com/shutterstock/photos/694371265/display_1500/stock-photo-concept-groundnuts-isolated-white-background-with-peanuts-oil-close-up-and-selective-focus-694371265.jpg" alt="Farm-sourced whole spices including turmeric, cardamom, cumin" />
+                        <img src="src/assets/oils_home.png" alt="Farm-sourced whole oils " />
                     </div>
                     <div className="card-content">
                         <h3>{t('highlights.oils_title')}</h3>
@@ -28,7 +28,7 @@ export default function ProductHighlights() {
 
                 <div className="highlight-card spices-card">
                     <div className="card-image-wrapper">
-                        <img src="https://www.shutterstock.com/shutterstock/photos/2546546751/display_1500/stock-photo-garam-masala-is-a-fragrant-spice-blend-used-in-indian-cuisine-featuring-warm-spices-like-cumin-2546546751.jpg" alt="Farm-sourced whole spices including turmeric, cardamom, cumin" />
+                        <img src="src/assets/spice_home.png" alt="Farm-sourced whole spices including turmeric, cardamom, cumin" />
                     </div>
                     <div className="card-content">
                         <h3>{t('highlights.spices_title')}</h3>

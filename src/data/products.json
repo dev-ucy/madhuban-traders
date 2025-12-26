@@ -1,13 +1,13 @@
 [
   {
     "id": 1,
-    "name": "Mustard Oil",
+    "name": "Mustard Oil (Sarson)",
     "name_hi": "सरसों का तेल",
     "price": 120,
-    "image": "https://pollinations.ai/p/realistic-mustard-oil-glass-bottle-seeds-flowers-rustic-wood-4k?width=800&height=600&seed=1",
+    "image": "/src/assets/products/1_Mustard_Oil.png",
     "images": [
-      "https://pollinations.ai/p/realistic-mustard-oil-glass-bottle-seeds-flowers-rustic-wood-4k?width=800&height=600&seed=1",
-      "https://pollinations.ai/p/mustard-oil-pouring-into-bowl-golden-liquid-macro?width=800&height=600&seed=11"
+      "/src/assets/products/1_Mustard_Oil.png",
+      "/src/assets/products/1_Mustard_Oil_1.png"
     ],
     "category": "Oils",
     "variants": [
@@ -30,13 +30,13 @@
   },
   {
     "id": 2,
-    "name": "Groundnut Oil",
+    "name": "Groundnut Oil (Mugfali)",
     "name_hi": "मूंगफली का तेल",
     "price": 70,
-    "image": "https://pollinations.ai/p/pure-cold-pressed-groundnut-oil-bottle-peanuts-bright-kitchen?width=800&height=600&seed=2",
+    "image": "/src/assets/products/2_Groundnut_Oil.png",
     "images": [
-      "https://pollinations.ai/p/pure-cold-pressed-groundnut-oil-bottle-peanuts-bright-kitchen?width=800&height=600&seed=2",
-      "https://pollinations.ai/p/handful-of-fresh-peanuts-next-to-oil-bottle?width=800&height=600&seed=22"
+      "/src/assets/products/2_Groundnut_Oil.png",
+      "/src/assets/products/2_Groundnut_Oil_1.png"
     ],
     "category": "Oils",
     "variants": [
@@ -59,19 +59,135 @@
   },
   {
     "id": 3,
-    "name": "Turmeric (Haldi) Powder",
+    "name": "Coconut Oil (Nariyala)",
+    "name_hi": "नारियल का तेल",
+    "price": 150,
+    "image": "/src/assets/products/coconut_1.png",
+    "images": [
+      "/src/assets/products/coconut_1.png",
+      "/src/assets/products/coconut_2.png"
+    ],
+    "category": "Oils",
+    "variants": [
+      {"id": "v3a", "label": "250 ml", "price": 150},
+      {"id": "v3b", "label": "500 ml", "price": 280},
+      {"id": "v3c", "label": "1 L", "price": 520}
+    ],
+    "description": "Cold-pressed  coconut oil — excellent for cooking and hair/skin care.",
+    "description_hi": "कोल्ड-प्रेस्ड शुद्ध नारियल का तेल — खाना पकाने और बाल/त्वचा के लिए उत्कृष्ट।",
+    "usage": "Cooking, hair oiling, skin moisturiser",
+    "usage_hi": "खाना पकाने, बालों की मालिश, त्वचा के लिए मॉइस्चराइजर",
+    "storage": "Store in a cool, dry place away from sunlight.",
+    "storage_hi": "धूप से दूर ठंडी और सूखी जगह पर स्टोर करें।",
+    "manufacturer": "Madhuban Oils Co.",
+    "origin": "Kerala, India",
+    "ingredients": ["100%  coconut oil"],
+    "healthBenefits": ["Promotes hair and skin health", "Contains medium-chain triglycerides"],
+    "healthBenefits_hi": ["बाल और त्वचा के स्वास्थ्य को बढ़ावा देता है", "मीडियम-चेन ट्राइग्लिसराइड्स से भरपूर"],
+    "certifications": ["FSSAI", "Organic"]
+  },
+  {
+    "id": 4,
+    "name": "Sesame Oil (Til)",
+    "name_hi": "तिल का तेल",
+    "price": 200,
+    "image": "/src/assets/products/sesame_1.png",
+    "images": [
+      "/src/assets/products/sesame_1.png",
+      "/src/assets/products/sesame_2.png"
+    ],
+    "category": "Oils",
+    "variants": [
+      {"id": "v4a", "label": "250 ml", "price": 200},
+      {"id": "v4b", "label": "500 ml", "price": 380},
+      {"id": "v4c", "label": "1 L", "price": 720}
+    ],
+    "description": "Cold-pressed sesame (til) oil — rich, nutty flavour ideal for seasoning and cooking.",
+    "description_hi": "कोल्ड-प्रेस्ड तिल का तेल — समृद्ध, नट्टी स्वाद, खाना पकाने और सीज़निंग के लिए उपयुक्त।",
+    "usage": "Cooking, seasoning, massage oil",
+    "usage_hi": "खाना पकाने, सीज़निंग, मालिश के लिए",
+    "storage": "Keep in a cool, dark place in an airtight container.",
+    "storage_hi": "एयरटाइट कंटेनर में ठंडी और अंधी जगह पर रखें।",
+    "manufacturer": "Madhuban Oils Co.",
+    "origin": "Gujarat, India",
+    "ingredients": ["100% cold-pressed sesame oil"],
+    "healthBenefits": ["Good source of antioxidants", "May support heart health"],
+    "healthBenefits_hi": ["एंटीऑक्सीडेंट का अच्छा स्रोत", "हृदय स्वास्थ्य में सहायक हो सकता है"],
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 5,
+    "name": "Sunflower Oil (Sursajmukhi)",
+    "name_hi": "सूरजमुखी का तेल",
+    "price": 95,
+    "image": "/src/assets/products/sunflower_1.png",
+    "images": [
+      "/src/assets/products/sunflower_1.png",
+      "/src/assets/products/sunflower_2.png"
+    ],
+    "category": "Oils",
+    "variants": [
+      {"id": "v5a", "label": "500 ml", "price": 95},
+      {"id": "v5b", "label": "1 L", "price": 180},
+      {"id": "v5c", "label": "5 L", "price": 700}
+    ],
+    "description": "Refined sunflower oil — light flavour and high smoke point for frying.",
+    "description_hi": "रिफाइंड सूरजमुखी का तेल — हल्का स्वाद और तलने के लिए ऊँचा स्मोक पॉइंट।",
+    "usage": "Frying, cooking, dressings",
+    "usage_hi": "तलना, खाना पकाना, सलाद ड्रेसिंग",
+    "storage": "Store in a cool, dry place.",
+    "storage_hi": "ठंडी और सूखी जगह पर स्टोर करें।",
+    "manufacturer": "Madhuban Oils Co.",
+    "origin": "Madhya Pradesh, India",
+    "ingredients": ["Refined sunflower oil"],
+    "healthBenefits": ["High smoke point", "Good source of vitamin E"],
+    "healthBenefits_hi": ["उच्च स्मोक पॉइंट", "विटामिन ई का अच्छा स्रोत"],
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 6,
+    "name": "Flaxseed Oil (Tisi)",
+    "name_hi": "अलसी(तीसी) का तेल",
+    "price": 320,
+    "image": "/src/assets/products/Flaxseed_1.png",
+    "images": [
+      "/src/assets/products/Flaxseed_1.png",
+      "/src/assets/products/Flaxseed_2.png"
+    ],
+    "category": "Oils",
+    "variants": [
+      {"id": "v6a", "label": "250 ml", "price": 320},
+      {"id": "v6b", "label": "500 ml", "price": 600},
+      {"id": "v6c", "label": "1 L", "price": 1100}
+    ],
+    "description": "Cold-pressed flaxseed (linseed) oil — rich in omega-3 (ALA); best used raw.",
+    "description_hi": "कोल्ड-प्रेस्ड अलसी का तेल — ओमेगा-3 (ALA) से भरपूर; कच्चा उपयोग करने के लिए उत्तम।",
+    "usage": "Salad dressings, supplements; not recommended for high-heat cooking",
+    "usage_hi": "सलाद ड्रेसिंग के लिए, सप्लीमेंट; उच्च ताप पर पकाने के लिए अनुशंसित नहीं",
+    "storage": "Keep refrigerated after opening to preserve freshness.",
+    "storage_hi": "ताज़गी बनाए रखने के लिए खोलने के बाद फ्रिज में रखें।",
+    "manufacturer": "Madhuban Oils Co.",
+    "origin": "Punjab, India",
+    "ingredients": ["100% cold-pressed flaxseed oil"],
+    "healthBenefits": ["Rich in ALA omega-3", "May support heart and joint health"],
+    "healthBenefits_hi": ["ALA ओमेगा-3 में समृद्ध", "हृदय और जोड़ के स्वास्थ्य के लिए सहायक"],
+    "certifications": ["FSSAI"]
+  },
+  {
+    "id": 7,
+    "name": "Turmeric Powder (Haldi)",
     "name_hi": "हल्दी पाउडर",
     "price": 80,
-    "image": "https://pollinations.ai/p/vibrant-turmeric-powder-wooden-bowl-fresh-roots-macro?width=800&height=600&seed=3",
+    "image": "/src/assets/products/3_Turmeric_Powder.png",
     "images": [
-      "https://pollinations.ai/p/vibrant-turmeric-powder-wooden-bowl-fresh-roots-macro?width=800&height=600&seed=3",
-      "https://pollinations.ai/p/fresh-turmeric-rhizomes-on-white-background-clean?width=800&height=600&seed=33"
+      "/src/assets/products/3_Turmeric_Powder.png",
+      "/src/assets/products/3_Turmeric_Powder_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v3a", "label": "100 g", "price": 80},
-      {"id": "v3b", "label": "250 g", "price": 180},
-      {"id": "v3c", "label": "500 g", "price": 320}
+      {"id": "v7a", "label": "100 g", "price": 80},
+      {"id": "v7b", "label": "250 g", "price": 180},
+      {"id": "v7c", "label": "500 g", "price": 320}
     ],
     "description": "Premium turmeric powder - high curcumin content.",
     "description_hi": "प्रीमियम हल्दी पाउडर - उच्च करक्यूमिन सामग्री के साथ।",
@@ -87,20 +203,20 @@
     "certifications": ["Organic"]
   },
   {
-    "id": 4,
+    "id": 8,
     "name": "Cardamom (Elaichi)",
     "name_hi": "इलायची",
     "price": 140,
-    "image": "https://pollinations.ai/p/green-cardamom-pods-ceramic-dish-detailed-texture-soft-light?width=800&height=600&seed=4",
+    "image": "/src/assets/products/4_Cardamom.png",
     "images": [
-      "https://pollinations.ai/p/green-cardamom-pods-ceramic-dish-detailed-texture-soft-light?width=800&height=600&seed=4",
-      "https://pollinations.ai/p/cardamom-seeds-spilled-from-pod-macro-shot?width=800&height=600&seed=44"
+      "/src/assets/products/4_Cardamom.png",
+      "/src/assets/products/4_Cardamom_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v4a", "label": "25 g", "price": 140},
-      {"id": "v4b", "label": "50 g", "price": 260},
-      {"id": "v4c", "label": "100 g", "price": 480}
+      {"id": "v8a", "label": "25 g", "price": 140},
+      {"id": "v8b", "label": "50 g", "price": 260},
+      {"id": "v8c", "label": "100 g", "price": 480}
     ],
     "description": "Premium green cardamom pods - aromatic and flavorful.",
     "description_hi": "प्रीमियम हरी इलायची - सुगंधित और स्वादिष्ट।",
@@ -116,20 +232,20 @@
     "certifications": ["FSSAI"]
   },
   {
-    "id": 5,
-    "name": "Cumin Seeds",
+    "id": 9,
+    "name": "Cumin (Jira) Seeds",
     "name_hi": "साबुत जीरा",
     "price": 50,
-    "image": "https://pollinations.ai/p/whole-cumin-seeds-wooden-spoon-earthy-tones-macro?width=800&height=600&seed=5",
+    "image": "/src/assets/products/5_Cumin_Seeds.png",
     "images": [
-      "https://pollinations.ai/p/whole-cumin-seeds-wooden-spoon-earthy-tones-macro?width=800&height=600&seed=5",
-      "https://pollinations.ai/p/scattered-cumin-seeds-on-rustic-background-top-view?width=800&height=600&seed=55"
+      "/src/assets/products/5_Cumin_Seeds.png",
+      "/src/assets/products/5_Cumin_Seeds_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v5a", "label": "100 g", "price": 50},
-      {"id": "v5b", "label": "250 g", "price": 100},
-      {"id": "v5c", "label": "500 g", "price": 180}
+      {"id": "v9a", "label": "100 g", "price": 50},
+      {"id": "v9b", "label": "250 g", "price": 100},
+      {"id": "v9c", "label": "500 g", "price": 180}
     ],
     "description": "Fresh whole cumin seeds - earthy flavor and aroma.",
     "description_hi": "ताज़ा साबुत जीरा - सोंधी खुशबू और स्वाद के साथ।",
@@ -145,20 +261,20 @@
     "certifications": ["FSSAI"]
   },
   {
-    "id": 6,
-    "name": "Cinnamon Sticks",
+    "id": 10,
+    "name": "Cinnamon (Dalchini) Sticks",
     "name_hi": "दालचीनी",
     "price": 140,
-    "image": "https://pollinations.ai/p/cinnamon-bark-sticks-tied-with-twine-warm-lighting-rustic?width=800&height=600&seed=6",
+    "image": "/src/assets/products/6_Cinnamon_Sticks.png",
     "images": [
-      "https://pollinations.ai/p/cinnamon-bark-sticks-tied-with-twine-warm-lighting-rustic?width=800&height=600&seed=6",
-      "https://pollinations.ai/p/cinnamon-powder-next-to-sticks-on-wooden-surface?width=800&height=600&seed=66"
+      "/src/assets/products/6_Cinnamon_Sticks.png",
+      "/src/assets/products/6_Cinnamon_Sticks_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v6a", "label": "50 g", "price": 140},
-      {"id": "v6b", "label": "100 g", "price": 260},
-      {"id": "v6c", "label": "250 g", "price": 600}
+      {"id": "v10a", "label": "50 g", "price": 140},
+      {"id": "v10b", "label": "100 g", "price": 260},
+      {"id": "v10c", "label": "250 g", "price": 600}
     ],
     "description": "Premium cinnamon bark sticks - sweet and warming spice.",
     "description_hi": "प्रीमियम दालचीनी - मीठा और गर्माहट देने वाला मसाला।",
@@ -174,20 +290,20 @@
     "certifications": ["Fair-Trade"]
   },
   {
-    "id": 7,
-    "name": "Black Pepper (Whole)",
-    "name_hi": "साबुत काली मिर्च",
+    "id": 11,
+    "name": "Black Pepper (Kali Mirch)",
+    "name_hi": "काली मिर्च",
     "price": 120,
-    "image": "https://pollinations.ai/p/whole-black-peppercorns-stone-bowl-high-contrast-sharp-focus?width=800&height=600&seed=7",
+    "image": "/src/assets/products/7_Black_Pepper.png",
     "images": [
-      "https://pollinations.ai/p/whole-black-peppercorns-stone-bowl-high-contrast-sharp-focus?width=800&height=600&seed=7",
-      "https://pollinations.ai/p/black-pepper-mill-grinding-fresh-peppercorns-action-shot?width=800&height=600&seed=77"
+      "/src/assets/products/7_Black_Pepper.png",
+      "/src/assets/products/7_Black_Pepper_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v7a", "label": "100 g", "price": 120},
-      {"id": "v7b", "label": "200 g", "price": 220},
-      {"id": "v7c", "label": "500 g", "price": 500}
+      {"id": "v11a", "label": "100 g", "price": 120},
+      {"id": "v11b", "label": "200 g", "price": 220},
+      {"id": "v11c", "label": "500 g", "price": 500}
     ],
     "description": "Whole black peppercorns — aromatic and pungent, ideal for grinding fresh.",
     "description_hi": "साबुत काली मिर्च — सुगंधित और तीखी, ताज़ा पीसने के लिए उत्तम।",
@@ -203,20 +319,20 @@
     "certifications": ["FSSAI"]
   },
   {
-    "id": 8,
+    "id": 12,
     "name": "Coriander Seeds (Dhaniya)",
     "name_hi": "साबुत धनिया",
     "price": 50,
-    "image": "https://pollinations.ai/p/whole-coriander-seeds-citrusy-aroma-wooden-background?width=800&height=600&seed=8",
+    "image": "/src/assets/products/8_Coriander_Seeds.png",
     "images": [
-      "https://pollinations.ai/p/whole-coriander-seeds-citrusy-aroma-wooden-background?width=800&height=600&seed=8",
-      "https://pollinations.ai/p/ground-coriander-powder-in-small-clay-pot?width=800&height=600&seed=88"
+      "/src/assets/products/8_Coriander_Seeds.png",
+      "/src/assets/products/8_Coriander_Seeds_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v8a", "label": "100 g", "price": 50},
-      {"id": "v8b", "label": "250 g", "price": 100},
-      {"id": "v8c", "label": "500 g", "price": 140}
+      {"id": "v12a", "label": "100 g", "price": 50},
+      {"id": "v12b", "label": "250 g", "price": 100},
+      {"id": "v12c", "label": "500 g", "price": 140}
     ],
     "description": "Fresh whole coriander seeds — warm citrusy aroma used in many spice blends.",
     "description_hi": "ताज़ा साबुत धनिया — गर्म खट्टेपन वाली खुशबू वाला मसाला।",
@@ -232,20 +348,20 @@
     "certifications": ["FSSAI"]
   },
   {
-    "id": 9,
+    "id": 13,
     "name": "Fenugreek Seeds (Methi)",
     "name_hi": "मेथी दाना",
     "price": 40,
-    "image": "https://pollinations.ai/p/fenugreek-methi-seeds-bitter-nutty-texture-close-up?width=800&height=600&seed=9",
+    "image": "/src/assets/products/9_Fenugreek_Seeds_1.png",
     "images": [
-      "https://pollinations.ai/p/fenugreek-methi-seeds-bitter-nutty-texture-close-up?width=800&height=600&seed=9",
-      "https://pollinations.ai/p/fenugreek-sprouts-growing-in-small-jar?width=800&height=600&seed=99"
+      "/src/assets/products/9_Fenugreek_Seeds_1.png",
+      "/src/assets/products/9_Fenugreek_Seeds_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v9a", "label": "50 g", "price": 40},
-      {"id": "v9b", "label": "100 g", "price": 75},
-      {"id": "v9c", "label": "250 g", "price": 110}
+      {"id": "v13a", "label": "50 g", "price": 40},
+      {"id": "v13b", "label": "100 g", "price": 75},
+      {"id": "v13c", "label": "250 g", "price": 110}
     ],
     "description": "Fenugreek seeds — slightly bitter and nutty, commonly used in pickles and curries.",
     "description_hi": "मेथी दाना — थोड़ा कड़वा और पौष्टिक, अचार और करी के लिए।",
@@ -261,20 +377,20 @@
     "certifications": ["FSSAI"]
   },
   {
-    "id": 10,
+    "id": 14,
     "name": "Cloves (Laung)",
     "name_hi": "लौंग",
     "price": 120,
-    "image": "https://pollinations.ai/p/whole-cloves-aromatic-spice-dark-background-macro-photography?width=800&height=600&seed=10",
+    "image": "/src/assets/products/10_Cloves_1.png",
     "images": [
-      "https://pollinations.ai/p/whole-cloves-aromatic-spice-dark-background-macro-photography?width=800&height=600&seed=10",
-      "https://pollinations.ai/p/cloves-used-in-spiced-tea-biryani-context-shot?width=800&height=600&seed=1010"
+      "/src/assets/products/10_Cloves_1.png",
+      "/src/assets/products/10_Cloves_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v10a", "label": "25 g", "price": 120},
-      {"id": "v10b", "label": "50 g", "price": 190},
-      {"id": "v10c", "label": "100 g", "price": 300}
+      {"id": "v14a", "label": "25 g", "price": 120},
+      {"id": "v14b", "label": "50 g", "price": 190},
+      {"id": "v14c", "label": "100 g", "price": 300}
     ],
     "description": "Whole cloves — intensely aromatic, used in biryanis, masalas, and baking.",
     "description_hi": "साबुत लौंग — तीव्र सुगंध, बिरयानी और बेकिंग में उपयोगी।",
@@ -290,20 +406,20 @@
     "certifications": ["FSSAI"]
   },
   {
-    "id": 11,
+    "id": 15,
     "name": "Bay Leaves (Tej Patta)",
     "name_hi": "तेज पत्ता",
     "price": 40,
-    "image": "https://pollinations.ai/p/dried-bay-leaves-tej-patta-aromatic-herb-natural-lighting?width=800&height=600&seed=11",
+    "image": "/src/assets/products/11_Bay_Leaves_1.png",
     "images": [
-      "https://pollinations.ai/p/dried-bay-leaves-tej-patta-aromatic-herb-natural-lighting?width=800&height=600&seed=11",
-      "https://pollinations.ai/p/bay-leaves-floating-in-simmering-stew-pot-close-up?width=800&height=600&seed=1111"
+      "/src/assets/products/11_Bay_Leaves_1.png",
+      "/src/assets/products/11_Bay_Leaves_2.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v11a", "label": "10 g", "price": 40},
-      {"id": "v11b", "label": "25 g", "price": 80},
-      {"id": "v11c", "label": "50 g", "price": 90}
+      {"id": "v15a", "label": "10 g", "price": 40},
+      {"id": "v15b", "label": "25 g", "price": 80},
+      {"id": "v15c", "label": "50 g", "price": 90}
     ],
     "description": "Aromatic bay leaves used to flavor curries, stews, and rice dishes.",
     "description_hi": "सुगंधित तेज पत्ता, करी और चावल के पकवानों के लिए।",
@@ -319,20 +435,20 @@
     "certifications": ["FSSAI"]
   },
   {
-    "id": 12,
+    "id": 16,
     "name": "Fennel Seeds (Saunf)",
     "name_hi": "सौंफ",
     "price": 40,
-    "image": "https://pollinations.ai/p/sweet-fennel-seeds-saunf-digestive-aid-green-texture?width=800&height=600&seed=12",
+    "image": "/src/assets/products/12_Fennel_Seeds_1.png",
     "images": [
-      "https://pollinations.ai/p/sweet-fennel-seeds-saunf-digestive-aid-green-texture?width=800&height=600&seed=12",
-      "https://pollinations.ai/p/fennel-seeds-in-small-bowl-with-sugar-crystals-mouth-freshener?width=800&height=600&seed=1212"
+      "/src/assets/products/12_Fennel_Seeds_1.png",
+      "/src/assets/products/12_Fennel_Seeds_1.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v12a", "label": "50 g", "price": 40},
-      {"id": "v12b", "label": "100 g", "price": 80},
-      {"id": "v12c", "label": "250 g", "price": 130}
+      {"id": "v16a", "label": "50 g", "price": 40},
+      {"id": "v16b", "label": "100 g", "price": 80},
+      {"id": "v16c", "label": "250 g", "price": 130}
     ],
     "description": "Sweet fennel seeds — commonly used as a digestive aid and in baking.",
     "description_hi": "मीठी सौंफ — पाचन सहायक और बेकिंग के लिए उपयोगी।",
@@ -348,20 +464,20 @@
     "certifications": ["FSSAI"]
   },
   {
-    "id": 13,
+    "id": 17,
     "name": "Saffron (Kesar)",
     "name_hi": "केसर",
     "price": 250,
-    "image": "https://pollinations.ai/p/premium-kashmiri-saffron-threads-tiny-glass-jar-luxurious?width=800&height=600&seed=13",
+    "image": "/src/assets/products/13_Saffron_1.png",
     "images": [
-      "https://pollinations.ai/p/premium-kashmiri-saffron-threads-tiny-glass-jar-luxurious?width=800&height=600&seed=13",
-      "https://pollinations.ai/p/saffron-threads-soaking-in-milk-golden-hue-macro?width=800&height=600&seed=1313"
+      "/src/assets/products/13_Saffron_1.png",
+      "/src/assets/products/13_Saffron_2.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v13a", "label": "0.25 g", "price": 250},
-      {"id": "v13b", "label": "0.5 g", "price": 500},
-      {"id": "v13c", "label": "1 g", "price": 950}
+      {"id": "v17a", "label": "0.25 g", "price": 250},
+      {"id": "v17b", "label": "0.5 g", "price": 500},
+      {"id": "v17c", "label": "1 g", "price": 950}
     ],
     "description": "Premium Kashmiri saffron — rich aroma and colour for desserts and beverages.",
     "description_hi": "प्रीमियम कश्मीरी केसर — मिठाइयों के लिए बेहतरीन सुगंध और रंग।",
@@ -377,20 +493,20 @@
     "certifications": ["Organic"]
   },
   {
-    "id": 14,
-    "name": "Red Chilli Powder",
+    "id": 18,
+    "name": "Red Chilli Powder(Lal Mirch)",
     "name_hi": "लाल मिर्च पाउडर",
     "price": 85,
-    "image": "https://pollinations.ai/p/hot-red-chilli-powder-terracotta-bowl-dried-chillies?width=800&height=600&seed=14",
+    "image": "/src/assets/products/14_Red_Chilli_Powder_1.png",
     "images": [
-      "https://pollinations.ai/p/hot-red-chilli-powder-terracotta-bowl-dried-chillies?width=800&height=600&seed=14",
-      "https://pollinations.ai/p/red-chilli-powder-swirl-texture-close-up-vibrant?width=800&height=600&seed=1414"
+      "/src/assets/products/14_Red_Chilli_Powder_1.png",
+      "/src/assets/products/14_Red_Chilli_Powder_2.png"
     ],
     "category": "Spices",
     "variants": [
-      {"id": "v14a", "label": "100 g", "price": 85},
-      {"id": "v14b", "label": "200 g", "price": 150},
-      {"id": "v14c", "label": "500 g", "price": 350}
+      {"id": "v18a", "label": "100 g", "price": 85},
+      {"id": "v18b", "label": "200 g", "price": 150},
+      {"id": "v18c", "label": "500 g", "price": 350}
     ],
     "description": "Hot red chilli powder — bright colour and balanced heat for curries and marinades.",
     "description_hi": "तीखा लाल मिर्च पाउडर — गहरा रंग और संतुलित तीखापन।",
