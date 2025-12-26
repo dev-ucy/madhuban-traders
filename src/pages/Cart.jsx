@@ -10,6 +10,7 @@ export default function Cart(){
   const [customer, setCustomer] = useState({ name:'', phone:'', email:'', address:'', city:'', pincode:'', notes:'' })
   const [error, setError] = useState('')
   const [sent, setSent] = useState(false)
+  const [bulkContact, setBulkContact] = useState(null)
 
   const subtotal = cart.reduce((s,i) => s + (i.price * i.qty), 0)
 
@@ -85,7 +86,16 @@ export default function Cart(){
                 <div className="muted">{t('cart.each').replace('{{price}}', `₹${item.price}`)}</div>
               </div>
               <div className="cart-controls">
-                <input className="form-control" type="number" value={item.qty} min={0} onChange={(e)=>updateQty(item.key, parseInt(e.target.value||0))} />
+                <input className="form-control" type="number" value={item.qty} min={0} onChange={(e)=>{
+                  const v = parseInt(e.target.value||0)
+                  const res = updateQty(item.key, v)
+                  if(res && res.capped){
+                    setError(t('cart.max_per_product') || 'Maximum 100 units allowed per product in cart. For larger quantities, contact us for a bulk order.')
+                    setBulkContact({ productId: item.productId, requested: v })
+                    setTimeout(()=>setError(''), 4000)
+                    setTimeout(()=>setBulkContact(null), 4000)
+                  }
+                }} />
                 <div className="cart-line-total">{t('cart.line_total').replace('{{total}}', `₹${item.price * item.qty}`)}</div>
                 <button className="btn btn-ghost" onClick={() => removeFromCart(item.key)}>{t('cart.remove')}</button>
               </div>
@@ -106,7 +116,17 @@ export default function Cart(){
         {showCheckout && (
           <div className="checkout card">
             <h3>{t('cart.checkout_title')}</h3>
-            {error && <div className="error-msg">{error}</div>}
+            {error && <div className="error-msg">{error}
+              {bulkContact && (() => {
+                const p = products.find(x => x.id === bulkContact.productId)
+                const link = `/contact?bulk=true&product=${encodeURIComponent(p?.name || '')}&qty=${bulkContact.requested}`
+                return (
+                  <div style={{marginTop:8}}>
+                    <Link to={link}>{t('cart.contact_bulk') || 'Contact us for bulk orders'}</Link>
+                  </div>
+                )
+              })()}
+            </div>}
             {sent && <div className="success-msg">{t('cart.sent_msg')}</div>}
             <div className="checkout-grid">
               <label>{t('cart.label_name')} *</label>

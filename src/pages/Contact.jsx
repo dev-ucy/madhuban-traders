@@ -7,15 +7,28 @@ import { useTranslation } from '../hooks/useTranslation'
 export default function Contact() {
     const [searchParams] = useSearchParams()
     const [inquiryType, setInquiryType] = useState(searchParams.get('type') || 'general')
+    const [bulkProduct, setBulkProduct] = useState(null)
+    const [bulkQty, setBulkQty] = useState(null)
     const inquiryRef = useRef(null)
     const { t } = useTranslation()
 
-    // When a query param 'type' is present (e.g. /contact?type=wholesale),
-    // scroll to the inquiry section so the user lands on the correct block.
+    // When query params are present, scroll to the inquiry section so the user lands on the correct block.
+    // Supports both ?type=... and ?bulk=true&product=...&qty=...
     useEffect(() => {
       const type = searchParams.get('type')
-      if (type) {
-        setInquiryType(type)
+      const isBulk = searchParams.get('bulk') === 'true'
+      const productParam = searchParams.get('product')
+      const qtyParam = searchParams.get('qty')
+
+      if (type || isBulk) {
+        if (isBulk) {
+          setInquiryType('bulk')
+          if (productParam) setBulkProduct(decodeURIComponent(productParam))
+          if (qtyParam) setBulkQty(parseInt(qtyParam))
+        } else if (type) {
+          setInquiryType(type)
+        }
+
         setTimeout(() => {
           if (inquiryRef.current) {
             const header = document.querySelector('.app-header')

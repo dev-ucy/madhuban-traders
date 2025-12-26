@@ -65,7 +65,9 @@
       "manufacturer": "Manufacturer",
       "available_sizes": "Available sizes",
       "net_weight": "Net weight"
-    }
+    },
+    "bulk_prompt": "Bulk orders (100+ units) may be eligible for special pricing and delivery. Contact us?",
+    "add_exceeds_limit": "Requested quantity exceeds the maximum of 100 units per product. Please adjust quantity or contact us for bulk orders."
   },
   "cart": {
     "empty_title": "Your Cart is empty",
@@ -174,16 +176,9 @@
     "fast_delivery": "Fast delivery options",
     "custom_packaging": "Custom packaging available",
     "free_consultation": "Free consultation on large orders",
-    "send_inquiry": "Send us an Inquiry",
-    "select_type": "Select the inquiry type below:",
     "general": "General Inquiry",
     "wholesale_type": "Wholesale Request",
-    "bulk_order": "Bulk Order",
-    "name": "Name",
-    "email": "Email",
-    "phone": "Phone",
-    "message": "Message",
-    "submit": "Send Inquiry"
+    "bulk_order": "Bulk Order"
   },
   "locations": {
     "page_title": "Our Locations",

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from '../hooks/useTranslation'
 
-export default function InquiryForm({ inquiryType = 'general' }){
+export default function InquiryForm({ inquiryType = 'general', prefillProduct = null, prefillQty = null, prefillMessage = null }){
   const { t } = useTranslation()
   const [name,setName] = useState('')
   const [email,setEmail] = useState('')
@@ -13,6 +13,20 @@ export default function InquiryForm({ inquiryType = 'general' }){
   useEffect(() => {
     setType(inquiryType)
   }, [inquiryType])
+
+  // If parent provides prefill values (bulk flow), populate message accordingly
+  useEffect(() => {
+    if (prefillMessage) {
+      setMessage(prefillMessage)
+    } else if (prefillProduct || prefillQty) {
+      const parts = []
+      if (prefillProduct) parts.push(`Product: ${prefillProduct}`)
+      if (prefillQty) parts.push(`Quantity: ${prefillQty}`)
+      if (parts.length) {
+        setMessage(`Bulk order inquiry\n${parts.join('\n')}\n\nPlease share pricing, lead time, and delivery options.`)
+      }
+    }
+  }, [prefillProduct, prefillQty, prefillMessage])
 
   function buildWhatsAppMessage(){
     const lines = [

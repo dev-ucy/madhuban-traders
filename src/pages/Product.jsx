@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useCatalog } from '../context/CatalogContext'
 import { useTranslation } from '../hooks/useTranslation'
 import { useLanguage } from '../context/LanguageContext'
@@ -27,6 +27,7 @@ export default function Product(){
 
   // If products are still loading (empty array), show a loading state so the page doesn't look broken on refresh
   const { t } = useTranslation()
+  const navigate = useNavigate()
 
   if (!product && products.length === 0) return (
     <div>
@@ -62,7 +63,26 @@ export default function Product(){
   const handleAddToCart = () => {
     if (adding) return
     setAdding(true)
-    addToCart(product, selectedVariant, qty)
+    const res = addToCart(product, selectedVariant, qty)
+
+    // If nothing could be added, show a prompt and offer to go to contact for bulk orders
+    if (!res || res.added === 0) {
+      setAdding(false)
+      const promptMsg = t('product.bulk_prompt') || 'Bulk orders (100+ units) may be eligible for special pricing and delivery. Contact us?'
+      if (window.confirm(promptMsg)) {
+        navigate(`/contact?bulk=true&product=${encodeURIComponent(title)}&qty=${qty}`)
+      }
+      return
+    }
+
+    // If partially added due to cap, inform the user and offer contact for remaining quantity
+    if (res.added < qty) {
+      const partialMsg = (t('product.partial_add') || 'Only {{added}} were added due to per-product limit. Contact us for bulk orders?').replace('{{added}}', res.added)
+      if (window.confirm(partialMsg)) {
+        navigate(`/contact?bulk=true&product=${encodeURIComponent(title)}&qty=${qty}`)
+      }
+    }
+
     // small visual feedback for user — keep 'added' visible briefly so user can click Go to Cart
     setTimeout(() => {
       setAdding(false)
