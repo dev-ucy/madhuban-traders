@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from '../hooks/useTranslation'
 import YouTubeEmbed from './YouTubeEmbed'
-
+import spices_home from '../assets/spice_home.png'
+import oils_home from '../assets/oils_home.png'
 export default function ProductHighlights() {
     const { t } = useTranslation()
 
@@ -15,7 +16,7 @@ export default function ProductHighlights() {
           </div> */}
 
                     <div className="card-image-wrapper">
-                        <img src="src/assets/oils_home.png" alt="Farm-sourced whole oils " />
+                        <img src={oils_home} alt="Farm-sourced whole oils " />
                     </div>
                     <div className="card-content">
                         <h3>{t('highlights.oils_title')}</h3>
@@ -28,7 +29,7 @@ export default function ProductHighlights() {
 
                 <div className="highlight-card spices-card">
                     <div className="card-image-wrapper">
-                        <img src="src/assets/spice_home.png" alt="Farm-sourced whole spices including turmeric, cardamom, cumin" />
+                        <img src={spices_home} alt="Farm-sourced whole spices including turmeric, cardamom, cumin" />
                     </div>
                     <div className="card-content">
                         <h3>{t('highlights.spices_title')}</h3>

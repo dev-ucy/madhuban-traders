@@ -5,8 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   root: '.',
-  // Base set to './' so assets and routes work on relative paths (useful for static deploys / GitHub Pages)
-  base: './',
+  // Use absolute base '/' so assets load correctly on deep routes (e.g., /product/1) when using SPA rewrites
+  base: '/',
 })
 
 

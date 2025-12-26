@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import sampleProducts from '../data/products.json'
+import sampleProducts from '../data/products'
 
 const CatalogContext = createContext(null)
 
