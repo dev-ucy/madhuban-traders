@@ -15,6 +15,7 @@ import ShippingReturns from './pages/ShippingReturns'
 import TermsConditions from './pages/TermsConditions'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
+import Submissions from './pages/Submissions'
 
 export default function App(){
   usePageGradient()
@@ -36,6 +37,7 @@ export default function App(){
           <Route path="/privacy" element={<PrivacyPolicy/>} />
           <Route path="/shipping" element={<ShippingReturns/>} />
           <Route path="/terms" element={<TermsConditions/>} />
+          <Route path="/submissions" element={<Submissions/>} />
         </Routes>
       </main>
       <AppFooter />

@@ -41,11 +41,29 @@ export default function InquiryForm({ inquiryType = 'general', prefillProduct = 
     return encodeURIComponent(lines.join('\n'))
   }
 
-  function handleSubmit(e){
+  async function handleSubmit(e){
     e.preventDefault()
     if (!name || !email || !message) {
       setStatus(t('contact.validation_missing'))
       return
+    }
+
+    const payload = { type, name, email, phone, message, page: window.location.href }
+    setStatus('Saving…')
+    try{
+      const res = await fetch('/api/submissions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+      if(!res.ok){
+        let text = ''
+        try{ text = await res.text() }catch(e){}
+        let parsed = null
+        try{ parsed = JSON.parse(text) }catch(e){}
+        setStatus(`Save failed: ${parsed?.message || parsed?.error || text }`)
+      }else{
+        setStatus('Saved')
+      }
+    }catch(err){
+      console.error('Save failed', err)
+      setStatus('Save failed: ' + (err.message || err))
     }
 
     const waPhone = '+917897061003' // business number

@@ -9,7 +9,20 @@ services:
       - "5173:5173"
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - API_URL=http://api:4000
+    depends_on:
+      - api
     command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+
+  api:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app:cached
+      - /app/node_modules
+    ports:
+      - "4000:4000"
+    command: sh -c "npm install --prefix ./server && node server/dev-server.js"
 
   web:
     build: .
@@ -17,3 +30,4 @@ services:
       - "8080:80"
     depends_on:
       - dev
+      - api

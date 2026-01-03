@@ -1049,6 +1049,171 @@ section, .card { scroll-margin-top: 92px; }
   text-align: center;
 }
 
+/* Submissions page styles */
+.submissions-page { width: 100%; max-width: 1200px; margin: 0 auto; padding: 2% 3%; box-sizing: border-box }
+
+.submissions-header { display:flex; align-items:center; justify-content:space-between; gap:2%; margin-bottom:1.5em; flex-wrap:wrap }
+.header-content { flex: 1 1 60%; }
+.header-content h2 { margin:0 0 0.5em 0; font-size:clamp(24px, 5vw, 36px) }
+.header-content .muted { margin:0; font-size:clamp(13px, 2vw, 14px) }
+.header-action { flex: 0 1 auto }
+.header-action .btn { white-space:nowrap }
+
+@media (max-width:768px){
+  .submissions-header { flex-direction:column; align-items:flex-start }
+  .header-content { flex: 1 1 100% }
+  .header-action { width:100%; margin-top:1em }
+  .header-action .btn { width:100% }
+}
+
+.submissions-controls { display:flex; gap:1.5%; align-items:center; margin-bottom:1.5em; flex-wrap:wrap;}
+.submissions-controls .controls-left { display:flex; gap:1%; align-items:center; flex:1 1 60%;  }
+.submissions-controls .controls-right { display:flex; gap:1%; align-items:center; flex:0 1 35% }
+
+.submissions-controls .form-control { padding:10px 12px; border-radius:10px; border:1px solid var(--border); flex:1 1 auto; min-width:140px; background: #fff; font-size:clamp(13px, 2vw, 14px) }
+.submissions-controls .form-control:focus { outline:none; box-shadow: 0 6px 20px rgba(11,116,222,0.08); border-color: var(--primary) }
+.submissions-controls select, .submissions-controls input[type="date"] { padding:8px 10px; border-radius:8px; border:1px solid var(--border); background:white; flex:0 1 auto; min-width:120px; font-size:clamp(13px, 2vw, 14px) }
+.submissions-controls label.small { display:flex; gap:8px; align-items:center; white-space:nowrap }
+.submissions-controls .small { font-size:clamp(12px, 2vw, 13px); color:var(--text-muted) }
+.submissions-controls button { padding:8px 14px; white-space:nowrap; font-size:clamp(13px, 2vw, 14px) }
+
+/* @media (max-width:1024px){
+  .submissions-controls { gap:1% }
+  .submissions-controls .controls-left { width: 10%; }
+  .submissions-controls .controls-right { flex:1 1 100%; justify-content:space-between }
+} */
+
+@media (max-width:768px){
+  .submissions-controls { flex-direction:column; align-items:stretch; gap:3px }
+  /* .submissions-controls .controls-left { width: 10%; }*/
+
+  .submissions-controls .controls-left {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to move to the next line */
+    gap: 5px;       /* Adds spacing between elements */
+    align-items: center;
+    padding: 2px;
+  }
+
+  /* Ensure inputs and selects take full width on very small screens */
+  .submissions-controls .controls-left > * {
+    flex: 1 1 auto; /* Grow and shrink as needed */
+    max-width: 50%; /* Prevents items from getting too tiny */
+  }
+
+  /* Specific styling for the date labels to keep them tidy */
+ /* .submissions-controls .controls-left .small {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+  } */
+
+  /* Optional: Make inputs look more consistent */
+  .submissions-controls .controls-left input, 
+  .submissions-controls .controls-left select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+
+  /* .submissions-controls .controls-left, .submissions-controls .controls-right { flex:1 1 100%; justify-content:space-between } */
+  .submissions-controls .form-control, .submissions-controls select, .submissions-controls input[type="date"] { flex:0 1 auto; min-width:auto }
+}
+
+.date-group { margin-bottom:2%; width:100% }
+.date-header { display:flex; justify-content:space-between; align-items:center; padding:1% 1.2%; background:rgba(11,116,222,0.02); border-radius:8px; cursor:pointer; transition: background .2s ease }
+.date-header:hover { background:rgba(11,116,222,0.04) }
+.date-header strong { font-size:clamp(16px, 3vw, 18px) }
+.date-header .muted { font-size:clamp(12px, 2vw, 13px) }
+.date-actions { flex:0 1 auto }
+.date-actions .btn { padding:6px 10px; font-size:clamp(12px, 2vw, 13px) }
+
+.submission-card { display:block; padding:1.5%; margin-bottom:1%; border-radius:8px; background:var(--card); border:1px solid var(--border); transition: all .18s ease; box-sizing:border-box }
+.submission-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--primary) }
+.submission-grid { display:flex; gap:1.5%; align-items:flex-start; justify-content:space-between; width:100% }
+.submission-main { flex:1 1 68%; min-width:55% }
+.submission-actions { flex: 0 1 30%; display:flex; gap:8px; align-items:center; justify-content:flex-end }
+.submission-meta { margin-bottom:1% }
+.submission-name { font-weight:700; font-size:clamp(14px, 2.5vw, 15px); margin-bottom:4px }
+.submission-message { margin-top:8px; color:var(--text-muted); white-space:pre-wrap; font-size:clamp(13px, 2vw, 14px); line-height:1.5 }
+.type-chip { display:inline-block; background:transparent; padding:6px 8px; border-radius:999px; font-weight:700; border:1px solid rgba(0,0,0,0.04); margin-left:6px; font-size:clamp(11px, 2vw, 12px) }
+.muted.tiny { font-size:clamp(11px, 2vw, 12px); color:var(--text-muted) }
+
+.edit-form { width:100% }
+.edit-row { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1%; margin-bottom:1% }
+.edit-row:last-of-type { margin-bottom:1.5% }
+.edit-actions { display:flex; gap:1%; justify-content:flex-start }
+.edit-actions .btn { flex:0 1 auto; min-width:80px }
+
+@media (max-width:1024px){
+  .submission-grid { gap:1% }
+  .submission-main { min-width: 60% }
+}
+
+@media (max-width:768px){
+  .submission-grid { flex-direction:column; gap:1em }
+  .submission-actions { justify-content:flex-start; width:100% }
+  .submission-main { min-width: 100% }
+  .submission-actions { gap:8px }
+  .submission-actions .btn { flex:1; min-width:auto }
+  .edit-row { grid-template-columns:1fr }
+  .edit-actions { width:100%; flex-direction:column }
+  .edit-actions .btn { width:100% }
+}
+
+/* Modal and snackbar */
+.modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.42); display:flex; align-items:center; justify-content:center; z-index:120; padding:2% }
+.modal { background:var(--card); border-radius:12px; padding:2%; width:100%; max-width:1100px; max-height:90vh; overflow-y:auto; box-shadow:var(--shadow-lg); border: 1px solid rgba(0,0,0,0.04); box-sizing:border-box }
+.modal-header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:1%; border-bottom:1px solid var(--border); margin-bottom:1% }
+.modal-header h3 { margin:0; font-size:clamp(16px, 3vw, 18px); color:var(--deep-spice-red) }
+.modal-header .btn { padding:6px 10px; font-size:clamp(12px, 2vw, 13px) }
+.modal-body { margin:0 }
+
+.modal-grid { display:grid; grid-template-columns: 1fr 28%; gap:12px; width:100% }
+.modal-checkout { width:100% }
+.checkout-details { display:grid; grid-template-columns:1fr 1fr; gap:12px; width:100% }
+.detail-row { padding:8px 12px; background:rgba(11,116,222,0.02); border-radius:6px; display:flex; justify-content:space-between; align-items:center }
+.detail-row strong { flex:0 1 35%; color:var(--primary); font-weight:700; font-size:clamp(13px, 2vw, 14px) }
+.detail-row span { flex:1 1 65%; text-align:right; color:var(--text); font-size:clamp(13px, 2vw, 14px) }
+
+.checkout-items { padding:12px; background:rgba(11,116,222,0.01); border-radius:8px; border:1px solid rgba(11,116,222,0.06) }
+.checkout-item-row { display:grid; grid-template-columns:1fr 100px 120px; gap:12px; padding:8px; border-bottom:1px solid rgba(0,0,0,0.04) }
+.checkout-item-row:last-child { border-bottom:none }
+.item-name { font-weight:600; color:var(--text); overflow:hidden; text-overflow:ellipsis; font-size:clamp(13px, 2vw, 14px) }
+.item-qty { text-align:center; color:var(--text-muted); font-size:clamp(13px, 2vw, 14px) }
+.item-price { text-align:right; font-weight:700; color:var(--deep-spice-red); font-size:clamp(13px, 2vw, 14px) }
+
+.modal-json { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace; font-size:clamp(11px, 2vw, 13px); background:var(--accent-light); padding:12px; border-radius:8px; max-height:400px; overflow:auto; border:1px solid var(--border); line-height:1.4 }
+
+.btn.btn-ghost { background: transparent; color: var(--text); border: 1px solid rgba(0,0,0,0.04); padding:6px 10px; font-size:clamp(12px, 2vw, 13px) }
+
+.snackbar { position:fixed; right:18px; bottom:18px; background:var(--text); color:white; padding:10px 12px; border-radius:999px; display:flex; gap:10px; align-items:center; z-index:200; font-size:clamp(12px, 2vw, 14px) }
+.snackbar .snackbar-action { background:transparent; border:none; color:#ffd; font-weight:700; cursor:pointer }
+.snackbar .snackbar-close { background:transparent; border:none; color:#ffd; cursor:pointer; font-weight:700 }
+
+@media (max-width:768px){
+  .modal-backdrop { padding:2% }
+  .modal { padding:12px; max-height:95vh }
+  .modal-grid { grid-template-columns:1fr }
+  .checkout-details { grid-template-columns:1fr }
+  .detail-row { flex-direction:column; align-items:flex-start }
+  .detail-row strong { flex:1 1 100% }
+  .detail-row span { flex:1 1 100%; text-align:left; margin-top:4px }
+  .checkout-item-row { grid-template-columns:1fr 80px; gap:8px }
+  .item-price { text-align:left }
+  .snackbar { right:12px; bottom:12px; left:12px; width:auto }
+}
+
+.btn.btn-danger { background: var(--deep-spice-red); color: white; border: none }
+.btn.btn-danger:hover { opacity: 0.95 }
+
+@media (max-width:720px){
+  .submissions-controls { flex-direction:column; align-items:stretch }
+  .submission-grid { flex-direction:column }
+}
+
+
 .contact-page .muted {
   text-align: center;
   font-size: 16px;

@@ -31,10 +31,18 @@ Development (with live reload using Docker Compose):
 
 ```powershell
 cd 'd:\Madhuban Traders'
-docker compose up --build dev
+docker compose up --build
 ```
 
-This runs the `dev` service which mounts your workspace into the container and starts Vite. Open `http://localhost:5173` in your browser.
+This starts the `dev` service (Vite) and a lightweight `api` service (Dev API shim) that exposes `POST /api/submissions` and `GET /api/submissions` at `http://api:4000` inside the Compose network (and `http://localhost:4000` on the host). Vite is configured to proxy `/api` to the API service when using Docker Compose, so you can test the real serverless function behavior locally.
+
+Alternatively, to test the real Vercel function runtime locally, use the Vercel CLI:
+
+```powershell
+npx vercel dev
+```
+
+Note: writing to disk inside serverless functions works for local testing (`vercel dev`), but ephemeral production serverless environments (like Vercel) do not guarantee persistent disk writes; for production use an external store (Vercel KV, S3, or a database).
 
 Production (build image and serve static files with nginx):
 
@@ -61,3 +69,25 @@ If you'd like, I can:
 - Add an Nginx config to enable SPA fallback routing (redirect unknown paths to `index.html`).
 - Add a healthcheck and smaller production image (e.g., using `caddy` or optimizing nginx config).
 - Add a GitHub Actions workflow to build and push the image to a container registry.
+
+Vercel serverless function (single-file submissions)
+---------------------------------------------------
+This project now includes a Vercel Serverless Function at `api/submissions.js` that appends all submissions into a single file `data/submissions.json` during local development (`vercel dev`) or when running functions on a server that allows file writes.
+
+- `POST /api/submissions` — append a submission to the JSON file
+- `GET /api/submissions` — read all submissions
+
+Important: Vercel functions run on ephemeral serverless instances; writing to disk is not guaranteed to persist in production. For persistent storage use an external service (Vercel KV, S3, or a database).
+
+There is also a viewer page in the app at `/submissions` that lists records and allows exporting them as a JSON file for local review.
+
+Vercel / production notes
+-------------------------
+- The `api/submissions.js` function writes records to a single JSON file. For local development this is stored under `data/submissions.json` in the repo and persists between runs.
+- On Vercel (or other serverless platforms) the function writes to the OS temporary directory (e.g. `/tmp`) to allow the function to run without write permission errors, but this data is **ephemeral** and not guaranteed to persist across invocations or across regions/instances.
+- For reliable production storage use an external service such as Vercel KV, AWS S3, or a database.
+
+How to test on Vercel (quick):
+- Install the Vercel CLI: `npm i -g vercel` (or `npx vercel` for single-run usage)
+- Start local emulation: `npx vercel dev` and test the site; the serverless function will write to the local `data/submissions.json` while `vercel dev` runs.
+- To deploy: `npx vercel --prod` and test `https://<your-deployment>.vercel.app/submissions`. Remember that file writes on Vercel are ephemeral; check the viewer and export immediately after testing.

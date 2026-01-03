@@ -58,9 +58,27 @@ export default function Cart(){
     return lines.join('\n')
   }
 
-  const handleSendWhatsapp = () => {
+  const handleSendWhatsapp = async () => {
     setError('')
     if(!validateCustomer()) return
+
+    const payload = { type: 'checkout', customer, cart, subtotal, page: window.location.href }
+    try{
+      const res = await fetch('/api/submissions', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+      if(!res.ok){
+        const txt = await res.text().catch(()=>null)
+        let parsed = null
+        try{ parsed = txt ? JSON.parse(txt) : null }catch(e){}
+        console.error('Failed to save checkout:', parsed || txt )
+        setError('Failed to save order: ' + (parsed?.message || parsed?.error || txt ))
+        return
+      }
+    }catch(err){
+      console.error('Failed to save checkout:', err)
+      setError('Failed to save order: ' + (err.message || err))
+      return
+    }
+
     const msg = buildWhatsappMessage()
     const waNumber = '917897061003' // business number in international format without + or leading zeros
     const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`

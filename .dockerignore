@@ -4,3 +4,11 @@ dist
 .vscode
 npm-debug.log
 .DS_Store
+
+
+.node_modules
+npm-debug.log
+build
+dist
+.env
+.git
