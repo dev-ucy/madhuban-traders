@@ -12,3 +12,4 @@ build
 dist
 .env
 .git
+node_modules/

@@ -1,4 +1,5 @@
 // Products module with imported image assets so bundlers can resolve and include them in production
+import mustard_0 from '../assets/products/1_Mustard_Oil_0.png'
 import mustard_1 from '../assets/products/1_Mustard_Oil.png'
 import mustard_1_1 from '../assets/products/1_Mustard_Oil_1.png'
 import groundnut_1 from '../assets/products/2_Groundnut_Oil.png'
@@ -39,8 +40,8 @@ const products = [
     name: "Mustard Oil (Kacchi Ghani)",
     name_hi: "सरसों का तेल (कच्ची घानी)",
     price: 190,
-    image: mustard_1,
-    images: [ mustard_1, mustard_1_1 ],
+    image: mustard_0,
+    images: [ mustard_0,mustard_1, mustard_1_1,groundnut_1, groundnut_1_1 ],
     category: "Oils",
     variants: [ { id: "v1a", label: "1 L", price: 195 }, { id: "v1b", label: "2 L", price: 390 }, { id: "v1c", label: "5 L", price: 950 } ],
     description: "Authentic Kacchi Ghani Mustard Oil, cold-pressed to retain its natural 'Jhaanjh' (pungency). Extracted from premium mustard seeds of Rajasthan, it is the soul of North Indian and Bengali kitchens.",

@@ -112,7 +112,7 @@ export default function Product(){
           </div>
 
           <div className="gallery-grid">
-            {images.slice(0,3).map((src, i) => (
+            {images.slice(0,4).map((src, i) => (
               <button key={i} className={`thumb ${src===main? 'active':''}`} onClick={()=>setMain(src)} aria-label={`View image ${i+1}`}>
                 <img src={src} alt={`${title} ${i+1}`} />
               </button>
