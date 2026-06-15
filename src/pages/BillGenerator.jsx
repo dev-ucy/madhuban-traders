@@ -108,12 +108,10 @@ export default function BillGenerator() {
         items: billItems
       }
 
-      const bill = await createBill(billData)
-      
-      // Navigate to invoice page with bill data
-      navigate('/bill-invoice', { state: { bill } })
+      // Navigate to preview page instead of creating bill directly
+      navigate('/bill-preview', { state: { billData } })
     } catch (err) {
-      setError(err.message || 'Failed to generate bill')
+      setError(err.message || 'Failed to prepare bill')
       setGeneratingBill(false)
     }
   }
@@ -348,7 +346,7 @@ export default function BillGenerator() {
               onClick={handleGenerateBill}
               disabled={generatingBill || billingLoading}
             >
-              {generatingBill ? 'Generating...' : 'Generate Bill'}
+              {generatingBill ? 'Preparing Preview...' : 'Review Bill Details'}
             </button>
 
             {billItems.length > 0 && (

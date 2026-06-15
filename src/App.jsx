@@ -19,6 +19,7 @@ import Cart from './pages/Cart'
 import Submissions from './pages/Submissions'
 import BillingLogin from './pages/BillingLogin'
 import BillGenerator from './pages/BillGenerator'
+import BillPreview from './pages/BillPreview'
 import BillHistory from './pages/BillHistory'
 import BillInvoice from './pages/BillInvoice'
 
@@ -46,6 +47,7 @@ export default function App(){
             <Route path="/submissions" element={<Submissions/>} />
             <Route path="/billing-login" element={<BillingLogin/>} />
             <Route path="/billing" element={<BillGenerator/>} />
+            <Route path="/bill-preview" element={<BillPreview/>} />
             <Route path="/bill-invoice" element={<BillInvoice/>} />
             <Route path="/billing-history" element={<BillHistory/>} />
           </Routes>
