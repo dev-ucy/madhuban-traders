@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { usePageGradient } from './hooks/usePageGradient'
+import { BillingProvider } from './context/BillingContext'
 import AppHeader from './components/AppHeader'
 import ScrollToTop from './components/ScrollToTop'
 import FloatingWhatsApp from './components/FloatingWhatsApp'
@@ -16,32 +17,42 @@ import TermsConditions from './pages/TermsConditions'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
 import Submissions from './pages/Submissions'
+import BillingLogin from './pages/BillingLogin'
+import BillGenerator from './pages/BillGenerator'
+import BillHistory from './pages/BillHistory'
+import BillInvoice from './pages/BillInvoice'
 
 export default function App(){
   usePageGradient()
   
   return (
-    <div className="app-wrapper">
-      <AppHeader />
-      <ScrollToTop />
-      <FloatingWhatsApp phone="+917897061003" message="Hello%20Madhuban%20Traders!" />
-      <FloatingCall phone="+917897061003" />
-      <main className="app-main">
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/catalog" element={<Catalog/>} />
-          <Route path="/product/:id" element={<Product/>} />
-          <Route path="/cart" element={<Cart/>} />
-          <Route path="/about" element={<About/>} />
-          <Route path="/contact" element={<Contact/>} />
-          <Route path="/privacy" element={<PrivacyPolicy/>} />
-          <Route path="/shipping" element={<ShippingReturns/>} />
-          <Route path="/terms" element={<TermsConditions/>} />
-          <Route path="/submissions" element={<Submissions/>} />
-        </Routes>
-      </main>
-      <AppFooter />
-      <FloatingWhatsApp phone="+917897061003" message="Hello%20Madhuban%20Traders!" />
-    </div>
+    <BillingProvider>
+      <div className="app-wrapper">
+        <AppHeader />
+        <ScrollToTop />
+        <FloatingWhatsApp phone="+917897061003" message="Hello%20Madhuban%20Traders!" />
+        <FloatingCall phone="+917897061003" />
+        <main className="app-main">
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/catalog" element={<Catalog/>} />
+            <Route path="/product/:id" element={<Product/>} />
+            <Route path="/cart" element={<Cart/>} />
+            <Route path="/about" element={<About/>} />
+            <Route path="/contact" element={<Contact/>} />
+            <Route path="/privacy" element={<PrivacyPolicy/>} />
+            <Route path="/shipping" element={<ShippingReturns/>} />
+            <Route path="/terms" element={<TermsConditions/>} />
+            <Route path="/submissions" element={<Submissions/>} />
+            <Route path="/billing-login" element={<BillingLogin/>} />
+            <Route path="/billing" element={<BillGenerator/>} />
+            <Route path="/bill-invoice" element={<BillInvoice/>} />
+            <Route path="/billing-history" element={<BillHistory/>} />
+          </Routes>
+        </main>
+        <AppFooter />
+        <FloatingWhatsApp phone="+917897061003" message="Hello%20Madhuban%20Traders!" />
+      </div>
+    </BillingProvider>
   )
 }

@@ -5,12 +5,15 @@
   --natural-cream: #FDFBFB;
   
   --primary: #f67307;
+  --primary-dark: #d94e06;
+  --primary-light: #ffc97d;
   --accent: #746d59;
   --accent-light: #f0e6d2;
   --bg: #f8f9fa;
   --card: #ffffff;
   --text: #1f2937;
   --text-muted: #6b7280;
+  --text-light: #6b7280;
   --text-secondary: var(--text-muted);
   --border: #e5e7eb;
   --success: #10b981;

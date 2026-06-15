@@ -5,6 +5,7 @@ This guide covers how to run the Madhuban Traders application in various environ
 ## Prerequisites
 
 - **Node.js** (v18+) and npm installed
+- **Python** (v3.8+) and pip for Billing Module backend (optional)
 - **Docker** and Docker Compose (optional, for containerized development)
 - **Git** (for cloning/version control)
 
@@ -16,7 +17,6 @@ This guide covers how to run the Madhuban Traders application in various environ
 
 ```bash
 npm install
-cd server && npm install && cd ..
 ```
 
 ### 2. Start Development Server
@@ -29,9 +29,57 @@ The frontend will be available at `http://localhost:5173`
 
 ---
 
+## Billing Module Setup (with Python Backend)
+
+The Billing Module requires a backend API. You can build it in Python.
+
+### 1. Configure API Endpoint
+
+Create a `.env` file in the project root:
+
+```bash
+VITE_API_BASE_URL=http://localhost:8000/api
+```
+
+### 2. Set Up Python Backend
+
+Create a Python server following the specification in `PYTHON_API_SPECIFICATION.md`:
+
+```bash
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install flask flask-cors
+
+# Create app.py with endpoints from PYTHON_API_SPECIFICATION.md
+python app.py
+```
+
+The Python API should run on `http://localhost:8000`
+
+### 3. Start Frontend
+
+In another terminal:
+
+```bash
+npm run dev
+```
+
+### 4. Access Billing Module
+
+Navigate to `http://localhost:5173/billing-login`
+
+Default credentials (configure in your Python backend):
+- Username: `shop1`
+- Password: `shop123`
+
+---
+
 ## Running with Docker Compose
 
-Docker Compose allows you to run both the frontend and backend API services with a single command, including hot-reload support.
+Docker Compose allows you to run the frontend and backend services.
 
 ### Start Development with Docker Compose
 
@@ -41,9 +89,8 @@ docker compose up --build
 
 This starts:
 - **Frontend (Vite)** at `http://localhost:5173` with live reload
-- **Backend API** at `http://localhost:4000`
 
-The services communicate internally via the Compose network (`api` service is accessible to frontend at `http://api:4000`).
+For the Billing Module backend, run your Python API separately or add it to docker-compose.yml
 
 ### Stop Services
 
@@ -63,15 +110,17 @@ npm run dev
 
 Runs Vite development server at `http://localhost:5173`
 
-### Backend API Only
+### Python Billing Backend Only
 
 ```bash
-cd server
-npm install
-node dev-server.js
+# Install dependencies
+pip install flask flask-cors
+
+# Run server (ensure app.py exists)
+python app.py
 ```
 
-Backend API runs at `http://localhost:4000`
+Backend API runs at `http://localhost:8000` (or your configured port)
 
 ---
 

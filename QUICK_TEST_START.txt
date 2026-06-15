@@ -1,0 +1,80 @@
+# 🚀 TEST LOGIN - QUICK REFERENCE
+
+## Start Testing Now (No Backend Needed)
+
+```bash
+npm run dev
+```
+
+Then visit: `http://localhost:5173/billing-login`
+
+---
+
+## Login with Any of These
+
+```
+Username: test
+Password: test
+```
+
+OR
+
+```
+Username: demo
+Password: demo
+```
+
+OR
+
+```
+Username: worker
+Password: worker
+```
+
+---
+
+## ✅ You're In!
+
+- All features work
+- Bills saved to browser
+- No backend required
+- Print, history, everything works
+
+---
+
+## Full Workflow
+
+1. **Login** → Use credentials above
+2. **Find Products** → Use search box
+3. **Add Items** → Click products or variants
+4. **Fill Details** → Customer name, phone, payment method
+5. **Generate Bill** → Click button
+6. **View History** → Click menu/link to see past bills
+7. **Print** → Click print icon
+
+---
+
+## What's Stored
+
+- Bills: Browser's localStorage
+- Disappears: When you clear browser data
+- Persists: Until cache cleared
+
+---
+
+## Switch to Real Backend Later
+
+```
+1. Build Python backend (see PYTHON_API_SPECIFICATION.md)
+2. Update .env with your API URL
+3. Start backend
+4. System auto-switches from test to real
+```
+
+---
+
+## That's It!
+
+Test everything. No setup needed. Just use `test`/`test` credentials.
+
+For details: See `TEST_LOGIN_GUIDE.md`

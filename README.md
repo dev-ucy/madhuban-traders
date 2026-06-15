@@ -2,6 +2,31 @@
 
 This repository contains a minimal Vite + React single-page application scaffold for the Madhuban Traders frontend. It's designed to be a starting point that consumes a backend API (or mock data) and provides reusable components, routing, and a simple React Context for state.
 
+## 🆕 Billing Module
+
+**Secure worker billing system with product selection and bill generation.**
+
+The Billing Module is a complete frontend implementation ready for any backend API (Python, Node.js, etc.) that implements the required endpoints.
+
+- **Frontend Only** - No Express server required
+- **Backend Agnostic** - Works with any backend language
+- **Python Ready** - Complete API specification included
+- **Fully Featured** - Authentication, bill generation, printing, history
+
+**Quick Start:**
+1. See `BILLING_QUICK_START.md` for setup
+2. Build your Python backend using `PYTHON_API_SPECIFICATION.md`
+3. Configure `.env` with your API URL
+4. Access at `/billing-login`
+
+**Documentation:**
+- `BILLING_QUICK_START.md` - Quick start guide
+- `PYTHON_API_SPECIFICATION.md` - Complete backend API spec with sample Flask code
+- `BILLING_MODULE_GUIDE.md` - Feature documentation
+- `BACKEND_API_CHECKLIST.md` - Implementation checklist
+
+---
+
 Getting started (Windows PowerShell):
 
 ```powershell
