@@ -345,7 +345,7 @@ export const handlePrintBill = (billData) => {
           </div>
 
           <div class="declaration-box">
-            <p><strong>Declaration:</strong> Certified that the food products and packaged oils described in this invoice match configurations under current FSSAI guidelines and the Legal Metrology Act. All particulars are true and correct.</p>
+            <p><strong>Declaration:</strong> Certified that the food products and edible oils listed in this tax invoice match configurations outlined under current FSSAI guidelines and the Legal Metrology Act. We declare that details shown on this invoice are true and correct.</p>
             <div class="sign-area">
               <p>For <strong>${escapeHtml(supplier.name)}</strong></p>
               <br><br>

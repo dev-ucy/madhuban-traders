@@ -173,6 +173,8 @@ def normalize_doc(doc_id: str, payload: Dict[str, Any], collection_name: str = "
 
 
 def camel_to_snake(name: str) -> str:
+    if name == "isB2B":
+        return "is_b2b"
     name = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", name)
     name = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1_\2", name)
     return name.lower()
@@ -193,7 +195,9 @@ def from_db_record(record: Dict[str, Any]) -> Dict[str, Any]:
     converted: Dict[str, Any] = {}
     for key, value in record.items():
         snake_key = str(key)
-        if snake_key.endswith("_hi"):
+        if snake_key == "is_b2b":
+            api_key = "isB2B"
+        elif snake_key.endswith("_hi"):
             base = snake_key[:-3]
             api_key = snake_to_api_key(base) + "_hi"
         else:
@@ -323,6 +327,27 @@ def validate_invoice_number(value: Optional[str]) -> Optional[str]:
     return cleaned
 
 
+def extract_invoice_sequence(value: Optional[str]) -> int:
+    if value is None:
+        return 0
+    match = re.search(r"-(\d+)$", str(value).upper())
+    return int(match.group(1)) if match else 0
+
+
+def generate_invoice_number(existing_bills: List[Dict[str, Any]], payload_invoice_number: Optional[str] = None) -> str:
+    if payload_invoice_number:
+        return payload_invoice_number
+
+    fy_suffix = datetime.now().strftime("%Y")
+    highest_sequence = max((extract_invoice_sequence(item.get("billNumber") or item.get("invoiceNumber")) for item in existing_bills), default=0)
+    return f"BILL-{fy_suffix}-{highest_sequence + 1:04d}"
+
+
+def get_hsn_minimum_digits(invoice_total: Optional[float] = None) -> int:
+    total_value = float(invoice_total or 0)
+    return 6 if total_value >= 50000000 else 4
+
+
 def validate_hsn_code(value: Optional[str], minimum_digits: int = 4) -> Optional[str]:
     if value is None or str(value).strip() == "":
         return None
@@ -357,10 +382,28 @@ def validate_liquid_oil_package(item: Dict[str, Any]) -> None:
     if quantity is None:
         return
 
+    if isinstance(quantity, (int, float)):
+        return
+
     qty_text = str(quantity).strip().lower()
-    if qty_text and qty_text not in ALLOWED_LIQUID_OIL_PACKAGES:
-        if qty_text.endswith("l") or qty_text.endswith("ml"):
-            return
+    normalized_qty = qty_text.replace(" ", "")
+    if normalized_qty in ALLOWED_LIQUID_OIL_PACKAGES:
+        return
+
+    if re.fullmatch(r"\d+(?:\.\d+)?(l|ml)", normalized_qty):
+        if normalized_qty.endswith("ml"):
+            ml_value = float(normalized_qty[:-2])
+            if ml_value in {50, 100, 200, 500, 15000}:
+                return
+        elif normalized_qty.endswith("l"):
+            liters_value = float(normalized_qty[:-1])
+            if liters_value in {1, 2, 3, 5, 15}:
+                return
+
+    raise HTTPException(
+        status_code=400,
+        detail="Invalid oil pack size for legal metrology compliance. Use standard packs: 50ml, 100ml, 200ml, 500ml, 1L, 2L, 3L, 5L, 15L.",
+    )
 
 
 def get_billing_settings() -> Dict[str, Any]:
@@ -684,12 +727,12 @@ def create_bill(payload: BillPayload, authorization: Optional[str] = Header(defa
 
     for item in payload.items:
         item_hsn = item.get("hsnCode") or item.get("hsn_code")
-        validate_hsn_code(item_hsn, 4)
         validate_liquid_oil_package(item)
+        validate_hsn_code(item_hsn, get_hsn_minimum_digits(float(payload.totalAmount or 0)))
 
     settings = get_billing_settings()
     existing = list_documents("bills")
-    next_id = max((int(item.get("id", 0)) for item in existing), default=999) + 1
+    next_id = max((int(str(item.get("id", "0")).split("-")[-1]) if str(item.get("id", "0")).isdigit() else 999 for item in existing), default=999) + 1
 
     supplier_state_code = payload.supplierStateCode or settings.get("supplierStateCode") or "09"
     customer_state_code = payload.customerStateCode or supplier_state_code
@@ -713,9 +756,11 @@ def create_bill(payload: BillPayload, authorization: Optional[str] = Header(defa
 
     total_amount = payload.totalAmount if payload.totalAmount is not None else gst_breakdown["netAmount"]
 
+    bill_number = generate_invoice_number(existing, payload_invoice_number)
+
     bill = {
         "id": str(next_id),
-        "billNumber": payload_invoice_number or f"BILL-{next_id}",
+        "billNumber": bill_number,
         "customerName": payload.customerName or "Walk-in Customer",
         "customerPhone": payload.customerPhone or "",
         "customerAddress": payload.customerAddress or "",
@@ -728,7 +773,7 @@ def create_bill(payload: BillPayload, authorization: Optional[str] = Header(defa
         "supplierFssai": payload_supplier_fssai or settings.get("supplierFssai"),
         "supplierStateCode": supplier_state_code,
         "supplierStateName": payload.supplierStateName or settings.get("supplierStateName"),
-        "invoiceNumber": payload_invoice_number or f"BILL-{next_id}",
+        "invoiceNumber": bill_number,
         "isB2B": payload.isB2B if payload.isB2B is not None else True,
         "items": payload.items,
         "subtotal": round(subtotal, 2),

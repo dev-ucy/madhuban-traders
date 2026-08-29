@@ -14,6 +14,9 @@ export default function BillPreview() {
   const [customerName, setCustomerName] = useState(billData?.customerName || '')
   const [customerPhone, setCustomerPhone] = useState(billData?.customerPhone || '')
   const [customerAddress, setCustomerAddress] = useState(billData?.customerAddress || '')
+  const [customerGstin, setCustomerGstin] = useState(billData?.customerGstin || '')
+  const [customerStateCode, setCustomerStateCode] = useState(billData?.customerStateCode || '09')
+  const [customerStateName, setCustomerStateName] = useState(billData?.customerStateName || 'Uttar Pradesh')
   const [orderType, setOrderType] = useState(billData?.orderType || 'retail')
   const [paymentMethod, setPaymentMethod] = useState(billData?.paymentMethod || 'cash')
   const [discount, setDiscount] = useState(String(billData?.discount || '0'))
@@ -38,9 +41,9 @@ export default function BillPreview() {
   }
 
   const calculateTaxSummary = () => {
-    const supplierStateCode = '09'
-    const customerStateCode = supplierStateCode
-    const isInterState = supplierStateCode !== customerStateCode
+    const supplierStateCode = billData?.supplierStateCode || '09'
+    const customerStateCodeValue = customerStateCode || supplierStateCode
+    const isInterState = supplierStateCode !== customerStateCodeValue
     let taxableValue = 0
     let cgst = 0
     let sgst = 0
@@ -113,6 +116,12 @@ export default function BillPreview() {
       return
     }
 
+    const gstinPattern = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/
+    if (customerGstin && !gstinPattern.test(customerGstin.trim().toUpperCase())) {
+      setError('Buyer GSTIN must be a valid 15-character GSTIN.')
+      return
+    }
+
     if (calculateFinalTotal() > 50000 && !customerAddress.trim() && !customerPhone.trim()) {
       setError('For B2C invoices above ₹50,000, add customer address and phone details.')
       return
@@ -126,6 +135,12 @@ export default function BillPreview() {
         customerName: customerName.trim(),
         customerPhone: customerPhone.trim(),
         customerAddress: customerAddress.trim(),
+        customerGstin: customerGstin.trim().toUpperCase(),
+        customerStateCode: customerStateCode.trim() || '09',
+        customerStateName: customerStateName.trim() || 'Uttar Pradesh',
+        supplierStateCode: billData?.supplierStateCode || '09',
+        supplierStateName: billData?.supplierStateName || 'Uttar Pradesh',
+        isB2B: orderType !== 'retail',
         orderType,
         arrears: parseFloat(arrears) || 0,
         discount: parseFloat(discount) || 0,
@@ -184,6 +199,33 @@ export default function BillPreview() {
                   value={customerPhone}
                   onChange={(e) => setCustomerPhone(e.target.value)}
                   placeholder="Phone number"
+                />
+              </div>
+              <div className="form-group">
+                <label>Buyer GSTIN</label>
+                <input
+                  type="text"
+                  value={customerGstin}
+                  onChange={(e) => setCustomerGstin(e.target.value)}
+                  placeholder="09ABCDE1234F1Z5"
+                />
+              </div>
+              <div className="form-group">
+                <label>Place of Supply</label>
+                <input
+                  type="text"
+                  value={customerStateName}
+                  onChange={(e) => setCustomerStateName(e.target.value)}
+                  placeholder="Uttar Pradesh"
+                />
+              </div>
+              <div className="form-group">
+                <label>State Code</label>
+                <input
+                  type="text"
+                  value={customerStateCode}
+                  onChange={(e) => setCustomerStateCode(e.target.value)}
+                  placeholder="09"
                 />
               </div>
               <div className="form-group full-width">
