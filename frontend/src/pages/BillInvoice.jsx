@@ -31,6 +31,41 @@ export default function BillInvoice() {
     })
   }
 
+  const calculateBillSummary = () => {
+    const items = Array.isArray(bill?.items) ? bill.items : []
+    const supplierStateCode = bill?.supplierStateCode || '09'
+    const customerStateCode = bill?.customerStateCode || supplierStateCode
+    const isInterState = supplierStateCode !== customerStateCode
+
+    let taxableValue = 0
+    let cgst = 0
+    let sgst = 0
+    let igst = 0
+
+    items.forEach((item) => {
+      const quantity = Number(item.quantity) || 0
+      const price = Number(item.price) || 0
+      const lineDiscount = Number(item.discount) || 0
+      const gstRate = Number(item.gstRate) || 5
+      const lineTaxable = Math.max(0, quantity * price - lineDiscount)
+      taxableValue += lineTaxable
+
+      const taxAmount = (lineTaxable * gstRate) / 100
+      if (isInterState) {
+        igst += taxAmount
+      } else {
+        cgst += taxAmount / 2
+        sgst += taxAmount / 2
+      }
+    })
+
+    const discount = Number(bill.discount || 0)
+    const arrears = Number(bill.arrears || 0)
+    const totalAmount = Number(bill.totalAmount || 0)
+
+    return { taxableValue, cgst, sgst, igst, discount, arrears, totalAmount }
+  }
+
   const handlePrint = () => {
     handlePrintBill(bill)
   }
@@ -186,15 +221,15 @@ export default function BillInvoice() {
             </div>
             <div className="summary-row taxes">
               <span>Taxes (GST):</span>
-              <span>₹0.00</span>
+              <span>₹{(calculateBillSummary().cgst + calculateBillSummary().sgst + calculateBillSummary().igst).toFixed(2)}</span>
             </div>
             <div className="summary-row shipping">
-              <span>Shipping:</span>
-              <span>₹0.00</span>
+              <span>Taxable Value:</span>
+              <span>₹{calculateBillSummary().taxableValue.toFixed(2)}</span>
             </div>
             <div className="summary-row total">
               <span className="total-label">TOTAL AMOUNT:</span>
-              <span className="total-amount">₹{(bill.totalAmount || (bill.subtotal || bill.items.reduce((sum, item) => sum + item.price * item.quantity, 0)) - (bill.discount || 0) + (bill.arrears || 0)).toFixed(2)}</span>
+              <span className="total-amount">₹{(bill.totalAmount || 0).toFixed(2)}</span>
             </div>
           </div>
         </div>

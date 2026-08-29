@@ -4,6 +4,14 @@ import { useBilling } from '../context/BillingContext'
 import { apiUrl } from '../lib/api'
 import '../styles/billing.css'
 
+const gstinPattern = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/
+const fssaiPattern = /^[0-9]{14}$/
+const hsnPattern = /^\d{4,8}$/
+
+const validateGstin = (value) => !value || gstinPattern.test(value.trim().toUpperCase())
+const validateFssai = (value) => !value || fssaiPattern.test(String(value).trim())
+const validateHsn = (value) => !value || hsnPattern.test(String(value).trim())
+
 const emptyProductForm = {
   name: '',
   name_hi: '',
@@ -105,6 +113,10 @@ export default function ManagerSettings() {
       setLoading(true)
       setProductMessage('')
 
+      if (!validateHsn(productForm.hsnCode)) {
+        throw new Error('HSN code must be 4 to 8 digits only.')
+      }
+
       const payload = {
         name: productForm.name,
         name_hi: productForm.name_hi,
@@ -190,6 +202,13 @@ export default function ManagerSettings() {
     try {
       setLoading(true)
       setSettingsMessage('')
+
+      if (!validateGstin(settings.supplierGstin)) {
+        throw new Error('GSTIN must follow the 15-character GSTIN format.')
+      }
+      if (!validateFssai(settings.supplierFssai)) {
+        throw new Error('FSSAI number must be exactly 14 digits.')
+      }
 
       const response = await fetch(apiUrl('/billing-settings'), {
         method: 'PUT',

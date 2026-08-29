@@ -37,11 +37,49 @@ export default function BillPreview() {
     return billItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
   }
 
-  const calculateFinalTotal = () => {
-    const subtotal = calculateSubtotal()
+  const calculateTaxSummary = () => {
+    const supplierStateCode = '09'
+    const customerStateCode = supplierStateCode
+    const isInterState = supplierStateCode !== customerStateCode
+    let taxableValue = 0
+    let cgst = 0
+    let sgst = 0
+    let igst = 0
+
+    billItems.forEach((item) => {
+      const quantity = Number(item.quantity) || 0
+      const price = Number(item.price) || 0
+      const lineDiscount = Number(item.discount) || 0
+      const gstRate = Number(item.gstRate) || 5
+      const lineTaxable = Math.max(0, quantity * price - lineDiscount)
+      taxableValue += lineTaxable
+
+      const taxAmount = (lineTaxable * gstRate) / 100
+      if (isInterState) {
+        igst += taxAmount
+      } else {
+        cgst += taxAmount / 2
+        sgst += taxAmount / 2
+      }
+    })
+
     const discountValue = parseFloat(discount) || 0
     const arrearsValue = parseFloat(arrears) || 0
-    return Math.max(0, subtotal - discountValue + arrearsValue)
+    const total = Math.max(0, taxableValue + cgst + sgst + igst - discountValue + arrearsValue)
+
+    return {
+      taxableValue,
+      cgst,
+      sgst,
+      igst,
+      discountValue,
+      arrearsValue,
+      total
+    }
+  }
+
+  const calculateFinalTotal = () => {
+    return calculateTaxSummary().total
   }
 
   const updateItemQuantity = (key, newQuantity) => {
@@ -66,6 +104,17 @@ export default function BillPreview() {
 
     if (billItems.length === 0) {
       setError('Please add at least one item to the bill')
+      return
+    }
+
+    const invalidHsn = billItems.find((item) => item.hsnCode && !/^\d{4,8}$/.test(String(item.hsnCode).trim()))
+    if (invalidHsn) {
+      setError('Each item requires a valid HSN code with 4 to 8 digits.')
+      return
+    }
+
+    if (calculateFinalTotal() > 50000 && !customerAddress.trim() && !customerPhone.trim()) {
+      setError('For B2C invoices above ₹50,000, add customer address and phone details.')
       return
     }
 
@@ -265,6 +314,24 @@ export default function BillPreview() {
                   disabled
                   className="summary-input total-highlight"
                 />
+              </div>
+            </div>
+            <div className="summary-grid" style={{ marginTop: 12 }}>
+              <div className="form-group">
+                <label>Taxable Value</label>
+                <input type="text" value={calculateTaxSummary().taxableValue.toFixed(2)} disabled className="summary-input" />
+              </div>
+              <div className="form-group">
+                <label>CGST</label>
+                <input type="text" value={calculateTaxSummary().cgst.toFixed(2)} disabled className="summary-input" />
+              </div>
+              <div className="form-group">
+                <label>SGST</label>
+                <input type="text" value={calculateTaxSummary().sgst.toFixed(2)} disabled className="summary-input" />
+              </div>
+              <div className="form-group">
+                <label>IGST</label>
+                <input type="text" value={calculateTaxSummary().igst.toFixed(2)} disabled className="summary-input" />
               </div>
             </div>
           </div>

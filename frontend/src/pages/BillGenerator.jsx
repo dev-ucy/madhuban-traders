@@ -46,9 +46,13 @@ export default function BillGenerator() {
         key,
         productId: product.id,
         productName: product.name,
+        hsnCode: product.hsnCode || '1514',
+        gstRate: Number(product.gstRate ?? 5),
+        category: product.category || 'General',
         variant: variant ? { id: variant.id, label: variant.label } : null,
         price: variant ? variant.price : product.price,
-        quantity: 1
+        quantity: 1,
+        discount: 0
       }
       setBillItems([...billItems, newItem])
     }

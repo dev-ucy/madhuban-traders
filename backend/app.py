@@ -1,5 +1,6 @@
 import hashlib
 import os
+import re
 import secrets
 import uuid
 from datetime import datetime, timezone
@@ -67,6 +68,8 @@ class BillPayload(BaseModel):
     supplierFssai: Optional[str] = "10023051000123"
     supplierStateCode: Optional[str] = "09"
     supplierStateName: Optional[str] = "Uttar Pradesh"
+    invoiceNumber: Optional[str] = None
+    isB2B: Optional[bool] = True
     items: List[Dict[str, Any]] = Field(default_factory=list)
     totalAmount: Optional[float] = 0
     discount: Optional[float] = 0
@@ -247,6 +250,79 @@ def default_products() -> List[Dict[str, Any]]:
     ]
 
 
+GSTIN_PATTERN = re.compile(r"^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$")
+FSSAI_PATTERN = re.compile(r"^[0-9]{14}$")
+INVOICE_NUMBER_PATTERN = re.compile(r"^[A-Z0-9/-]{1,16}$")
+ALLOWED_LIQUID_OIL_PACKAGES = {"50ml", "100ml", "200ml", "500ml", "1l", "2l", "3l", "5l", "15l"}
+
+
+def validate_gstin(value: Optional[str], field_name: str = "GSTIN") -> Optional[str]:
+    if value is None or str(value).strip() == "":
+        return None
+    cleaned = str(value).strip().upper()
+    if not GSTIN_PATTERN.fullmatch(cleaned):
+        raise HTTPException(status_code=400, detail=f"Invalid {field_name} format. Expected 15-character GSTIN.")
+    return cleaned
+
+
+def validate_fssai(value: Optional[str], field_name: str = "FSSAI") -> Optional[str]:
+    if value is None or str(value).strip() == "":
+        return None
+    cleaned = str(value).strip()
+    if not FSSAI_PATTERN.fullmatch(cleaned):
+        raise HTTPException(status_code=400, detail=f"Invalid {field_name} format. Expected 14-digit FSSAI number.")
+    return cleaned
+
+
+def validate_invoice_number(value: Optional[str]) -> Optional[str]:
+    if value is None or str(value).strip() == "":
+        return None
+    cleaned = str(value).strip().upper()
+    if not INVOICE_NUMBER_PATTERN.fullmatch(cleaned):
+        raise HTTPException(status_code=400, detail="Invalid invoice number. Use 1-16 characters: A-Z, 0-9, / or -.")
+    return cleaned
+
+
+def validate_hsn_code(value: Optional[str], minimum_digits: int = 4) -> Optional[str]:
+    if value is None or str(value).strip() == "":
+        return None
+    cleaned = str(value).strip()
+    if not cleaned.isdigit() or len(cleaned) < minimum_digits:
+        raise HTTPException(status_code=400, detail=f"Invalid HSN code. Minimum {minimum_digits} digits required.")
+    return cleaned
+
+
+def validate_b2c_high_value(data: Dict[str, Any]) -> None:
+    customer_name = str(data.get("customerName") or "").strip()
+    customer_address = str(data.get("customerAddress") or "").strip()
+    customer_state = str(data.get("customerStateCode") or "").strip()
+    gross_value = float(data.get("totalAmount") or 0)
+    is_b2b = bool(data.get("isB2B", True))
+
+    if not is_b2b and gross_value > 50000:
+        if not customer_name or not customer_address or not customer_state:
+            raise HTTPException(
+                status_code=400,
+                detail="B2C invoice above ₹50,000 requires customer name, delivery address, and state code.",
+            )
+
+
+def validate_liquid_oil_package(item: Dict[str, Any]) -> None:
+    name = str(item.get("productName") or item.get("name") or "").lower()
+    category = str(item.get("category") or "").lower()
+    if "oil" not in name and "oil" not in category and "mustard" not in name and "groundnut" not in name:
+        return
+
+    quantity = item.get("quantity")
+    if quantity is None:
+        return
+
+    qty_text = str(quantity).strip().lower()
+    if qty_text and qty_text not in ALLOWED_LIQUID_OIL_PACKAGES:
+        if qty_text.endswith("l") or qty_text.endswith("ml"):
+            return
+
+
 def get_billing_settings() -> Dict[str, Any]:
     settings = fallback_store.get("billing_settings", {}).get("default")
     if settings is not None:
@@ -313,6 +389,44 @@ def delete_document(collection_name: str, doc_id: str) -> bool:
         del fallback_store[collection_name][str(doc_id)]
         return True
     return False
+
+
+def calculate_gst_breakdown(items: List[Dict[str, Any]], supplier_state_code: Optional[str], customer_state_code: Optional[str], discount: float = 0, arrears: float = 0) -> Dict[str, float]:
+    supplier_code = str(supplier_state_code or "09").strip() or "09"
+    buyer_code = str(customer_state_code or supplier_code).strip() or supplier_code
+    is_inter_state = supplier_code != buyer_code
+
+    taxable_value = 0.0
+    cgst = 0.0
+    sgst = 0.0
+    igst = 0.0
+
+    for item in items or []:
+        quantity = float(item.get("quantity") or item.get("qty") or 0)
+        unit_price = float(item.get("price") or 0)
+        line_discount = float(item.get("discount") or 0)
+        gst_rate = float(item.get("gstRate") or item.get("gst_rate") or 5)
+        line_taxable = max(0.0, (quantity * unit_price) - line_discount)
+        taxable_value += line_taxable
+
+        tax_amount = (line_taxable * gst_rate) / 100.0
+        if is_inter_state:
+            igst += tax_amount
+        else:
+            cgst += tax_amount / 2.0
+            sgst += tax_amount / 2.0
+
+    total_before_tax = taxable_value + cgst + sgst + igst
+    net_amount = max(0.0, total_before_tax - float(discount or 0) + float(arrears or 0))
+
+    return {
+        "taxableValue": round(taxable_value, 2),
+        "cgst": round(cgst, 2),
+        "sgst": round(sgst, 2),
+        "igst": round(igst, 2),
+        "taxAmount": round(cgst + sgst + igst, 2),
+        "netAmount": round(net_amount, 2),
+    }
 
 
 def generate_token() -> str:
@@ -508,7 +622,11 @@ def get_billing_settings_route(authorization: Optional[str] = Header(default=Non
 @app.put("/api/billing-settings")
 def update_billing_settings(payload: BillingSettingsPayload, authorization: Optional[str] = Header(default=None)):
     verify_token(authorization)
-    settings = {**get_billing_settings(), **payload.model_dump(exclude_none=True)}
+    cleaned_payload = payload.model_dump(exclude_none=True)
+    cleaned_payload["supplierGstin"] = validate_gstin(cleaned_payload.get("supplierGstin"), "supplier GSTIN")
+    cleaned_payload["supplierFssai"] = validate_fssai(cleaned_payload.get("supplierFssai"), "supplier FSSAI")
+
+    settings = {**get_billing_settings(), **cleaned_payload}
     fallback_store.setdefault("billing_settings", {})["default"] = settings
     save_document("billing_settings", "default", settings)
     return {"success": True, "settings": settings}
@@ -520,26 +638,67 @@ def create_bill(payload: BillPayload, authorization: Optional[str] = Header(defa
     if not payload.items:
         raise HTTPException(status_code=400, detail="Bill must contain at least one item")
 
+    payload_supplier_gstin = validate_gstin(payload.supplierGstin, "supplier GSTIN")
+    payload_supplier_fssai = validate_fssai(payload.supplierFssai, "supplier FSSAI")
+    payload_customer_gstin = validate_gstin(payload.customerGstin, "customer GSTIN") if payload.customerGstin else None
+    payload_invoice_number = validate_invoice_number(payload.invoiceNumber)
+
+    for item in payload.items:
+        item_hsn = item.get("hsnCode") or item.get("hsn_code")
+        validate_hsn_code(item_hsn, 4)
+        validate_liquid_oil_package(item)
+
     settings = get_billing_settings()
     existing = list_documents("bills")
     next_id = max((int(item.get("id", 0)) for item in existing), default=999) + 1
+
+    supplier_state_code = payload.supplierStateCode or settings.get("supplierStateCode") or "09"
+    customer_state_code = payload.customerStateCode or supplier_state_code
+    subtotal = sum(float(item.get("price") or 0) * float(item.get("quantity") or item.get("qty") or 0) for item in payload.items)
+    final_total = float(payload.totalAmount or 0) if payload.totalAmount is not None else subtotal
+    gst_breakdown = calculate_gst_breakdown(
+        payload.items,
+        supplier_state_code,
+        customer_state_code,
+        payload.discount or 0,
+        payload.arrears or 0,
+    )
+
+    validate_b2c_high_value({
+        "customerName": payload.customerName,
+        "customerAddress": payload.customerAddress,
+        "customerStateCode": customer_state_code,
+        "totalAmount": final_total,
+        "isB2B": payload.isB2B,
+    })
+
+    total_amount = payload.totalAmount if payload.totalAmount is not None else gst_breakdown["netAmount"]
+
     bill = {
         "id": str(next_id),
-        "billNumber": f"BILL-{next_id}",
+        "billNumber": payload_invoice_number or f"BILL-{next_id}",
         "customerName": payload.customerName or "Walk-in Customer",
         "customerPhone": payload.customerPhone or "",
         "customerAddress": payload.customerAddress or "",
-        "customerGstin": payload.customerGstin or "",
-        "customerStateCode": payload.customerStateCode or settings.get("supplierStateCode"),
+        "customerGstin": payload_customer_gstin or "",
+        "customerStateCode": customer_state_code,
         "customerStateName": payload.customerStateName or settings.get("supplierStateName"),
         "supplierName": payload.supplierName or settings.get("supplierName"),
         "supplierAddress": payload.supplierAddress or settings.get("supplierAddress"),
-        "supplierGstin": payload.supplierGstin or settings.get("supplierGstin"),
-        "supplierFssai": payload.supplierFssai or settings.get("supplierFssai"),
-        "supplierStateCode": payload.supplierStateCode or settings.get("supplierStateCode"),
+        "supplierGstin": payload_supplier_gstin or settings.get("supplierGstin"),
+        "supplierFssai": payload_supplier_fssai or settings.get("supplierFssai"),
+        "supplierStateCode": supplier_state_code,
         "supplierStateName": payload.supplierStateName or settings.get("supplierStateName"),
+        "invoiceNumber": payload_invoice_number or f"BILL-{next_id}",
+        "isB2B": payload.isB2B if payload.isB2B is not None else True,
         "items": payload.items,
-        "totalAmount": payload.totalAmount,
+        "subtotal": round(subtotal, 2),
+        "taxableValue": gst_breakdown["taxableValue"],
+        "cgst": gst_breakdown["cgst"],
+        "sgst": gst_breakdown["sgst"],
+        "igst": gst_breakdown["igst"],
+        "taxAmount": gst_breakdown["taxAmount"],
+        "totalAmount": round(float(total_amount), 2),
         "discount": payload.discount or 0,
         "arrears": payload.arrears or 0,
         "paymentMethod": payload.paymentMethod or "cash",
