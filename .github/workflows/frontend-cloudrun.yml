@@ -7,11 +7,11 @@ on:
         description: 'Optional image tag to deploy (defaults to Git SHA)'
         required: false
         default: 'manual'
-  push:
-    branches: [main]
-    paths:
-      - 'frontend/**'
-      - '.github/workflows/frontend-cloudrun.yml'
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - 'frontend/**'
+  #     - '.github/workflows/frontend-cloudrun.yml'
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}

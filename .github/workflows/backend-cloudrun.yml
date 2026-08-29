@@ -8,10 +8,10 @@ on:
         required: false
         default: 'manual'
   push:
-    branches: [main]
-    paths:
-      - 'backend/**'
-      - '.github/workflows/backend-cloudrun.yml'
+    # branches: [main]
+    # paths:
+    #   - 'backend/**'
+    #   - '.github/workflows/backend-cloudrun.yml'
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
