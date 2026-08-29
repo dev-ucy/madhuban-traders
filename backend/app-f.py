@@ -7,15 +7,11 @@ from typing import Any, Dict, List, Optional
 
 from fastapi import FastAPI, Header, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from google.cloud import firestore
 from pydantic import BaseModel, Field
-from supabase import Client, create_client
-from dotenv import load_dotenv
-load_dotenv()  # Load environment variables from .env file
-PORT = int(os.getenv("PORT", "8080"))
 
-# Supabase Credentials
-SUPABASE_URL = os.getenv("SUPABASE_URL", "")
-SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")  # Use your service_role key or anon key
+PORT = int(os.getenv("PORT", "8080"))
+PROJECT_ID = os.getenv("FIRESTORE_PROJECT_ID") or os.getenv("GOOGLE_CLOUD_PROJECT") or "demo-project"
 
 app = FastAPI(title="Madhuban Traders API", version="1.0.0")
 app.add_middleware(
@@ -32,20 +28,14 @@ fallback_store: Dict[str, Dict[str, Any]] = {
     "submissions": {},
 }
 
-# Initialize Supabase Client with Fallback
-db: Optional[Client] = None
+
 try:
-    print(f"Attempting to connect to Supabase at {SUPABASE_URL}... {'with service role key' if SUPABASE_SERVICE_ROLE_KEY else 'without service role key'}")
-    if SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY:
-        db = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
-        # Health check to ensure connection works
-        db.table("workers").select("id").limit(1).execute()
-        print("Supabase connected successfully.")
-    else:
-        print("Supabase credentials missing. Using in-memory fallback.")
-except Exception as exc:  # pragma: no cover
+    db = firestore.Client(project=PROJECT_ID)
+    db.collection("_health_check").limit(1).get()
+    print(f"Firestore connected for project: {PROJECT_ID}")
+except Exception as exc:  # pragma: no cover - environment specific fallback
     db = None
-    print(f"Supabase connection failed. Using in-memory fallback. Details: {exc}")
+    print(f"Firestore unavailable. Using in-memory fallback. Details: {exc}")
 
 
 class WorkerLoginRequest(BaseModel):
@@ -84,22 +74,20 @@ def hash_password(password: str) -> str:
 
 def ensure_seed_worker() -> None:
     if db is not None:
-        try:
-            res = db.table("workers").select("*").eq("id", "w1").execute()
-            if not res.data:
-                db.table("workers").insert(
-                    {
-                        "id": "w1",
-                        "username": "shop1",
-                        "passwordHash": hash_password("shop123"),
-                        "name": "Shop Manager 1",
-                        "role": "manager",
-                        "createdAt": utc_now_iso(),
-                    }
-                ).execute()
-            return
-        except Exception as e:
-            print(f"Error seeding worker in Supabase: {e}")
+        workers_ref = db.collection("workers")
+        worker_doc = workers_ref.document("shop1").get()
+        if not worker_doc.exists:
+            workers_ref.document("shop1").set(
+                {
+                    "id": "w1",
+                    "username": "shop1",
+                    "passwordHash": hash_password("shop123"),
+                    "name": "Shop Manager 1",
+                    "role": "manager",
+                    "createdAt": utc_now_iso(),
+                }
+            )
+        return
 
     if "shop1" not in fallback_store["workers"]:
         fallback_store["workers"]["shop1"] = {
@@ -115,6 +103,12 @@ def ensure_seed_worker() -> None:
 ensure_seed_worker()
 
 
+def get_store_collection(collection_name: str):
+    if db is not None:
+        return db.collection(collection_name)
+    return None
+
+
 def normalize_doc(doc_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
     normalized = dict(payload)
     normalized.setdefault("id", doc_id)
@@ -125,18 +119,22 @@ def normalize_doc(doc_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
 
 def list_documents(collection_name: str) -> List[Dict[str, Any]]:
     if db is not None:
-        res = db.table(collection_name).select("*").execute()
-        return res.data or []
+        docs = get_store_collection(collection_name).stream()
+        items = []
+        for doc in docs:
+            data = doc.to_dict() or {}
+            items.append(data)
+        return items
 
     return list(fallback_store.get(collection_name, {}).values())
 
 
 def get_document(collection_name: str, doc_id: str) -> Optional[Dict[str, Any]]:
     if db is not None:
-        res = db.table(collection_name).select("*").eq("id", str(doc_id)).execute()
-        if res.data:
-            return res.data[0]
-        return None
+        doc = get_store_collection(collection_name).document(str(doc_id)).get()
+        if not doc.exists:
+            return None
+        return dict(doc.to_dict() or {})
 
     return fallback_store.get(collection_name, {}).get(str(doc_id))
 
@@ -145,8 +143,7 @@ def save_document(collection_name: str, doc_id: str, payload: Dict[str, Any]) ->
     normalized = normalize_doc(doc_id, payload)
 
     if db is not None:
-        # Upsert: Insert or update row based on primary key 'id'
-        db.table(collection_name).upsert(normalized).execute()
+        get_store_collection(collection_name).document(str(doc_id)).set(normalized)
         return normalized
 
     fallback_store.setdefault(collection_name, {})[str(doc_id)] = normalized
@@ -155,8 +152,11 @@ def save_document(collection_name: str, doc_id: str, payload: Dict[str, Any]) ->
 
 def delete_document(collection_name: str, doc_id: str) -> bool:
     if db is not None:
-        res = db.table(collection_name).delete().eq("id", str(doc_id)).execute()
-        return len(res.data) > 0
+        doc_ref = get_store_collection(collection_name).document(str(doc_id))
+        if not doc_ref.get().exists:
+            return False
+        doc_ref.delete()
+        return True
 
     if str(doc_id) in fallback_store.get(collection_name, {}):
         del fallback_store[collection_name][str(doc_id)]
@@ -175,9 +175,11 @@ def verify_token(authorization: Optional[str] = Header(default=None)) -> Dict[st
     token = authorization.split(" ", 1)[1]
 
     if db is not None:
-        res = db.table("workers").select("*").eq("token", token).execute()
-        if res.data:
-            return res.data[0]
+        workers = db.collection("workers").stream()
+        for worker in workers:
+            raw = worker.to_dict() or {}
+            if raw.get("token") == token:
+                return raw
         raise HTTPException(status_code=401, detail="Invalid token")
 
     for worker in fallback_store["workers"].values():
@@ -189,7 +191,7 @@ def verify_token(authorization: Optional[str] = Header(default=None)) -> Dict[st
 @app.get("/api/health")
 @app.get("/health")
 def health():
-    return {"status": "ok", "timestamp": utc_now_iso(), "database": "supabase" if db else "in-memory"}
+    return {"status": "ok", "timestamp": utc_now_iso(), "project": PROJECT_ID}
 
 
 @app.post("/api/auth/login")
@@ -198,8 +200,11 @@ def login(payload: WorkerLoginRequest):
         raise HTTPException(status_code=400, detail="Username and password required")
 
     if db is not None:
-        res = db.table("workers").select("*").eq("username", str(payload.username)).execute()
-        worker = res.data[0] if res.data else None
+        worker_doc = db.collection("workers").document(str(payload.username)).get()
+        if worker_doc.exists:
+            worker = worker_doc.to_dict() or {}
+        else:
+            worker = None
     else:
         worker = fallback_store["workers"].get(str(payload.username))
 
@@ -211,7 +216,7 @@ def login(payload: WorkerLoginRequest):
     worker["lastLogin"] = utc_now_iso()
 
     if db is not None:
-        db.table("workers").upsert(worker).execute()
+        db.collection("workers").document(str(payload.username)).set(worker)
     else:
         fallback_store["workers"][str(payload.username)] = worker
 
@@ -232,7 +237,7 @@ def logout(authorization: Optional[str] = Header(default=None)):
     worker = verify_token(authorization)
     worker["token"] = None
     if db is not None:
-        db.table("workers").upsert(worker).execute()
+        db.collection("workers").document(str(worker.get("username"))).set(worker)
     else:
         fallback_store["workers"][str(worker.get("username"))] = worker
     return {"success": True, "message": "Logged out successfully"}
@@ -310,7 +315,7 @@ def create_bill(payload: BillPayload, authorization: Optional[str] = Header(defa
     existing = list_documents("bills")
     next_id = max((int(item.get("id", 0)) for item in existing), default=999) + 1
     bill = {
-        "id": str(next_id),
+        "id": next_id,
         "billNumber": f"BILL-{next_id}",
         "customerName": payload.customerName or "Walk-in Customer",
         "customerPhone": payload.customerPhone or "",
