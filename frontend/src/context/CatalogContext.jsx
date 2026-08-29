@@ -4,6 +4,8 @@ import { apiUrl } from '../lib/api'
 
 const CatalogContext = createContext(null)
 
+// --- Manager Product CRUD (New feature) ---
+// This catalog context now supports backend-backed product list, add, update, and delete actions.
 export function CatalogProvider({ children }){
   const [products, setProducts] = useState([])
   const [cart, setCart] = useState([])
@@ -97,6 +99,8 @@ export function CatalogProvider({ children }){
     setCart([])
   }
 
+  // --- Manager Product CRUD actions (New feature) ---
+  // Used by the shop manager UI to create/update/delete catalog products.
   async function createProduct(productData) {
     const token = localStorage.getItem('billingToken')
     if (!token) throw new Error('Not authenticated')

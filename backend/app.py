@@ -83,6 +83,8 @@ class BillingSettingsPayload(BaseModel):
     supplierStateName: Optional[str] = "Uttar Pradesh"
 
 
+# --- Manager Product CRUD (New feature) ---
+# Added for shop-manager product catalog management: create, list, update, delete.
 class ProductPayload(BaseModel):
     name: Optional[str] = None
     name_hi: Optional[str] = None
@@ -418,6 +420,9 @@ def create_submission(payload: SubmissionPayload):
     return submission
 
 
+# --- Manager Product CRUD API endpoints (New feature) ---
+# UI endpoints used by shop-manager product management:
+# GET /api/products, GET /api/products/{id}, POST /api/products, PUT /api/products/{id}, DELETE /api/products/{id}
 @app.get("/api/products")
 def list_products():
     ensure_seed_products()

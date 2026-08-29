@@ -4,6 +4,8 @@ import { useBilling } from '../context/BillingContext'
 import { useCatalog } from '../context/CatalogContext'
 import '../styles/billing.css'
 
+// --- Manager Product CRUD UI (New feature) ---
+// This form and table are dedicated to shop-manager product add, edit, and delete actions.
 const emptyProductForm = {
   name: '',
   name_hi: '',
@@ -141,6 +143,7 @@ export default function ManagerDashboard() {
     setDateTo('')
   }
 
+  // --- Manager Product Management handlers (New feature) ---
   const handleProductFieldChange = (field, value) => {
     setProductForm((current) => ({ ...current, [field]: value }))
   }
@@ -289,7 +292,7 @@ export default function ManagerDashboard() {
           </div>
         </div>
 
-        {/* Product Management */}
+        {/* Product Management UI (New feature) */}
         <div className="filter-section" style={{ marginTop: '24px' }}>
           <div className="filter-card">
             <h3>🛒 Manage Products</h3>
