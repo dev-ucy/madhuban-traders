@@ -83,7 +83,7 @@ export const handlePrintBill = (billData) => {
   // Business Profile Info with Mock Defaults
   const supplier = {
     name: bill.supplierName || 'MADHUBAN TRADERS',
-    address: bill.supplierAddress || 'Main Market, Road No. 4, Ghaziabad, Uttar Pradesh - 201001',
+    address: bill.supplierAddress || 'Sindhora, Varanasi, Uttar Pradesh 221208',
     gstin: bill.supplierGstin || '09AAAAA0000A1Z5', 
     fssai: bill.supplierFssai || '10023051000123', 
     stateCode: bill.supplierStateCode || '09',

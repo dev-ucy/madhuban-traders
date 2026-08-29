@@ -30,6 +30,7 @@ fallback_store: Dict[str, Dict[str, Any]] = {
     "workers": {},
     "bills": {},
     "submissions": {},
+    "billing_settings": {},
 }
 
 # Initialize Supabase Client with Fallback
@@ -56,9 +57,51 @@ class WorkerLoginRequest(BaseModel):
 class BillPayload(BaseModel):
     customerName: Optional[str] = None
     customerPhone: Optional[str] = None
+    customerAddress: Optional[str] = None
+    customerGstin: Optional[str] = None
+    customerStateCode: Optional[str] = None
+    customerStateName: Optional[str] = None
+    supplierName: Optional[str] = "MADHUBAN TRADERS"
+    supplierAddress: Optional[str] = "Sindhora, Varanasi, Uttar Pradesh 221208"
+    supplierGstin: Optional[str] = "09AAAAA0000A1Z5"
+    supplierFssai: Optional[str] = "10023051000123"
+    supplierStateCode: Optional[str] = "09"
+    supplierStateName: Optional[str] = "Uttar Pradesh"
     items: List[Dict[str, Any]] = Field(default_factory=list)
     totalAmount: Optional[float] = 0
+    discount: Optional[float] = 0
+    arrears: Optional[float] = 0
     paymentMethod: Optional[str] = "cash"
+
+
+class BillingSettingsPayload(BaseModel):
+    supplierName: Optional[str] = "MADHUBAN TRADERS"
+    supplierAddress: Optional[str] = "Sindhora, Varanasi, Uttar Pradesh 221208"
+    supplierGstin: Optional[str] = "09AAAAA0000A1Z5"
+    supplierFssai: Optional[str] = "10023051000123"
+    supplierStateCode: Optional[str] = "09"
+    supplierStateName: Optional[str] = "Uttar Pradesh"
+
+
+class ProductPayload(BaseModel):
+    name: Optional[str] = None
+    name_hi: Optional[str] = None
+    price: float = 0
+    category: Optional[str] = "General"
+    description: Optional[str] = ""
+    description_hi: Optional[str] = ""
+    manufacturer: Optional[str] = "Madhuban Traders"
+    origin: Optional[str] = "India"
+    ingredients: List[str] = Field(default_factory=list)
+    healthBenefits: List[str] = Field(default_factory=list)
+    healthBenefits_hi: List[str] = Field(default_factory=list)
+    certifications: List[str] = Field(default_factory=list)
+    hsnCode: Optional[str] = None
+    gstRate: Optional[float] = 5
+    variants: List[Dict[str, Any]] = Field(default_factory=list)
+    stock: Optional[int] = 0
+    image: Optional[str] = ""
+    images: List[str] = Field(default_factory=list)
 
 
 class SubmissionPayload(BaseModel):
@@ -123,20 +166,123 @@ def normalize_doc(doc_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
     return normalized
 
 
+def default_billing_settings() -> Dict[str, Any]:
+    return {
+        "supplierName": "MADHUBAN TRADERS",
+        "supplierAddress": "Sindhora, Varanasi, Uttar Pradesh 221208",
+        "supplierGstin": "09AAAAA0000A1Z5",
+        "supplierFssai": "10023051000123",
+        "supplierStateCode": "09",
+        "supplierStateName": "Uttar Pradesh",
+    }
+
+
+def default_products() -> List[Dict[str, Any]]:
+    return [
+        {
+            "id": "prod-1",
+            "name": "Mustard Oil (Kacchi Ghani)",
+            "name_hi": "सरसों का तेल (कच्ची घानी)",
+            "price": 190,
+            "category": "Oils",
+            "description": "Authentic Kacchi Ghani Mustard Oil with rich natural aroma.",
+            "description_hi": "प्राकृतिक खुशबू वाला असली कच्ची घानी सरसों का तेल।",
+            "manufacturer": "Madhuban Oils Co.",
+            "origin": "Rajasthan, India",
+            "ingredients": ["Cold-pressed mustard oil"],
+            "healthBenefits": ["Rich in MUFA", "Supports heart health"],
+            "healthBenefits_hi": ["MUFA से भरपूर", "हृदय स्वास्थ्य के लिए मददगार"],
+            "certifications": ["FSSAI"],
+            "hsnCode": "1514",
+            "gstRate": 5,
+            "variants": [{"id": "v1a", "label": "1 L", "price": 195}],
+            "stock": 25,
+            "image": "",
+            "images": [],
+        },
+        {
+            "id": "prod-2",
+            "name": "Groundnut Oil",
+            "name_hi": "मूंगफली का तेल",
+            "price": 70,
+            "category": "Oils",
+            "description": "Pure groundnut oil ideal for frying and cooking.",
+            "description_hi": "तलने और पकाने के लिए उपयुक्त शुद्ध मूंगफली का तेल।",
+            "manufacturer": "Madhuban Oils Co.",
+            "origin": "Gujarat, India",
+            "ingredients": ["Cold-pressed groundnut oil"],
+            "healthBenefits": ["High smoke point", "Vitamin E enriched"],
+            "healthBenefits_hi": ["उच्च स्मोक पॉइंट", "विटामिन ई समृद्ध"],
+            "certifications": ["FSSAI"],
+            "hsnCode": "1508",
+            "gstRate": 5,
+            "variants": [{"id": "v2a", "label": "500 ml", "price": 150}],
+            "stock": 18,
+            "image": "",
+            "images": [],
+        },
+        {
+            "id": "prod-3",
+            "name": "Turmeric Powder",
+            "name_hi": "हल्दी पाउडर",
+            "price": 90,
+            "category": "Spices",
+            "description": "Premium turmeric powder with natural color and aroma.",
+            "description_hi": "प्राकृतिक रंग और खुशबू वाला प्रीमियम हल्दी पाउडर।",
+            "manufacturer": "Madhuban Traders",
+            "origin": "India",
+            "ingredients": ["Turmeric"],
+            "healthBenefits": ["Anti-inflammatory", "Good for immunity"],
+            "healthBenefits_hi": ["एंटी-इंफ्लेमेटरी", "प्रतिरक्षा के लिए उत्तम"],
+            "certifications": ["FSSAI"],
+            "hsnCode": "0910",
+            "gstRate": 5,
+            "variants": [{"id": "v3a", "label": "500 g", "price": 95}],
+            "stock": 40,
+            "image": "",
+            "images": [],
+        },
+    ]
+
+
+def get_billing_settings() -> Dict[str, Any]:
+    settings = fallback_store.get("billing_settings", {}).get("default")
+    if settings is not None:
+        return settings
+
+    settings = default_billing_settings()
+    fallback_store.setdefault("billing_settings", {})["default"] = settings
+    return settings
+
+
+def ensure_seed_products() -> None:
+    if list_documents("products"):
+        return
+
+    for product in default_products():
+        save_document("products", str(product["id"]), product)
+
+
 def list_documents(collection_name: str) -> List[Dict[str, Any]]:
     if db is not None:
-        res = db.table(collection_name).select("*").execute()
-        return res.data or []
+        try:
+            res = db.table(collection_name).select("*").execute()
+            return res.data or []
+        except Exception as exc:  # pragma: no cover
+            print(f"Falling back for collection {collection_name}: {exc}")
 
     return list(fallback_store.get(collection_name, {}).values())
 
 
 def get_document(collection_name: str, doc_id: str) -> Optional[Dict[str, Any]]:
     if db is not None:
-        res = db.table(collection_name).select("*").eq("id", str(doc_id)).execute()
-        if res.data:
-            return res.data[0]
-        return None
+        try:
+            res = db.table(collection_name).select("*").eq("id", str(doc_id)).execute()
+            if res.data:
+                return res.data[0]
+            return None
+        except Exception as exc:  # pragma: no cover
+            print(f"Falling back for get_document {collection_name}/{doc_id}: {exc}")
 
     return fallback_store.get(collection_name, {}).get(str(doc_id))
 
@@ -145,9 +291,12 @@ def save_document(collection_name: str, doc_id: str, payload: Dict[str, Any]) ->
     normalized = normalize_doc(doc_id, payload)
 
     if db is not None:
-        # Upsert: Insert or update row based on primary key 'id'
-        db.table(collection_name).upsert(normalized).execute()
-        return normalized
+        try:
+            # Upsert: Insert or update row based on primary key 'id'
+            db.table(collection_name).upsert(normalized).execute()
+            return normalized
+        except Exception as exc:  # pragma: no cover
+            print(f"Falling back for save_document {collection_name}/{doc_id}: {exc}")
 
     fallback_store.setdefault(collection_name, {})[str(doc_id)] = normalized
     return normalized
@@ -269,6 +418,50 @@ def create_submission(payload: SubmissionPayload):
     return submission
 
 
+@app.get("/api/products")
+def list_products():
+    ensure_seed_products()
+    return {"success": True, "products": list_documents("products")}
+
+
+@app.get("/api/products/{product_id}")
+def get_product(product_id: str):
+    item = get_document("products", product_id)
+    if item is None:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return {"success": True, "product": item}
+
+
+@app.post("/api/products")
+def create_product(payload: ProductPayload, authorization: Optional[str] = Header(default=None)):
+    verify_token(authorization)
+    product_id = str(uuid.uuid4())
+    product = {**payload.model_dump(exclude_none=True), "id": product_id}
+    product["createdAt"] = utc_now_iso()
+    saved = save_document("products", product_id, product)
+    return {"success": True, "product": saved}
+
+
+@app.put("/api/products/{product_id}")
+def update_product(product_id: str, payload: ProductPayload, authorization: Optional[str] = Header(default=None)):
+    verify_token(authorization)
+    existing = get_document("products", product_id)
+    if existing is None:
+        raise HTTPException(status_code=404, detail="Product not found")
+    updated = {**existing, **payload.model_dump(exclude_none=True), "updatedAt": utc_now_iso()}
+    saved = save_document("products", product_id, updated)
+    return {"success": True, "product": saved}
+
+
+@app.delete("/api/products/{product_id}")
+def delete_product(product_id: str, authorization: Optional[str] = Header(default=None)):
+    verify_token(authorization)
+    deleted = delete_document("products", product_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return {"success": True, "message": "Product deleted"}
+
+
 @app.get("/api/submissions")
 def list_submissions():
     return list_documents("submissions")
@@ -301,12 +494,28 @@ def delete_submission(submission_id: str):
     return {"success": True, "message": "Submission deleted"}
 
 
+@app.get("/api/billing-settings")
+def get_billing_settings_route(authorization: Optional[str] = Header(default=None)):
+    verify_token(authorization)
+    return {"success": True, "settings": get_billing_settings()}
+
+
+@app.put("/api/billing-settings")
+def update_billing_settings(payload: BillingSettingsPayload, authorization: Optional[str] = Header(default=None)):
+    verify_token(authorization)
+    settings = {**get_billing_settings(), **payload.model_dump(exclude_none=True)}
+    fallback_store.setdefault("billing_settings", {})["default"] = settings
+    save_document("billing_settings", "default", settings)
+    return {"success": True, "settings": settings}
+
+
 @app.post("/api/bills")
 def create_bill(payload: BillPayload, authorization: Optional[str] = Header(default=None)):
     worker = verify_token(authorization)
     if not payload.items:
         raise HTTPException(status_code=400, detail="Bill must contain at least one item")
 
+    settings = get_billing_settings()
     existing = list_documents("bills")
     next_id = max((int(item.get("id", 0)) for item in existing), default=999) + 1
     bill = {
@@ -314,8 +523,20 @@ def create_bill(payload: BillPayload, authorization: Optional[str] = Header(defa
         "billNumber": f"BILL-{next_id}",
         "customerName": payload.customerName or "Walk-in Customer",
         "customerPhone": payload.customerPhone or "",
+        "customerAddress": payload.customerAddress or "",
+        "customerGstin": payload.customerGstin or "",
+        "customerStateCode": payload.customerStateCode or settings.get("supplierStateCode"),
+        "customerStateName": payload.customerStateName or settings.get("supplierStateName"),
+        "supplierName": payload.supplierName or settings.get("supplierName"),
+        "supplierAddress": payload.supplierAddress or settings.get("supplierAddress"),
+        "supplierGstin": payload.supplierGstin or settings.get("supplierGstin"),
+        "supplierFssai": payload.supplierFssai or settings.get("supplierFssai"),
+        "supplierStateCode": payload.supplierStateCode or settings.get("supplierStateCode"),
+        "supplierStateName": payload.supplierStateName or settings.get("supplierStateName"),
         "items": payload.items,
         "totalAmount": payload.totalAmount,
+        "discount": payload.discount or 0,
+        "arrears": payload.arrears or 0,
         "paymentMethod": payload.paymentMethod or "cash",
         "createdBy": worker.get("id"),
         "createdByName": worker.get("name"),
