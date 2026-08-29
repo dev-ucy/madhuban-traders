@@ -305,55 +305,10 @@ export default function BillGenerator() {
             <h2>Bill Details</h2>
 
             <div className="form-section">
-              <h3>Quick Entry</h3>
+              <h3>Fast Billing</h3>
               <div className="quick-entry-box" style={{ display: 'grid', gap: '10px', marginBottom: '16px' }}>
-                <button type="button" className="btn btn-secondary" onClick={handleFastExampleBill}>
-                  Use Example: 75 Little Oil + 2kg Garam Masala + 5kg Haldi
-                </button>
-                <div className="form-group">
-                  <label>Product Name</label>
-                  <input
-                    type="text"
-                    value={quickName}
-                    onChange={(e) => setQuickName(e.target.value)}
-                    placeholder="Little Oil"
-                  />
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px' }}>
-                  <div className="form-group">
-                    <label>Qty</label>
-                    <input
-                      type="number"
-                      min="1"
-                      step="0.01"
-                      value={quickQty}
-                      onChange={(e) => setQuickQty(e.target.value)}
-                      placeholder="75"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Rate (₹)</label>
-                    <input
-                      type="number"
-                      min="0"
-                      step="0.01"
-                      value={quickRate}
-                      onChange={(e) => setQuickRate(e.target.value)}
-                      placeholder="186.67"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Category</label>
-                    <select value={quickCategory} onChange={(e) => setQuickCategory(e.target.value)}>
-                      <option value="General">General</option>
-                      <option value="Edible Oil">Edible Oil</option>
-                      <option value="Spices">Spices</option>
-                      <option value="Masala">Masala</option>
-                    </select>
-                  </div>
-                </div>
-                <button type="button" className="btn btn-add" onClick={handleAddQuickItem}>
-                  Add Manual Item
+                <button type="button" className="btn btn-secondary" onClick={() => navigate('/quick-entry')}>
+                  Open Quick Entry Page
                 </button>
               </div>
 

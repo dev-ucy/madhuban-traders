@@ -131,6 +131,7 @@ export default function ManagerDashboard() {
           <h1>📊 Shop Manager Dashboard</h1>
           <div className="worker-info">
             <button className="btn btn-secondary" onClick={() => navigate('/billing')}>← Back to Bill Generator</button>
+            <button className="btn-dashboard" onClick={() => navigate('/quick-entry')}>⚡ Quick Entry</button>
             <button className="btn-dashboard" onClick={() => navigate('/submissions')}>📩 Customer Submissions</button>
             <button className="btn-dashboard" onClick={() => navigate('/manager-settings')}>⚙️ Settings</button>
             <button className="btn-logout" onClick={handleLogout}>Logout</button>

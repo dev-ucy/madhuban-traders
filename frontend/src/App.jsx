@@ -21,6 +21,7 @@ const Cart = React.lazy(() => import('./pages/Cart'))
 const Submissions = React.lazy(() => import('./pages/Submissions'))
 const BillingLogin = React.lazy(() => import('./pages/BillingLogin'))
 const BillGenerator = React.lazy(() => import('./pages/BillGenerator'))
+const QuickEntry = React.lazy(() => import('./pages/QuickEntry'))
 const BillPreview = React.lazy(() => import('./pages/BillPreview'))
 const BillHistory = React.lazy(() => import('./pages/BillHistory'))
 const BillInvoice = React.lazy(() => import('./pages/BillInvoice'))
@@ -42,6 +43,7 @@ function AppShell() {
     '/submissions',
     '/billing-login',
     '/billing',
+    '/quick-entry',
     '/bill-preview',
     '/bill-invoice',
     '/billing-history',
@@ -94,6 +96,7 @@ function AppShell() {
             <Route path="/submissions" element={<Submissions/>} />
             <Route path="/billing-login" element={isAuthenticated ? <Navigate to="/manager-dashboard" replace /> : <BillingLogin/>} />
             <Route path="/billing" element={<BillGenerator/>} />
+            <Route path="/quick-entry" element={<QuickEntry/>} />
             <Route path="/bill-preview" element={<BillPreview/>} />
             <Route path="/bill-invoice" element={<BillInvoice/>} />
             <Route path="/billing-history" element={<BillHistory/>} />
