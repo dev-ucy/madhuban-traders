@@ -26,9 +26,9 @@ const emptyProductForm = {
   description: '',
   description_hi: '',
   certifications: 'FSSAI',
-  variants: '[]',
+  variants: [],
   image: '',
-  images: '[]'
+  images: []
 }
 
 const defaultSettings = {
@@ -106,6 +106,28 @@ export default function ManagerSettings() {
     setProductForm((current) => ({ ...current, [field]: value }))
   }
 
+  const handleVariantChange = (index, field, value) => {
+    setProductForm((current) => {
+      const nextVariants = [...(current.variants || [])]
+      nextVariants[index] = { ...(nextVariants[index] || {}), [field]: value }
+      return { ...current, variants: nextVariants }
+    })
+  }
+
+  const addVariantRow = () => {
+    setProductForm((current) => ({
+      ...current,
+      variants: [...(current.variants || []), { id: `variant-${Date.now()}-${Math.random()}`, label: '', price: '' }]
+    }))
+  }
+
+  const removeVariantRow = (index) => {
+    setProductForm((current) => ({
+      ...current,
+      variants: (current.variants || []).filter((_, i) => i !== index)
+    }))
+  }
+
   const resetProductForm = () => {
     setProductForm(emptyProductForm)
     setEditingProductId(null)
@@ -122,12 +144,23 @@ export default function ManagerSettings() {
         throw new Error('HSN code must be 4 to 8 digits only.')
       }
 
-      let parsedVariants = []
-      try {
-        parsedVariants = productForm.variants ? JSON.parse(productForm.variants) : []
-      } catch (error) {
-        throw new Error('Variants must be valid JSON like [{"id":"v1","label":"500 ml","price":150}]')
-      }
+      const sanitizedVariants = (productForm.variants || []).map((variant, index) => {
+        const label = String(variant?.label || '').trim()
+        const price = Number(variant?.price ?? 0)
+
+        if (!label) {
+          throw new Error(`Variant ${index + 1} is missing a label.`)
+        }
+        if (!Number.isFinite(price) || price < 0) {
+          throw new Error(`Variant ${index + 1} price must be a valid number.`)
+        }
+
+        return {
+          id: String(variant?.id || `v${index + 1}`),
+          label,
+          price,
+        }
+      })
 
       const payload = {
         name: productForm.name,
@@ -144,8 +177,8 @@ export default function ManagerSettings() {
         certifications: productForm.certifications
           ? productForm.certifications.split(',').map((item) => item.trim()).filter(Boolean)
           : ['FSSAI'],
-        variants: Array.isArray(parsedVariants) ? parsedVariants : [],
-        images: productForm.images ? (() => { try { const v = JSON.parse(productForm.images); return Array.isArray(v) ? v : []; } catch { return []; } })() : [],
+        variants: sanitizedVariants,
+        images: Array.isArray(productForm.images) ? productForm.images : [],
         image: productForm.image || ''
       }
 
@@ -189,9 +222,9 @@ export default function ManagerSettings() {
       description: product.description || '',
       description_hi: product.description_hi || '',
       certifications: Array.isArray(product.certifications) ? product.certifications.join(', ') : 'FSSAI',
-      variants: JSON.stringify(Array.isArray(product.variants) ? product.variants : [], null, 2),
+      variants: Array.isArray(product.variants) ? product.variants : [],
       image: product.image || '',
-      images: JSON.stringify(Array.isArray(product.images) ? product.images : [], null, 2)
+      images: Array.isArray(product.images) ? product.images : []
     })
   }
 
@@ -319,6 +352,36 @@ export default function ManagerSettings() {
               <div className="filter-input" style={{ gridColumn: '1 / -1' }}>
                 <label>Certifications</label>
                 <input value={productForm.certifications} onChange={(e) => handleProductInput('certifications', e.target.value)} />
+              </div>
+
+              <div className="filter-input" style={{ gridColumn: '1 / -1' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                  <label style={{ margin: 0 }}>Variants</label>
+                  <button type="button" className="btn btn-secondary" onClick={addVariantRow}>+ Add Variant</button>
+                </div>
+                <div style={{ display: 'grid', gap: '8px' }}>
+                  {(productForm.variants || []).map((variant, index) => (
+                    <div key={variant.id || `variant-${index}`} style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr auto', gap: '8px', alignItems: 'center' }}>
+                      <input
+                        value={variant.label || ''}
+                        onChange={(e) => handleVariantChange(index, 'label', e.target.value)}
+                        placeholder="Variant label e.g. 500 ml"
+                      />
+                      <input
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        value={variant.price ?? ''}
+                        onChange={(e) => handleVariantChange(index, 'price', e.target.value)}
+                        placeholder="Price"
+                      />
+                      <button type="button" className="btn btn-ghost" onClick={() => removeVariantRow(index)}>Remove</button>
+                    </div>
+                  ))}
+                  {(productForm.variants || []).length === 0 && (
+                    <div style={{ color: '#666', fontSize: '13px' }}>No variants yet. Add at least one variant for this product.</div>
+                  )}
+                </div>
               </div>
 
               <button type="submit" className="btn btn-primary" disabled={loading}>

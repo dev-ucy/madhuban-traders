@@ -163,11 +163,12 @@ def ensure_seed_worker() -> None:
 ensure_seed_worker()
 
 
-def normalize_doc(doc_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
+def normalize_doc(doc_id: str, payload: Dict[str, Any], collection_name: str = "items") -> Dict[str, Any]:
     normalized = dict(payload)
     normalized.setdefault("id", doc_id)
     normalized.setdefault("createdAt", utc_now_iso())
-    normalized.setdefault("receivedAt", normalized["createdAt"])
+    if collection_name == "submissions":
+        normalized.setdefault("receivedAt", normalized["createdAt"])
     return normalized
 
 
@@ -405,7 +406,7 @@ def get_document(collection_name: str, doc_id: str) -> Optional[Dict[str, Any]]:
 
 
 def save_document(collection_name: str, doc_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
-    normalized = normalize_doc(doc_id, payload)
+    normalized = normalize_doc(doc_id, payload, collection_name)
 
     if db is not None:
         try:
@@ -562,7 +563,7 @@ def create_submission(payload: SubmissionPayload):
         raise HTTPException(status_code=400, detail="Submission requires a name or customer")
 
     submission_id = str(uuid.uuid4())
-    submission = normalize_doc(submission_id, payload_data)
+    submission = normalize_doc(submission_id, payload_data, "submissions")
     submission["id"] = submission_id
     submission["source"] = "frontend"
     if submission.get("type") == "checkout" and submission.get("customer"):
