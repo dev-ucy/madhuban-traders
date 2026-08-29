@@ -1,4 +1,4 @@
- name: Deploy backend to Cloud Run
+name: Deploy backend to Cloud Run
 
 on:
   workflow_dispatch:
@@ -6,17 +6,11 @@ on:
       image_tag:
         description: 'Optional image tag to deploy (defaults to Git SHA)'
         required: false
-        default: 'manual'
-  # push:
-    # branches: [main]
-    # paths:
-    #   - 'backend/**'
-    #   - '.github/workflows/backend-cloudrun.yml'
+        default: ''
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   REGION: us-central1
-  IMAGE_TAG: ${{ github.event.inputs.image_tag || github.sha }}
   GAR_LOCATION: us-central1
   GAR_REPOSITORY: madhuban-traders
   SERVICE_NAME: madhuban-traders-api
@@ -29,6 +23,15 @@ jobs:
       contents: read
 
     steps:
+      - name: Set Image Tag
+        run: |
+          INPUT_TAG="${{ inputs.image_tag }}"
+          if [ -z "$INPUT_TAG" ]; then
+            echo "IMAGE_TAG=${{ github.sha }}" >> "$GITHUB_ENV"
+          else
+            echo "IMAGE_TAG=$INPUT_TAG" >> "$GITHUB_ENV"
+          fi
+
       - name: Checkout code
         uses: actions/checkout@v4
 
