@@ -453,18 +453,6 @@ export default function BillGenerator() {
                 <span>Subtotal:</span>
                 <span className="amount">₹{calculateSubtotal().toFixed(2)}</span>
               </div>
-              <div className="summary-row">
-                <span>Discount:</span>
-                <span className="amount">- ₹{(parseFloat(discount) || 0).toFixed(2)}</span>
-              </div>
-              <div className="summary-row">
-                <span>Arrears (Bakaya):</span>
-                <span className="amount">+ ₹{(parseFloat(arrears) || 0).toFixed(2)}</span>
-              </div>
-              <div className="summary-row total">
-                <span>Total Amount:</span>
-                <span className="amount">₹{calculateFinalTotal().toFixed(2)}</span>
-              </div>
             </div>
 
             {error && <div className="error-alert">{error}</div>}
@@ -474,7 +462,7 @@ export default function BillGenerator() {
               onClick={handleGenerateBill}
               disabled={generatingBill || billingLoading}
             >
-              {generatingBill ? 'Preparing Preview...' : 'Review Bill Details'}
+              {generatingBill ? 'Preparing Preview...' : 'Review Bill'}
             </button>
 
             {billItems.length > 0 && (
