@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useBilling } from '../context/BillingContext'
+import { useCatalog } from '../context/CatalogContext'
 import { apiUrl } from '../lib/api'
 import '../styles/billing.css'
 
@@ -24,7 +25,10 @@ const emptyProductForm = {
   origin: 'India',
   description: '',
   description_hi: '',
-  certifications: 'FSSAI'
+  certifications: 'FSSAI',
+  variants: '[]',
+  image: '',
+  images: '[]'
 }
 
 const defaultSettings = {
@@ -39,6 +43,7 @@ const defaultSettings = {
 export default function ManagerSettings() {
   const navigate = useNavigate()
   const { worker, token, logout } = useBilling()
+  const { refreshProducts } = useCatalog()
 
   const [products, setProducts] = useState([])
   const [productForm, setProductForm] = useState(emptyProductForm)
@@ -117,6 +122,13 @@ export default function ManagerSettings() {
         throw new Error('HSN code must be 4 to 8 digits only.')
       }
 
+      let parsedVariants = []
+      try {
+        parsedVariants = productForm.variants ? JSON.parse(productForm.variants) : []
+      } catch (error) {
+        throw new Error('Variants must be valid JSON like [{"id":"v1","label":"500 ml","price":150}]')
+      }
+
       const payload = {
         name: productForm.name,
         name_hi: productForm.name_hi,
@@ -132,9 +144,9 @@ export default function ManagerSettings() {
         certifications: productForm.certifications
           ? productForm.certifications.split(',').map((item) => item.trim()).filter(Boolean)
           : ['FSSAI'],
-        variants: [],
-        images: [],
-        image: ''
+        variants: Array.isArray(parsedVariants) ? parsedVariants : [],
+        images: productForm.images ? (() => { try { const v = JSON.parse(productForm.images); return Array.isArray(v) ? v : []; } catch { return []; } })() : [],
+        image: productForm.image || ''
       }
 
       const response = await fetch(apiUrl(editingProductId ? `/products/${editingProductId}` : '/products'), {
@@ -154,6 +166,7 @@ export default function ManagerSettings() {
       setProductMessage(editingProductId ? 'Product updated successfully.' : 'Product added successfully.')
       resetProductForm()
       await loadProducts()
+      await refreshProducts()
     } catch (error) {
       setProductMessage(error.message || 'Unable to save product.')
     } finally {
@@ -175,7 +188,10 @@ export default function ManagerSettings() {
       origin: product.origin || 'India',
       description: product.description || '',
       description_hi: product.description_hi || '',
-      certifications: Array.isArray(product.certifications) ? product.certifications.join(', ') : 'FSSAI'
+      certifications: Array.isArray(product.certifications) ? product.certifications.join(', ') : 'FSSAI',
+      variants: JSON.stringify(Array.isArray(product.variants) ? product.variants : [], null, 2),
+      image: product.image || '',
+      images: JSON.stringify(Array.isArray(product.images) ? product.images : [], null, 2)
     })
   }
 
@@ -191,6 +207,7 @@ export default function ManagerSettings() {
       if (!response.ok) throw new Error('Delete failed')
       setProductMessage('Product deleted successfully.')
       await loadProducts()
+      await refreshProducts()
     } catch (error) {
       setProductMessage(error.message || 'Unable to delete product.')
     }
@@ -258,6 +275,10 @@ export default function ManagerSettings() {
               <div className="filter-input">
                 <label>Hindi Name</label>
                 <input value={productForm.name_hi} onChange={(e) => handleProductInput('name_hi', e.target.value)} />
+              </div>
+              <div className="filter-input">
+                <label>Image URL</label>
+                <input value={productForm.image} onChange={(e) => handleProductInput('image', e.target.value)} />
               </div>
               <div className="filter-input">
                 <label>Category</label>

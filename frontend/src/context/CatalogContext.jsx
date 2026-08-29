@@ -8,27 +8,29 @@ export function CatalogProvider({ children }){
   const [products, setProducts] = useState([])
   const [cart, setCart] = useState([])
 
-  useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        const response = await fetch(apiUrl('/products'))
-        if (!response.ok) {
-          throw new Error('Products API unavailable')
-        }
-
-        const data = await response.json()
-        const sourceProducts = Array.isArray(data?.products) && data.products.length > 0
-          ? data.products
-          : sampleProducts
-
-        setProducts(sourceProducts)
-      } catch (error) {
-        console.info('Using local catalog fallback:', error.message)
-        setProducts(sampleProducts)
+  const refreshProducts = async () => {
+    try {
+      const response = await fetch(apiUrl('/products'))
+      if (!response.ok) {
+        throw new Error('Products API unavailable')
       }
-    }
 
-    loadProducts()
+      const data = await response.json()
+      const sourceProducts = Array.isArray(data?.products) && data.products.length > 0
+        ? data.products
+        : sampleProducts
+
+      setProducts(sourceProducts)
+      return sourceProducts
+    } catch (error) {
+      console.info('Using local catalog fallback:', error.message)
+      setProducts(sampleProducts)
+      return sampleProducts
+    }
+  }
+
+  useEffect(() => {
+    refreshProducts()
   }, [])
 
   // Add items but enforce a per-product max of 100 units across variants
@@ -96,7 +98,7 @@ export function CatalogProvider({ children }){
   const cartCount = cart.reduce((s,i)=>s + (i.qty||0), 0)
 
   return (
-    <CatalogContext.Provider value={{products, addToCart, cart, removeFromCart, updateQty, clearCart, cartCount}}>
+    <CatalogContext.Provider value={{products, refreshProducts, addToCart, cart, removeFromCart, updateQty, clearCart, cartCount}}>
       {children}
     </CatalogContext.Provider>
   )
