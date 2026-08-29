@@ -7,7 +7,7 @@ on:
         description: 'Optional image tag to deploy (defaults to Git SHA)'
         required: false
         default: 'manual'
-  push:
+  # push:
     # branches: [main]
     # paths:
     #   - 'backend/**'
