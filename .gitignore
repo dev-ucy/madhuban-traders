@@ -41,9 +41,6 @@ Thumbs.db
 .AppleDouble
 .LSOverride
 
-# Local data
-data/
-data/*
 
 # Docker
 .dockerignore
