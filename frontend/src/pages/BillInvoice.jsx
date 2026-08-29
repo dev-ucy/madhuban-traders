@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useBilling } from '../context/BillingContext'
+import { handlePrintBill } from '../lib/printBill'
 import '../styles/invoice.css'
 
 export default function BillInvoice() {
@@ -31,14 +32,11 @@ export default function BillInvoice() {
   }
 
   const handlePrint = () => {
-    window.print()
+    handlePrintBill(bill)
   }
 
   const handleDownloadPDF = () => {
-    // For now, use print to PDF
-    // In production, use a library like jsPDF
-    alert('Print to PDF using browser print dialog (Ctrl+P or Cmd+P)')
-    window.print()
+    handlePrintBill(bill)
   }
 
   const handleNewBill = () => {
