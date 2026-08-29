@@ -8,10 +8,28 @@ export function CatalogProvider({ children }){
   const [products, setProducts] = useState([])
   const [cart, setCart] = useState([])
 
-  useEffect(()=>{
-    // For now we load local sample data; replace with API call later
-    setProducts(sampleProducts)
-  },[])
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const response = await fetch(apiUrl('/products'))
+        if (!response.ok) {
+          throw new Error('Products API unavailable')
+        }
+
+        const data = await response.json()
+        const sourceProducts = Array.isArray(data?.products) && data.products.length > 0
+          ? data.products
+          : sampleProducts
+
+        setProducts(sourceProducts)
+      } catch (error) {
+        console.info('Using local catalog fallback:', error.message)
+        setProducts(sampleProducts)
+      }
+    }
+
+    loadProducts()
+  }, [])
 
   // Add items but enforce a per-product max of 100 units across variants
   // Returns an object: { success: boolean, added: number, allowed: number }
