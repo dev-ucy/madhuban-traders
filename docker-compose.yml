@@ -1,33 +1,52 @@
 services:
-  dev:
-    image: node:20-alpine
+  # frontend:
+  #   image: node:20-alpine
+  #   working_dir: /app
+  #   volumes:
+  #     - ./:/app:cached
+  #     - /app/node_modules
+  #   ports:
+  #     - "5173:5173"
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
+  #     - VITE_API_BASE_URL=http://localhost:5656/api
+  #     - API_URL=http://localhost:5656
+  #   depends_on:
+  #     - backend
+  #   command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+
+
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     working_dir: /app
     volumes:
-      - ./:/app:cached
+      - ./frontend:/app:cached
       - /app/node_modules
     ports:
       - "5173:5173"
     environment:
       - CHOKIDAR_USEPOLLING=true
-      - API_URL=http://api:4000
+      - VITE_API_BASE_URL=http://localhost:5656/api
+      - API_URL=http://localhost:5656
     depends_on:
-      - api
-    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+      - backend
 
-  api:
-    image: node:20-alpine
-    working_dir: /app
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5656:5656"
+    environment:
+      - PORT=5656
+      - FIRESTORE_PROJECT_ID=triambh-web
+      - GOOGLE_CLOUD_PROJECT=triambh-web
+      - CLOUDSDK_CONFIG=/root/.config/gcloud
+      - GOOGLE_APPLICATION_CREDENTIALS=/root/.config/gcloud/application_default_credentials.json
     volumes:
-      - ./:/app:cached
-      - /app/node_modules
-    ports:
-      - "4000:4000"
-    command: sh -c "npm install --prefix ./server && node server/dev-server.js"
+      - "${APPDATA}/gcloud:/root/.config/gcloud:ro"
 
-  web:
-    build: .
-    ports:
-      - "8080:80"
-    depends_on:
-      - dev
-      - api
