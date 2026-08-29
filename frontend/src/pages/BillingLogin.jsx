@@ -83,15 +83,6 @@ export default function BillingLogin() {
           </button>
         </form>
 
-        <div className="login-footer">
-          <p className="demo-hint">
-            <strong>🧪 Test Login (No Backend Needed):</strong><br />
-            Username: <code>test</code><br />
-            Password: <code>test</code><br />
-            <br />
-            <em>Also works: demo/demo or worker/worker</em>
-          </p>
-        </div>
       </div>
     </div>
   )

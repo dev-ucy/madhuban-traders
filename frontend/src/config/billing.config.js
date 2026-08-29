@@ -10,12 +10,6 @@ export const billingConfig = {
   // Example: VITE_API_BASE_URL=http://localhost:8000/api
   apiBase: import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV ? '/api' : 'http://localhost:8000/api'),
 
-  // Demo credentials for reference
-  demoCredentials: {
-    username: 'shop1',
-    password: 'shop123'
-  },
-
   // API Endpoints (relative to apiBase)
   endpoints: {
     auth: {

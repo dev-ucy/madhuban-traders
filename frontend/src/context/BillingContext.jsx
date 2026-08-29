@@ -3,21 +3,9 @@ import { apiUrl } from '../lib/api'
 
 const BillingContext = createContext(null)
 
-/**
- * TEST LOGIN CREDENTIALS (No Backend Needed)
- * ==========================================
- * Username: test    / Password: test
- * Username: demo    / Password: demo
- * Username: worker  / Password: worker
- * 
- * These bypass API calls and store bills in localStorage for testing.
- * In production, these test credentials should be removed or disabled.
- */
-
 // Get API base URL from environment variable or a sensible default.
 // For Cloud Run or a separate backend, set VITE_API_BASE_URL in .env.
 const API_BASE = import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV ? '/api' : 'http://localhost:8000/api')
-const enableFakeLogin = import.meta.env.VITE_ENABLE_FAKE_LOGIN === 'true'
 
 export function BillingProvider({ children }) {
   const [worker, setWorker] = useState(null)
@@ -35,12 +23,6 @@ export function BillingProvider({ children }) {
 
   const verifyToken = async () => {
     try {
-      // Check if it's a fake login token
-      if (localStorage.getItem('fakeLogin') === 'true' && token.startsWith('fake_token_')) {
-        setError(null)
-        return
-      }
-
       const response = await fetch(apiUrl('/auth/verify'), {
         headers: { Authorization: `Bearer ${token}` }
       })
@@ -61,37 +43,7 @@ export function BillingProvider({ children }) {
   const login = async (username, password) => {
     setLoading(true)
     setError(null)
-    
-    // ============ FAKE LOGIN FOR TESTING ============
-    // Use any of these test credentials to bypass API:
-    // - test / test
-    // - demo / demo
-    // - worker / worker
-    if (enableFakeLogin && ['test', 'demo', 'worker'].includes(username.toLowerCase()) && password === username.toLowerCase()) {
-      try {
-        const testWorker = {
-          id: `w_${username}`,
-          username: username.toLowerCase(),
-          name: `${username.charAt(0).toUpperCase() + username.slice(1)} Worker`,
-          role: 'staff'
-        }
-        const testToken = `fake_token_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
-        
-        setToken(testToken)
-        setWorker(testWorker)
-        localStorage.setItem('billingToken', testToken)
-        localStorage.setItem('fakeLogin', 'true')
-        
-        setLoading(false)
-        return true
-      } catch (err) {
-        setError('Test login failed')
-        setLoading(false)
-        return false
-      }
-    }
-    
-    // ============ REAL API LOGIN ============
+
     try {
       const response = await fetch(apiUrl('/auth/login'), {
         method: 'POST',
@@ -107,7 +59,6 @@ export function BillingProvider({ children }) {
       setToken(data.token)
       setWorker(data.worker)
       localStorage.setItem('billingToken', data.token)
-      localStorage.removeItem('fakeLogin')
       setLoading(false)
       return true
     } catch (err) {
@@ -118,7 +69,7 @@ export function BillingProvider({ children }) {
   }
 
   const logout = async () => {
-    if (token && localStorage.getItem('fakeLogin') !== 'true') {
+    if (token) {
       try {
         await fetch(apiUrl('/auth/logout'), {
           method: 'POST',
@@ -128,47 +79,20 @@ export function BillingProvider({ children }) {
         console.error('Logout error:', err)
       }
     }
-    
+
     setToken(null)
     setWorker(null)
     setBills([])
     localStorage.removeItem('billingToken')
-    localStorage.removeItem('fakeLogin')
   }
 
   const createBill = async (billData) => {
     if (!token) throw new Error('Not authenticated')
-    
+
     setLoading(true)
     setError(null)
-    
-    // Check if it's a fake login
-    const isFakeLogin = localStorage.getItem('fakeLogin') === 'true'
-    
+
     try {
-      if (isFakeLogin) {
-        // ============ FAKE BILL CREATION FOR TESTING ============
-        const fakeBills = JSON.parse(localStorage.getItem('fakeBills') || '[]')
-        const billId = 1000 + fakeBills.length + 1
-        
-        const fakeBill = {
-          id: billId,
-          billNumber: `BILL-${billId}`,
-          ...billData,
-          createdBy: worker?.id || 'test_worker',
-          createdByName: worker?.name || 'Test Worker',
-          createdAt: new Date().toISOString(),
-          status: 'completed'
-        }
-        
-        fakeBills.push(fakeBill)
-        localStorage.setItem('fakeBills', JSON.stringify(fakeBills))
-        setBills([fakeBill, ...bills])
-        setLoading(false)
-        return fakeBill
-      }
-      
-      // ============ REAL API CALL ============
       const response = await fetch(apiUrl('/bills'), {
         method: 'POST',
         headers: {
@@ -195,26 +119,11 @@ export function BillingProvider({ children }) {
 
   const fetchBills = async (limit = 50, offset = 0) => {
     if (!token) throw new Error('Not authenticated')
-    
+
     setLoading(true)
     setError(null)
-    
-    // Check if it's a fake login
-    const isFakeLogin = localStorage.getItem('fakeLogin') === 'true'
-    
+
     try {
-      if (isFakeLogin) {
-        // ============ FAKE BILLS FROM LOCALSTORAGE ============
-        const fakeBills = JSON.parse(localStorage.getItem('fakeBills') || '[]')
-        const sorted = fakeBills.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        const paginated = sorted.slice(offset, offset + limit)
-        
-        setBills(paginated)
-        setLoading(false)
-        return { bills: paginated, total: fakeBills.length }
-      }
-      
-      // ============ REAL API CALL ============
       const response = await fetch(`${apiUrl('/bills')}?limit=${limit}&offset=${offset}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
@@ -236,20 +145,8 @@ export function BillingProvider({ children }) {
 
   const getBillById = async (billId) => {
     if (!token) throw new Error('Not authenticated')
-    
-    // Check if it's a fake login
-    const isFakeLogin = localStorage.getItem('fakeLogin') === 'true'
-    
+
     try {
-      if (isFakeLogin) {
-        // ============ FAKE BILL LOOKUP ============
-        const fakeBills = JSON.parse(localStorage.getItem('fakeBills') || '[]')
-        const bill = fakeBills.find(b => b.id === parseInt(billId))
-        if (!bill) throw new Error('Bill not found')
-        return bill
-      }
-      
-      // ============ REAL API CALL ============
       const response = await fetch(apiUrl(`/bills/${billId}`), {
         headers: { Authorization: `Bearer ${token}` }
       })
