@@ -12,11 +12,12 @@ export default function ProductCard({product}){
   const title = language === 'hi' ? (product.name_hi || product.name) : product.name
   const description = language === 'hi' ? (product.description_hi || product.description) : product.description
   const excerpt = description && description.length > 80 ? description.slice(0,80) + '…' : description
+  const productImage = product.image || product.images?.[0] || '/assets/products/default-product.png'
 
   return (
     <div className="card">
       <Link to={`/product/${product.id}`} style={{color:'inherit',textDecoration:'none'}}>
-        <img src={product.image} alt={title} />
+        <img src={productImage} alt={title} />
         <h3 style={{margin:'8px 0 4px'}}>{title}</h3>
       </Link>
       {excerpt && <p className="excerpt">{excerpt}</p>}

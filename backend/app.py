@@ -192,12 +192,22 @@ def from_db_record(record: Dict[str, Any]) -> Dict[str, Any]:
     converted: Dict[str, Any] = {}
     for key, value in record.items():
         snake_key = str(key)
-        api_key = snake_key
-        if "_" in snake_key:
-            parts = snake_key.split("_")
-            api_key = parts[0] + "".join(part[:1].upper() + part[1:] for part in parts[1:])
+        if snake_key.endswith("_hi"):
+            base = snake_key[:-3]
+            api_key = snake_to_api_key(base) + "_hi"
+        else:
+            api_key = snake_to_api_key(snake_key)
         converted[api_key] = value
     return converted
+
+
+def snake_to_api_key(key: str) -> str:
+    if not key:
+        return key
+    parts = key.split("_")
+    if len(parts) == 1:
+        return parts[0]
+    return parts[0] + "".join(part[:1].upper() + part[1:] for part in parts[1:])
 
 
 def default_billing_settings() -> Dict[str, Any]:

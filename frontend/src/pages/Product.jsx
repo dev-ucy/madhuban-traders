@@ -7,9 +7,10 @@ import { useLanguage } from '../context/LanguageContext'
 export default function Product(){
   const { id } = useParams()
   const { products, addToCart, cartCount } = useCatalog()
+  const defaultImage = '/assets/products/default-product.png'
   const product = products.find(p => String(p.id) === String(id))
   const images = product?.images || (product ? [product.image] : [])
-  const [main, setMain] = useState(images[0] || product?.image)
+  const [main, setMain] = useState(images[0] || product?.image || defaultImage)
   const [selectedVariant, setSelectedVariant] = useState(product?.variants?.[0] ?? null)
   const [qty, setQty] = useState(1)
   const [adding, setAdding] = useState(false)
@@ -20,8 +21,7 @@ export default function Product(){
   useEffect(() => {
     if (!product) return
     const imgs = (product.images && product.images.length) ? product.images : (product.image ? [product.image] : [])
-    // If main image not set or points to an old value, set it from product data
-    setMain(imgs[0] || product.image)
+    setMain(imgs[0] || product.image || defaultImage)
     setSelectedVariant(product.variants?.[0] ?? null)
   }, [product])
 
@@ -102,19 +102,20 @@ export default function Product(){
         <div className="product-left">
           <div className="image-wrap">
             <img
-              src={main || product?.image}
+              src={main || product?.image || defaultImage}
               alt={title}
               onError={(e) => {
-                // If image fails to load, try the product.image fallback
-                if (product?.image && e.target.src !== product.image) e.target.src = product.image
+                if (e.target.src !== window.location.origin + defaultImage) {
+                  e.target.src = defaultImage
+                }
               }}
             />
           </div>
 
           <div className="gallery-grid">
             {images.slice(0,4).map((src, i) => (
-              <button key={i} className={`thumb ${src===main? 'active':''}`} onClick={()=>setMain(src)} aria-label={`View image ${i+1}`}>
-                <img src={src} alt={`${title} ${i+1}`} />
+              <button key={i} className={`thumb ${src===main? 'active':''}`} onClick={()=>setMain(src || defaultImage)} aria-label={`View image ${i+1}`}>
+                <img src={src || defaultImage} alt={`${title} ${i+1}`} onError={(e) => { e.target.src = defaultImage }} />
               </button>
             ))}
           </div>
