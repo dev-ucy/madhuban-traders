@@ -25,6 +25,7 @@ const BillPreview = React.lazy(() => import('./pages/BillPreview'))
 const BillHistory = React.lazy(() => import('./pages/BillHistory'))
 const BillInvoice = React.lazy(() => import('./pages/BillInvoice'))
 const ManagerDashboard = React.lazy(() => import('./pages/ManagerDashboard'))
+const ManagerSettings = React.lazy(() => import('./pages/ManagerSettings'))
 
 // Loading component
 const PageLoader = () => (
@@ -44,7 +45,8 @@ function AppShell() {
     '/bill-preview',
     '/bill-invoice',
     '/billing-history',
-    '/manager-dashboard'
+    '/manager-dashboard',
+    '/manager-settings'
   ])
 
   const isBillingRoute = isAuthenticated && billingPortalPaths.has(location.pathname)
@@ -96,6 +98,7 @@ function AppShell() {
             <Route path="/bill-invoice" element={<BillInvoice/>} />
             <Route path="/billing-history" element={<BillHistory/>} />
             <Route path="/manager-dashboard" element={<ManagerDashboard/>} />
+            <Route path="/manager-settings" element={<ManagerSettings/>} />
           </Routes>
         </Suspense>
       </main>
