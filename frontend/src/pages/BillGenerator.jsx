@@ -393,50 +393,6 @@ export default function BillGenerator() {
                   placeholder="Enter address for delivery or contact"
                 />
               </div>
-              <div className="form-group">
-                <label>Order Type</label>
-                <select
-                  value={orderType}
-                  onChange={(e) => setOrderType(e.target.value)}
-                >
-                  <option value="retail">Retail</option>
-                  <option value="bulk">Bulk</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label>Discount (₹)</label>
-                <input
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  value={discount}
-                  onChange={(e) => setDiscount(e.target.value)}
-                  placeholder="Enter discount amount"
-                />
-              </div>
-              <div className="form-group">
-                <label>Arrears / Bakaya (₹)</label>
-                <input
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  value={arrears}
-                  onChange={(e) => setArrears(e.target.value)}
-                  placeholder="Enter bakaya amount"
-                />
-              </div>
-              <div className="form-group">
-                <label>Payment Method</label>
-                <select
-                  value={paymentMethod}
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                >
-                  <option value="cash">Cash</option>
-                  <option value="card">Card</option>
-                  <option value="check">Check</option>
-                  <option value="online">Online Transfer</option>
-                </select>
-              </div>
             </div>
 
             <div className="bill-items">
