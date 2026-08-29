@@ -114,7 +114,7 @@ export default function BillInvoice() {
           <div className="company-contact">
             <p>📱 +91-7897061003</p>
             <p>📧 info@madhubantraders.com</p>
-            <p>📍 Rajasthan, India</p>
+            <p>📍 Sindhora, Varanasi, Uttar Pradesh 221208</p>
           </div>
         </div>
 

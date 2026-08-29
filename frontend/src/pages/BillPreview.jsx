@@ -202,12 +202,12 @@ export default function BillPreview() {
                 />
               </div>
               <div className="form-group">
-                <label>Buyer GSTIN</label>
+                <label>Buyer GSTIN (Optional)</label>
                 <input
                   type="text"
                   value={customerGstin}
                   onChange={(e) => setCustomerGstin(e.target.value)}
-                  placeholder="09ABCDE1234F1Z5"
+                  placeholder="09ABCDE1234F1Z5 (optional)"
                 />
               </div>
               <div className="form-group">
