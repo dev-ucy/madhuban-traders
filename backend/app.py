@@ -171,6 +171,35 @@ def normalize_doc(doc_id: str, payload: Dict[str, Any]) -> Dict[str, Any]:
     return normalized
 
 
+def camel_to_snake(name: str) -> str:
+    name = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", name)
+    name = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1_\2", name)
+    return name.lower()
+
+
+def to_db_record(record: Dict[str, Any]) -> Dict[str, Any]:
+    if not isinstance(record, dict):
+        return record
+    converted: Dict[str, Any] = {}
+    for key, value in record.items():
+        converted[camel_to_snake(str(key))] = value
+    return converted
+
+
+def from_db_record(record: Dict[str, Any]) -> Dict[str, Any]:
+    if not isinstance(record, dict):
+        return record
+    converted: Dict[str, Any] = {}
+    for key, value in record.items():
+        snake_key = str(key)
+        api_key = snake_key
+        if "_" in snake_key:
+            parts = snake_key.split("_")
+            api_key = parts[0] + "".join(part[:1].upper() + part[1:] for part in parts[1:])
+        converted[api_key] = value
+    return converted
+
+
 def default_billing_settings() -> Dict[str, Any]:
     return {
         "supplierName": "MADHUBAN TRADERS",
@@ -345,7 +374,7 @@ def list_documents(collection_name: str) -> List[Dict[str, Any]]:
     if db is not None:
         try:
             res = db.table(collection_name).select("*").execute()
-            return res.data or []
+            return [from_db_record(row) for row in (res.data or [])]
         except Exception as exc:  # pragma: no cover
             print(f"Falling back for collection {collection_name}: {exc}")
 
@@ -357,7 +386,7 @@ def get_document(collection_name: str, doc_id: str) -> Optional[Dict[str, Any]]:
         try:
             res = db.table(collection_name).select("*").eq("id", str(doc_id)).execute()
             if res.data:
-                return res.data[0]
+                return from_db_record(res.data[0])
             return None
         except Exception as exc:  # pragma: no cover
             print(f"Falling back for get_document {collection_name}/{doc_id}: {exc}")
@@ -370,8 +399,7 @@ def save_document(collection_name: str, doc_id: str, payload: Dict[str, Any]) ->
 
     if db is not None:
         try:
-            # Upsert: Insert or update row based on primary key 'id'
-            db.table(collection_name).upsert(normalized).execute()
+            db.table(collection_name).upsert(to_db_record(normalized)).execute()
             return normalized
         except Exception as exc:  # pragma: no cover
             print(f"Falling back for save_document {collection_name}/{doc_id}: {exc}")
@@ -442,7 +470,7 @@ def verify_token(authorization: Optional[str] = Header(default=None)) -> Dict[st
     if db is not None:
         res = db.table("workers").select("*").eq("token", token).execute()
         if res.data:
-            return res.data[0]
+            return from_db_record(res.data[0])
         raise HTTPException(status_code=401, detail="Invalid token")
 
     for worker in fallback_store["workers"].values():
@@ -464,7 +492,7 @@ def login(payload: WorkerLoginRequest):
 
     if db is not None:
         res = db.table("workers").select("*").eq("username", str(payload.username)).execute()
-        worker = res.data[0] if res.data else None
+        worker = from_db_record(res.data[0]) if res.data else None
     else:
         worker = fallback_store["workers"].get(str(payload.username))
 
@@ -476,7 +504,7 @@ def login(payload: WorkerLoginRequest):
     worker["lastLogin"] = utc_now_iso()
 
     if db is not None:
-        db.table("workers").upsert(worker).execute()
+        db.table("workers").upsert(to_db_record(worker)).execute()
     else:
         fallback_store["workers"][str(payload.username)] = worker
 
@@ -497,7 +525,7 @@ def logout(authorization: Optional[str] = Header(default=None)):
     worker = verify_token(authorization)
     worker["token"] = None
     if db is not None:
-        db.table("workers").upsert(worker).execute()
+        db.table("workers").upsert(to_db_record(worker)).execute()
     else:
         fallback_store["workers"][str(worker.get("username"))] = worker
     return {"success": True, "message": "Logged out successfully"}
