@@ -4,37 +4,13 @@ import { apiUrl } from '../lib/api'
 
 const CatalogContext = createContext(null)
 
-// --- Manager Product CRUD (New feature) ---
-// This catalog context now supports backend-backed product list, add, update, and delete actions.
 export function CatalogProvider({ children }){
   const [products, setProducts] = useState([])
   const [cart, setCart] = useState([])
 
-  const fetchProducts = async () => {
-    const token = localStorage.getItem('billingToken')
-
-    try {
-      const response = await fetch(apiUrl('/products'), {
-        headers: token ? { Authorization: `Bearer ${token}` } : {}
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch products')
-      }
-
-      const data = await response.json()
-      const list = Array.isArray(data?.products) ? data.products : Array.isArray(data) ? data : sampleProducts
-      setProducts(list)
-      return list
-    } catch (error) {
-      console.warn('Using sample product catalog because backend products are unavailable:', error)
-      setProducts(sampleProducts)
-      return sampleProducts
-    }
-  }
-
   useEffect(()=>{
-    fetchProducts()
+    // For now we load local sample data; replace with API call later
+    setProducts(sampleProducts)
   },[])
 
   // Add items but enforce a per-product max of 100 units across variants
@@ -99,65 +75,10 @@ export function CatalogProvider({ children }){
     setCart([])
   }
 
-  // --- Manager Product CRUD actions (New feature) ---
-  // Used by the shop manager UI to create/update/delete catalog products.
-  async function createProduct(productData) {
-    const token = localStorage.getItem('billingToken')
-    if (!token) throw new Error('Not authenticated')
-
-    const response = await fetch(apiUrl('/products'), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify(productData)
-    })
-
-    if (!response.ok) throw new Error('Failed to create product')
-    const data = await response.json()
-    const nextList = [data.product, ...products]
-    setProducts(nextList)
-    return data.product
-  }
-
-  async function updateProduct(productId, productData) {
-    const token = localStorage.getItem('billingToken')
-    if (!token) throw new Error('Not authenticated')
-
-    const response = await fetch(apiUrl(`/products/${productId}`), {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify(productData)
-    })
-
-    if (!response.ok) throw new Error('Failed to update product')
-    const data = await response.json()
-    setProducts((current) => current.map((item) => String(item.id) === String(productId) ? data.product : item))
-    return data.product
-  }
-
-  async function deleteProduct(productId) {
-    const token = localStorage.getItem('billingToken')
-    if (!token) throw new Error('Not authenticated')
-
-    const response = await fetch(apiUrl(`/products/${productId}`), {
-      method: 'DELETE',
-      headers: { Authorization: `Bearer ${token}` }
-    })
-
-    if (!response.ok) throw new Error('Failed to delete product')
-    setProducts((current) => current.filter((item) => String(item.id) !== String(productId)))
-    return true
-  }
-
   const cartCount = cart.reduce((s,i)=>s + (i.qty||0), 0)
 
   return (
-    <CatalogContext.Provider value={{products, fetchProducts, createProduct, updateProduct, deleteProduct, addToCart, cart, removeFromCart, updateQty, clearCart, cartCount}}>
+    <CatalogContext.Provider value={{products, addToCart, cart, removeFromCart, updateQty, clearCart, cartCount}}>
       {children}
     </CatalogContext.Provider>
   )

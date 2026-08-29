@@ -1,38 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useBilling } from '../context/BillingContext'
-import { useCatalog } from '../context/CatalogContext'
 import '../styles/billing.css'
-
-// --- Manager Product CRUD UI (New feature) ---
-// This form and table are dedicated to shop-manager product add, edit, and delete actions.
-const emptyProductForm = {
-  name: '',
-  name_hi: '',
-  category: 'Oils',
-  price: '',
-  stock: '0',
-  hsnCode: '',
-  gstRate: '5',
-  manufacturer: 'Madhuban Traders',
-  origin: 'India',
-  description: '',
-  description_hi: '',
-  certifications: 'FSSAI'
-}
 
 export default function ManagerDashboard() {
   const navigate = useNavigate()
   const { worker, logout, fetchBills, bills, loading } = useBilling()
-  const { products, fetchProducts, createProduct, updateProduct, deleteProduct } = useCatalog()
   
   const [dateFrom, setDateFrom] = useState('')
   const [dateTo, setDateTo] = useState('')
   const [filteredBills, setFilteredBills] = useState([])
   const [expandedDate, setExpandedDate] = useState(null)
-  const [productForm, setProductForm] = useState(emptyProductForm)
-  const [editingProductId, setEditingProductId] = useState(null)
-  const [productMessage, setProductMessage] = useState('')
 
   useEffect(() => {
     if (!worker) {
@@ -40,7 +18,6 @@ export default function ManagerDashboard() {
       return
     }
     loadBills()
-    fetchProducts().catch(() => {})
   }, [worker])
 
   useEffect(() => {
@@ -143,81 +120,6 @@ export default function ManagerDashboard() {
     setDateTo('')
   }
 
-  // --- Manager Product Management handlers (New feature) ---
-  const handleProductFieldChange = (field, value) => {
-    setProductForm((current) => ({ ...current, [field]: value }))
-  }
-
-  const resetProductForm = () => {
-    setProductForm(emptyProductForm)
-    setEditingProductId(null)
-  }
-
-  const handleProductSubmit = async (event) => {
-    event.preventDefault()
-
-    try {
-      const payload = {
-        name: productForm.name,
-        name_hi: productForm.name_hi,
-        category: productForm.category,
-        price: Number(productForm.price || 0),
-        stock: Number(productForm.stock || 0),
-        hsnCode: productForm.hsnCode || '1514',
-        gstRate: Number(productForm.gstRate || 5),
-        manufacturer: productForm.manufacturer,
-        origin: productForm.origin,
-        description: productForm.description,
-        description_hi: productForm.description_hi,
-        certifications: productForm.certifications ? productForm.certifications.split(',').map((item) => item.trim()).filter(Boolean) : ['FSSAI'],
-        variants: [],
-        images: [],
-        image: ''
-      }
-
-      if (editingProductId) {
-        await updateProduct(editingProductId, payload)
-        setProductMessage('Product updated successfully')
-      } else {
-        await createProduct(payload)
-        setProductMessage('Product added successfully')
-      }
-
-      resetProductForm()
-      await fetchProducts()
-    } catch (error) {
-      setProductMessage(error.message || 'Unable to save product')
-    }
-  }
-
-  const handleEditProduct = (product) => {
-    setEditingProductId(product.id)
-    setProductForm({
-      name: product.name || '',
-      name_hi: product.name_hi || '',
-      category: product.category || 'Oils',
-      price: product.price ?? '',
-      stock: product.stock ?? '0',
-      hsnCode: product.hsnCode || '',
-      gstRate: product.gstRate ?? '5',
-      manufacturer: product.manufacturer || 'Madhuban Traders',
-      origin: product.origin || 'India',
-      description: product.description || '',
-      description_hi: product.description_hi || '',
-      certifications: Array.isArray(product.certifications) ? product.certifications.join(', ') : 'FSSAI'
-    })
-  }
-
-  const handleDeleteProduct = async (productId) => {
-    try {
-      await deleteProduct(productId)
-      setProductMessage('Product deleted successfully')
-      await fetchProducts()
-    } catch (error) {
-      setProductMessage(error.message || 'Unable to delete product')
-    }
-  }
-
   const handleViewBill = (bill) => {
     navigate('/bill-invoice', { state: { bill } })
   }
@@ -289,105 +191,6 @@ export default function ManagerDashboard() {
           <div className="summary-card-item">
             <div className="card-header">📦 Arrears (Bakaya)</div>
             <div className="card-value arrears">{formatCurrency(grandTotals.totalArrears)}</div>
-          </div>
-        </div>
-
-        {/* Product Management UI (New feature) */}
-        <div className="filter-section" style={{ marginTop: '24px' }}>
-          <div className="filter-card">
-            <h3>🛒 Manage Products</h3>
-            <form onSubmit={handleProductSubmit} className="filter-group" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '12px', alignItems: 'end' }}>
-              <div className="filter-input">
-                <label>Name</label>
-                <input value={productForm.name} onChange={(e) => handleProductFieldChange('name', e.target.value)} required />
-              </div>
-              <div className="filter-input">
-                <label>Hindi Name</label>
-                <input value={productForm.name_hi} onChange={(e) => handleProductFieldChange('name_hi', e.target.value)} />
-              </div>
-              <div className="filter-input">
-                <label>Category</label>
-                <input value={productForm.category} onChange={(e) => handleProductFieldChange('category', e.target.value)} />
-              </div>
-              <div className="filter-input">
-                <label>Price</label>
-                <input type="number" min="0" step="0.01" value={productForm.price} onChange={(e) => handleProductFieldChange('price', e.target.value)} required />
-              </div>
-              <div className="filter-input">
-                <label>Stock</label>
-                <input type="number" min="0" value={productForm.stock} onChange={(e) => handleProductFieldChange('stock', e.target.value)} />
-              </div>
-              <div className="filter-input">
-                <label>HSN</label>
-                <input value={productForm.hsnCode} onChange={(e) => handleProductFieldChange('hsnCode', e.target.value)} />
-              </div>
-              <div className="filter-input">
-                <label>GST %</label>
-                <input type="number" min="0" step="0.01" value={productForm.gstRate} onChange={(e) => handleProductFieldChange('gstRate', e.target.value)} />
-              </div>
-              <div className="filter-input">
-                <label>Manufacturer</label>
-                <input value={productForm.manufacturer} onChange={(e) => handleProductFieldChange('manufacturer', e.target.value)} />
-              </div>
-              <div className="filter-input">
-                <label>Origin</label>
-                <input value={productForm.origin} onChange={(e) => handleProductFieldChange('origin', e.target.value)} />
-              </div>
-              <div className="filter-input" style={{ gridColumn: '1 / -1' }}>
-                <label>Description</label>
-                <input value={productForm.description} onChange={(e) => handleProductFieldChange('description', e.target.value)} />
-              </div>
-              <div className="filter-input" style={{ gridColumn: '1 / -1' }}>
-                <label>Hindi Description</label>
-                <input value={productForm.description_hi} onChange={(e) => handleProductFieldChange('description_hi', e.target.value)} />
-              </div>
-              <div className="filter-input" style={{ gridColumn: '1 / -1' }}>
-                <label>Certifications</label>
-                <input value={productForm.certifications} onChange={(e) => handleProductFieldChange('certifications', e.target.value)} />
-              </div>
-              <button type="submit" className="btn btn-primary">
-                {editingProductId ? 'Update Product' : 'Add Product'}
-              </button>
-              {editingProductId && (
-                <button type="button" className="btn btn-secondary" onClick={resetProductForm}>
-                  Cancel
-                </button>
-              )}
-            </form>
-            {productMessage && <p style={{ marginTop: '12px', color: '#0b6b3b', fontWeight: 600 }}>{productMessage}</p>}
-          </div>
-        </div>
-
-        <div className="bills-by-date-section" style={{ marginTop: '24px' }}>
-          <h2>📦 Product Inventory</h2>
-          <div className="bills-list">
-            <table className="bills-table-compact">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Price</th>
-                  <th>Stock</th>
-                  <th>GST</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(products || []).map((product) => (
-                  <tr key={product.id} className="bill-row">
-                    <td><strong>{product.name}</strong></td>
-                    <td>{product.category || 'General'}</td>
-                    <td>₹{Number(product.price || 0).toFixed(2)}</td>
-                    <td>{product.stock ?? 0}</td>
-                    <td>{product.gstRate ?? 5}%</td>
-                    <td>
-                      <button className="btn-action" onClick={() => handleEditProduct(product)} title="Edit product">✏️</button>
-                      <button className="btn-action" onClick={() => handleDeleteProduct(product.id)} title="Delete product">🗑️</button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>
         </div>
 
