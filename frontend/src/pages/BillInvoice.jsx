@@ -53,11 +53,11 @@ export default function BillInvoice() {
       <div className="invoice-header no-print">
         <h1>Invoice Generated Successfully</h1>
         <div className="invoice-actions">
-          <button className="btn btn-primary" onClick={handlePrint}>
-            🖨️ Print
+          <button className="btn btn-primary" onClick={handlePrint} title="Print bill">
+            🖨️ Print bill
           </button>
-          <button className="btn btn-secondary" onClick={handleDownloadPDF}>
-            📥 Download PDF
+          <button className="btn btn-secondary" onClick={handleDownloadPDF} title="Print bill">
+            📄 Save as PDF
           </button>
           <button className="btn btn-outline" onClick={handleNewBill}>
             ➕ New Bill
