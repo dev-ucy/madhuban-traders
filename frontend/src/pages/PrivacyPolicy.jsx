@@ -32,11 +32,11 @@ export default function PrivacyPolicy() {
                             <li><strong>{t('footer.products')}:</strong> {t('privacy.collect_personal_items.order_history')}</li>
                         </ul>
 
-                        <h3>{t('privacy.collect_automatic')}</h3>
+                        {/* <h3>{t('privacy.collect_automatic')}</h3>
                         <ul className="legal-list">
                             <li><strong>{t('privacy.device_info_label')}:</strong> {t('privacy.device_info_items')}</li>
                             <li><strong>{t('privacy.usage_data_label')}:</strong> {t('privacy.usage_data_items')}</li>
-                        </ul>
+                        </ul> */}
                     </section>
 
                     {/* How We Use Your Information */}
